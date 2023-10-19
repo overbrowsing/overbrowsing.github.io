@@ -52,10 +52,4 @@ jobs:
             git checkout -b gh-pages
           fi
 
-          # Ensure the gh-pages branch contains only the optimized images
-          git rm -r --ignore-unmatch '*'
-          mv uploads/* .
-          git add .
-          git commit -m "Update gh-pages with optimized images"
           git push -u origin gh-pages
-
