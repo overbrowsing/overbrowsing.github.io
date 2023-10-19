@@ -3,7 +3,7 @@ Overbrowsing dedicated to fostering a deeper understanding of sustainable web de
 and development practices and their implications for our environment and society.
 
 
-The term overbrowsing encapsulates our mission: a vigilant acknowledgment of the
+The term [overbrowsing](https://en.wikipedia.org/wiki/Browsing_(herbivory)#:~:text=Overbrowsing%20occurs%20when%20overpopulated%20or%20densely-concentrated%20herbivores%20exert%20extreme%20pressure%20on%20plants,%20reducing%20the%20carrying%20capacity%20and%20altering%20the%20ecological%20functions%20of%20their%20habitat.) encapsulates our mission: a vigilant acknowledgment of the
 excesses and and superfluous elements often overlooked within the digital landscape.
 Our purpose is to raise consciousness, disseminate knowledge concerning the
 imperative need to curtail this surplus, and kindle palpable, tangible change.
