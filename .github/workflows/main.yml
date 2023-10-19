@@ -45,11 +45,5 @@ jobs:
 
       - name: Create or update gh-pages branch
         run: |
-          if [[ $(git ls-remote --heads origin gh-pages) ]]; then
-            git checkout gh-pages
-            git merge origin/main --no-edit
-          else
-            git checkout -b gh-pages
-          fi
-
+          git checkout -b gh-pages
           git push -u origin gh-pages
