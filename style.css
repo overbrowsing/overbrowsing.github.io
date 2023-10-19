@@ -1,0 +1,30 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    word-break: break-word;
+}
+
+.container {
+    max-width: 1600px;
+    margin: auto;
+}
+
+.feed {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.feed div {
+    border: 1px solid;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.feed img {
+    max-width: 100%;
+}

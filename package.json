@@ -1,0 +1,12 @@
+{
+  "name": "overbrowsing",
+  "version": "1.0.0",
+  "description": "Overbrowsing dedicated to fostering a deeper understanding of sustainable web design",
+  "main": "index.js",
+  "scripts": {
+    "serve": "python3 -m http.server",
+    "build": "rm -rf uploads/; rm -rf data.json; mkdir uploads; node index.js"
+  },
+  "author": "",
+  "license": "MIT"
+}

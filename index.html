@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overbrowsing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Overbrowsing</h1>
+        <div class="feed"></div>
+    </div>
+    <script type="module">
+        import data from "./data.json" assert { type: "json" };
+        let filteredHtml = "";
+
+        data.forEach(element => {
+        filteredHtml += "<div>";
+        if (element.title) {
+            filteredHtml += "<h2>"+ element.title +"</h2>"
+        }
+        if (element.content) {
+            filteredHtml += "<p>"+ element.content +"</p>"
+        }
+        console.log(element)
+
+        if (element.image) {
+            filteredHtml += "<img class='image' src='uploads/" + element.id + ".png'/>"
+        }
+        filteredHtml += "</div>";
+        });
+        filteredHtml += "</div>";
+        document.querySelector(".feed").innerHTML = filteredHtml;
+    </script>
+</body>
+</html> 
