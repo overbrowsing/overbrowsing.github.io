@@ -46,4 +46,4 @@ jobs:
       - name: Create or update gh-pages branch
         run: |
           git checkout -b gh-pages
-          git push -u origin gh-pages
+          git push -u -f origin gh-pages
