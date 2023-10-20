@@ -9,17 +9,17 @@
 <body>
     <div class="container">
         <h1>Overbrowsing</h1>
-        <select id="categorySelect">
-            <option value="">Show All</option>
-            <option value="Design Tools">Design Tools</option>
-            <option value="Founding Principals">Founding Principals</option>
-        </select>
+        <div class="category-buttons">
+            <button class="category-button" data-category="">Show All</button>
+            <button class="category-button selected" data-category="Design Tools">Design Tools</button>
+            <button class="category-button" data-category="Founding Principals">Founding Principals</button>
+        </div>
         <div class="feed"></div>
     </div>
     <script type="module">
         import data from "./cache/data.json" assert { type: "json" };
         
-        const categorySelect = document.getElementById("categorySelect");
+        const categoryButtons = document.querySelectorAll(".category-button");
         const feedContainer = document.querySelector(".feed");
 
         // Function to filter and update the displayed data by category
@@ -43,13 +43,20 @@
             feedContainer.innerHTML = filteredHtml;
         }
 
-        // Handle the select change event
-        categorySelect.addEventListener("change", (event) => {
-            filterDataByCategory(event.target.value);
+        // Add event listeners to the category buttons
+        categoryButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                // Remove 'selected' class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove("selected"));
+                // Add 'selected' class to the clicked button
+                button.classList.add("selected");
+                const selectedCategory = button.getAttribute("data-category");
+                filterDataByCategory(selectedCategory);
+            });
         });
 
-        // Initialize with all data shown
-        filterDataByCategory("");
+        // Initialize with "Design Tools" selected by default
+        filterDataByCategory("Design Tools");
     </script>
 </body>
 </html>
