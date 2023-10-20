@@ -31,7 +31,7 @@ jobs:
               extension="${filename##*.}"
               filename="${filename%.*}"
               output_file="uploads/$filename.png"
-              convert "$file" -type Grayscale -ordered-dither h4x4a -quality 75% "$output_file"
+              convert "$file" -type Grayscale -ordered-dither h4x4a -quality 100% "$output_file"
             fi
           done
 
@@ -40,7 +40,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
           git add uploads
-          git commit -m "Optimize and convert images to black and white with dithering"
+          git commit -m "Workflow Run: Generate Compressed Images"
           git push
 
       - name: Create or update gh-pages branch
