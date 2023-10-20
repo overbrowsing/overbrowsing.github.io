@@ -1,8 +1,18 @@
 ## Introduction
 
-Overbrowsing is dedicated to fostering a deeper understanding of sustainable web design and development practices and their implications for our environment and society.
+Overbrowsing dedicated to fostering a deeper understanding of sustainable web design
+and development practices and their implications for our environment and society.
 
-The term "overbrowsing" encapsulates our mission: a vigilant acknowledgment of the excesses and superfluous elements often overlooked within the digital landscape. Our purpose is to raise consciousness, disseminate knowledge concerning the imperative need to curtail this surplus, and kindle palpable, tangible change.
+
+The term overbrowsing encapsulates our mission: a vigilant acknowledgment of the
+excesses and and superfluous elements often overlooked within the digital landscape.Our purpose is to raise consciousness, disseminate knowledge concerning the
+imperative need to curtail this surplus, and kindle palpable, tangible change.
+
+
+Overbrowsing advocates for conscious strategies, resource optimisation, and ethical
+considerations. We expound why a sustainable web is pivotal for our planet, while
+simultaneously enhancing user experiences and ensuring equitable access, fostering a
+harmonious coexistence between technology and our planet.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -18,9 +28,9 @@ To get started with Overbrowsing, follow these installation steps:
 
 Clone the repository to your local machine:
 
-   ```bash
-   git clone https://github.com/overbrowsing/overbrowsing.github.io.git
-   ```
+```bash
+git clone https://github.com/overbrowsing/overbrowsing.github.io.git
+```
 Navigate to the project directory
 
 ```bash
@@ -28,11 +38,13 @@ cd overbrowsing
 ```
 
 Install the required dependencies:
+
 ```bash
 yarn
 ```
 
 The project comes without data uploaded. Call this script to call the API and pull in data for testing. **Note:** To keep the project light, don't commit the `cache/data.json` file or the `cache/images/` folder.
+
 ```bash
 yarn build
 ```
@@ -50,6 +62,8 @@ This project has a light server with express installed. To serve the project run
 yarn serve
 ```
 This also runs `yarn build`. 
+
+Visit `http://localhost:3000/` to view the site.
 
 ## Contributing
 If you'd like to contribute to Overbrowsing Github Project, please follow these steps:
