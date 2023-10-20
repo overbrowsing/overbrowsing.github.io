@@ -25,12 +25,12 @@ jobs:
 
       - name: Optimize and Convert to Black & White with Dithering
         run: |
-          for file in public/uploads/*; do
+          for file in cache/images/*; do
             if [ -f "$file" ]; then
               filename=$(basename "$file")
               extension="${filename##*.}"
               filename="${filename%.*}"
-              output_file="public/uploads/$filename.png"
+              output_file="cache/images/$filename.png"
               convert "$file" -type Grayscale -ordered-dither h4x4a -quality 100% "$output_file"
             fi
           done

@@ -32,7 +32,7 @@ Install the required dependencies:
 yarn
 ```
 
-The project comes without data uploaded. Call this script to call the API and pull in data for testing. **Note:** To keep the project light, don't commit the `data.json` file or the `uploads/` folder.
+The project comes without data uploaded. Call this script to call the API and pull in data for testing. **Note:** To keep the project light, don't commit the `cache/data.json` file or the `cache/images/` folder.
 ```bash
 yarn build
 ```

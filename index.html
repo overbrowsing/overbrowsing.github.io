@@ -17,7 +17,7 @@
         <div class="feed"></div>
     </div>
     <script type="module">
-        import data from "./data.json" assert { type: "json" };
+        import data from "./cache/data.json" assert { type: "json" };
         
         const categorySelect = document.getElementById("categorySelect");
         const feedContainer = document.querySelector(".feed");
@@ -35,7 +35,7 @@
                         filteredHtml += "<p>" + element.content + "</p>";
                     }
                     if (element.image) {
-                        filteredHtml += "<img class='image' src='uploads/" + element.id + ".png' loading='lazy' />";
+                        filteredHtml += "<img class='image' src='cache/images/" + element.id + ".png' loading='lazy' />";
                     }
                     filteredHtml += "</div>";
                 }
