@@ -29,7 +29,7 @@ Promise.all(
             // Additional processing as needed (e.g., saving images)
             if (element.image) {
                 client.get(element.image.thumb.url, (res) => {
-                    res.pipe(fs.createWriteStream('uploads/' + element.id + '.png'));
+                    res.pipe(fs.createWriteStream('public/uploads/' + element.id + '.png'));
                 });
             }
         });
@@ -42,5 +42,5 @@ Promise.all(
     mergedJson.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
     // Save data to JSON
-    await fsp.writeFile("data.json", JSON.stringify(mergedJson));
+    await fsp.writeFile("public/data.json", JSON.stringify(mergedJson));
 });

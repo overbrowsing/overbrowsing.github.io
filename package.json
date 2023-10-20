@@ -2,11 +2,14 @@
   "name": "overbrowsing",
   "version": "1.0.0",
   "description": "Overbrowsing dedicated to fostering a deeper understanding of sustainable web design",
-  "main": "index.js",
+  "main": "scripts/fetchData.js",
   "scripts": {
-    "serve": "python3 -m http.server",
-    "build": "rm -rf uploads/; rm -rf data.json; mkdir uploads; node index.js"
+    "serve": "yarn build & node server.js",
+    "build": "rm -rf public/uploads/; rm -rf public/data.json; mkdir public/uploads/; node scripts/fetchData.js"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
