@@ -1,6 +1,6 @@
 ## Introduction
 
-[overbrowsing](https://en.wikipedia.org/wiki/Browsing_(herbivory)#:~:text=Overbrowsing%20occurs%20when%20overpopulated%20or%20densely-concentrated%20herbivores%20exert%20extreme%20pressure%20on%20plants,%20reducing%20the%20carrying%20capacity%20and%20altering%20the%20ecological%20functions%20of%20their%20habitat.) dedicated to fostering a deeper understanding of sustainable web design
+[Overbrowsing](https://en.wikipedia.org/wiki/Browsing_(herbivory)#:~:text=Overbrowsing%20occurs%20when%20overpopulated%20or%20densely-concentrated%20herbivores%20exert%20extreme%20pressure%20on%20plants,%20reducing%20the%20carrying%20capacity%20and%20altering%20the%20ecological%20functions%20of%20their%20habitat.) dedicated to fostering a deeper understanding of sustainable web design
 and development practices and their implications for our environment and society.
 
 
