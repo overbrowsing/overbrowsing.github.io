@@ -9,18 +9,18 @@ Promise.all(channelNames.map(id =>
     .then(resp => resp.json())))
     .then(async data => {
         // merge and sort channels
-        const json = Object.assign(data[0].contents, data[1].contents);
-        json.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        var mergedJson = [].concat(data[0].contents, data[1].contents);
 
-        // compress images before pageload
-        json.forEach(async element => {
+        mergedJson.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+        // save images to compress before pageload
+        mergedJson.forEach(async element => {
             if (element.image) {
                 client.get(element.image.thumb.url, (res) => {
                     res.pipe(fs.createWriteStream('uploads/' + element.id + '.png'));
                 });
             }
-           
         });
     // save data to json
-    await fsp.writeFile("data.json", JSON.stringify(json));
+    await fsp.writeFile("data.json", JSON.stringify(mergedJson));
 })
