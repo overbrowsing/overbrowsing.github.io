@@ -2,25 +2,45 @@ var fsp = require('fs/promises');
 const fs = require('fs');
 const client = require('https');
 
-const channelNames = ["design-tool-rzfxmnmei8g", "founding-principles"]
+// Define your channel names and corresponding categories
+const channelCategories = [
+    { name: "design-tool-rzfxmnmei8g", category: "Design Tools" },
+    { name: "founding-principles", category: "Founding Principals" },
+    // Add more channel names and categories as needed
+];
 
-Promise.all(channelNames.map(id => 
-    fetch(`https://api.are.na/v2/channels/${id}?per=200`)
-    .then(resp => resp.json())))
-    .then(async data => {
-        // merge and sort channels
-        var mergedJson = [].concat(data[0].contents, data[1].contents);
+Promise.all(
+    channelCategories.map(channel => 
+        fetch(`https://api.are.na/v2/channels/${channel.name}?per=200`)
+        .then(resp => resp.json())
+    )
+)
+.then(async data => {
+    // Merge and sort channels
+    const mergedJson = [];
 
-        mergedJson.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    data.forEach((channelData, index) => {
+        const category = channelCategories[index].category;
 
-        // save images to compress before pageload
-        mergedJson.forEach(async element => {
+        // Add the category to each item based on the channel category
+        channelData.contents.forEach(element => {
+            element.category = category;
+
+            // Additional processing as needed (e.g., saving images)
             if (element.image) {
                 client.get(element.image.thumb.url, (res) => {
                     res.pipe(fs.createWriteStream('uploads/' + element.id + '.png'));
                 });
             }
         });
-    // save data to json
+
+        // Concatenate the channel data to mergedJson
+        mergedJson.push(...channelData.contents);
+    });
+
+    // Sort mergedJson by created_at
+    mergedJson.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+    // Save data to JSON
     await fsp.writeFile("data.json", JSON.stringify(mergedJson));
-})
+});

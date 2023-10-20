@@ -9,28 +9,47 @@
 <body>
     <div class="container">
         <h1>Overbrowsing</h1>
+        <select id="categorySelect">
+            <option value="">Show All</option>
+            <option value="Design Tools">Design Tools</option>
+            <option value="Founding Principals">Founding Principals</option>
+        </select>
         <div class="feed"></div>
     </div>
     <script type="module">
         import data from "./data.json" assert { type: "json" };
-        let filteredHtml = "";
+        
+        const categorySelect = document.getElementById("categorySelect");
+        const feedContainer = document.querySelector(".feed");
 
-        data.forEach(element => {
-        filteredHtml += "<div>";
-        if (element.title) {
-            filteredHtml += "<h2>"+ element.title +"</h2>"
-        }
-        if (element.content) {
-            filteredHtml += "<p>"+ element.content +"</p>"
+        // Function to filter and update the displayed data by category
+        function filterDataByCategory(selectedCategory) {
+            let filteredHtml = "";
+            data.forEach(element => {
+                if (!selectedCategory || element.category === selectedCategory) {
+                    filteredHtml += "<div>";
+                    if (element.title) {
+                        filteredHtml += "<h2>" + element.title + "</h2>";
+                    }
+                    if (element.content) {
+                        filteredHtml += "<p>" + element.content + "</p>";
+                    }
+                    if (element.image) {
+                        filteredHtml += "<img class='image' src='uploads/" + element.id + ".png' loading='lazy' />";
+                    }
+                    filteredHtml += "</div>";
+                }
+            });
+            feedContainer.innerHTML = filteredHtml;
         }
 
-        if (element.image) {
-            filteredHtml += "<img class='image' src='uploads/" + element.id + ".png'/>"
-        }
-        filteredHtml += "</div>";
+        // Handle the select change event
+        categorySelect.addEventListener("change", (event) => {
+            filterDataByCategory(event.target.value);
         });
-        filteredHtml += "</div>";
-        document.querySelector(".feed").innerHTML = filteredHtml;
+
+        // Initialize with all data shown
+        filterDataByCategory("");
     </script>
 </body>
-</html> 
+</html>
