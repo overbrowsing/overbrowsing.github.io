@@ -27,7 +27,7 @@ jobs:
         if: ${{ github.event_name == 'push' || steps.stop-check.outcome != 'failure' }}
         run: |
           yarn install
-          run: yarn build
+          yarn build
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
           git checkout -b gh-pages
