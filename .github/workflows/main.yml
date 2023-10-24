@@ -18,21 +18,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Stop Workflow if AQI is greater than 2
-        id: check-condition
-        run: |
-          node scripts/stopWorkflow.js 
-          echo ::set-output name=stopWorkflow::$(node -e "console.log(shouldStopWorkflow())")
+      - name: Check if workflow should stop
+        id: stop-check
+        run: node scripts/stopWorkflow.js
+        continue-on-error: true
 
-      - name: Build and Push to gh-pages branch
-        if: steps.check-condition.outputs.stopWorkflow == 'false' && [ "${{ github.event_name }}" == "schedule" ]
-        run: |
-          yarn install 
-          run: yarn build
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@users.noreply.github.com"
-          git checkout -b gh-pages
-          git add .
-          git commit -m "Workflow Run: Generate Compressed Images"
-          git push -u -f origin gh-pages
+      - name: Conditional workflow steps
+        if: ${{ github.event_name == 'push' || steps.stop-check.outcome != 'failure' }}
+          steps:
+            - name: Install dependencies
+              run: |
+                yarn install
 
+            - name: Run Yarn Build
+              run: yarn build
+
+            - name: Commit and push optimized images
+              run: |
+                git config --global user.name "GitHub Actions"
+                git config --global user.email "actions@users.noreply.github.com"
+                git checkout -b gh-pages
+                git add .
+                git commit -m "Workflow Run: Generate Compressed Images"
+                git push -u -f origin gh-pages
