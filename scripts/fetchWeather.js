@@ -1,5 +1,6 @@
 async function fetchWeather() {
-  const aqi = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=${process.env.OPENWEATHERMAP_API_KEY}`).then(aqi => aqi.json());
+  // please don't steal my weather api key
+  const aqi = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=ac6a8e4517ccb8b2c12e6713125a2d34`).then(aqi => aqi.json());
   const aqiValue = aqi.list[0].main.aqi;
 
   const airQualityTable = {

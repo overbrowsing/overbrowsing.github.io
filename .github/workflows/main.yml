@@ -14,9 +14,6 @@ jobs:
   optimize_images_and_deploy:
     runs-on: ubuntu-latest
 
-    env:
-      OPENWEATHERMAP_API_KEY: ${{ secrets.OPENWEATHERMAP_API_KEY }}
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
