@@ -5,7 +5,8 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 0 */2 * *'
+    # - cron: '0 0 */2 * *'
+    - cron: '*/5 * * * *'
 
 permissions: write-all
 
@@ -16,6 +17,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Run Custom JavaScript Script
+        if: github.event_name == 'schedle'  # Only run on schedule events
+        run: node checkAqi.js
 
       - name: Remove cache
         run: |
