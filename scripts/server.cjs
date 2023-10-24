@@ -4,6 +4,9 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+require('dotenv').config();
+
+
 // Serve static files from the root directory (CSS, JS, images, etc.)
 app.use(express.static(path.join(__dirname, '../')));
 

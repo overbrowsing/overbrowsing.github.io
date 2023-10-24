@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    # - cron: '0 0 */2 * *'
+    # Run every 5 minutes
     - cron: '*/5 * * * *'
 
 permissions: write-all
@@ -14,13 +14,20 @@ jobs:
   optimize_images_and_deploy:
     runs-on: ubuntu-latest
 
+    env:
+      OPENWEATHERMAP_API_KEY: ${{ secrets.OPENWEATHERMAP_API_KEY }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Run Custom JavaScript Script
-        if: github.event_name == 'schedule'  # Only run on schedule events
-        run: node scripts/fetchWeather.js
+      - name: Conditional Script Execution
+        run: |
+          if [ "${{ github.event_name }}" == "schedule" ]; then
+            node scripts/fetchWeather.js
+          else
+            echo "Not a schedule event, skipping script execution."
+          fi
 
       - name: Remove cache
         run: |
