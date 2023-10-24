@@ -22,7 +22,7 @@ jobs:
           rm -rf cache
           mkdir cache
           mkdir cache/images
-          
+
       - name: Install GraphicsMagick
         run: sudo apt-get install graphicsmagick -y
 
@@ -37,6 +37,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
+          git checkout gh-pages
           git add .
           git commit -m "Workflow Run: Generate Compressed Images"
-          git push -u origin main
+          git push -u -f origin gh-pages
