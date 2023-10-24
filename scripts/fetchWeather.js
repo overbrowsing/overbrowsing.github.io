@@ -34,15 +34,5 @@ async function fetchWeather() {
   console.log(color)
   // Set the background color of the entire body.
   document.body.style.backgroundColor = color;
-
-  if (aqiValue > 2) {
-    console.log('AQI is bad today. Continue the build');
-    process.exit(0); // Success status code
-  } else {
-    console.error('AQI is good today. Stopping the build.');
-    process.exit(1); // Non-zero status code to stop the build
-  }
-
-
 }
 fetchWeather();
