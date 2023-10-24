@@ -28,11 +28,8 @@ async function fetchWeather() {
     redness = Math.round(27 + (aqiValue - 1) * 5.4); // Divided by 10
   }
 
-
   // Set the background color based on the calculated components.
   const color = `#${redness}2a24`;
-  console.log(color)
-  // Set the background color of the entire body.
   document.body.style.backgroundColor = color;
 }
 fetchWeather();

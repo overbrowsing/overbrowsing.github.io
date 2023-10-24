@@ -5,8 +5,7 @@ on:
     branches:
       - main
   schedule:
-    # Run every 5 minutes
-    - cron: '*/5 * * * *'
+    - cron: '0 8 * * *'
 
 permissions: write-all
 
