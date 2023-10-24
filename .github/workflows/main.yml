@@ -33,7 +33,9 @@ jobs:
           mkdir cache/images
 
       - name: Install GraphicsMagick
-        run: sudo apt-get install -y graphicsmagick  && sudo apt-get install -y imagemagick
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y graphicsmagick
 
       - name: Install dependencies
         run: |
