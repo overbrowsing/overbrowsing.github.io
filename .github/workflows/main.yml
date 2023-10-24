@@ -25,19 +25,12 @@ jobs:
 
       - name: Conditional workflow steps
         if: ${{ github.event_name == 'push' || steps.stop-check.outcome != 'failure' }}
-          steps:
-            - name: Install dependencies
-              run: |
-                yarn install
-
-            - name: Run Yarn Build
-              run: yarn build
-
-            - name: Commit and push optimized images
-              run: |
-                git config --global user.name "GitHub Actions"
-                git config --global user.email "actions@users.noreply.github.com"
-                git checkout -b gh-pages
-                git add .
-                git commit -m "Workflow Run: Generate Compressed Images"
-                git push -u -f origin gh-pages
+        run: |
+          yarn install
+          run: yarn build
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@users.noreply.github.com"
+          git checkout -b gh-pages
+          git add .
+          git commit -m "Workflow Run: Generate Compressed Images"
+          git push -u -f origin gh-pages
