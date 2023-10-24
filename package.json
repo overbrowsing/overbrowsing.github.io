@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "serve": "yarn build & node scripts/server.cjs",
-    "build": "rm -rf cache/images/; rm -rf cache/data.json; node scripts/fetchData.js;"
+    "build": "rm -rf cache/images/; rm -rf cache/data.json; mkdir cache cache/images/; node scripts/fetchData.js;"
   },
   "author": "",
   "license": "MIT",

@@ -9,6 +9,13 @@
 <body>
     <div class="container">
         <h1>Overbrowsing</h1>
+        <header>
+            <div class="container">
+                <span id="carbon"></span>
+                <p id="aqi"></p>
+                <p>This site doesn't use cookies.</p>
+            </div>
+        </header>
         <div class="category-buttons">
             <button class="category-button" data-category="">Show All</button>
             <button class="category-button selected" data-category="Design Tools">Design Tools</button>
@@ -16,11 +23,7 @@
         </div>
         <div class="feed"></div>
     </div>
-    <footer>
-        <div class="container">
-            <span id="carbon"></span>
-        </div>
-    </footer>
+
     
     <script src="scripts/fetchWeather.js"></script>
     <script src="scripts/fetchCarbon.js"></script>
