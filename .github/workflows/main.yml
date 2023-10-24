@@ -37,7 +37,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
-          git checkout gh-pages
+          git checkout -b gh-pages
           git add .
           git commit -m "Workflow Run: Generate Compressed Images"
           git push -u -f origin gh-pages
