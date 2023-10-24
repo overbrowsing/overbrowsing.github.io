@@ -18,37 +18,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Conditional Script Execution
+      - name: Stop Workflow if AQI is greater than 2
+        id: check-condition
         run: |
-          if [ "${{ github.event_name }}" == "schedule" ]; then
-            node scripts/fetchWeather.js
-          else
-            echo "Not a schedule event, skipping script execution."
-          fi
+          node scripts/stopWorkflow.js 
+          echo ::set-output name=stopWorkflow::$(node -e "console.log(shouldStopWorkflow())")
 
-      - name: Remove cache
+      - name: Build and Push to gh-pages branch
+        if: steps.check-condition.outputs.stopWorkflow == 'false' && [ "${{ github.event_name }}" == "schedule" ]
         run: |
-          rm -rf cache
-          mkdir cache
-          mkdir cache/images
-
-      - name: Install GraphicsMagick
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y graphicsmagick
-
-      - name: Install dependencies
-        run: |
-          yarn install
-
-      - name: Run Yarn Build
-        run: yarn build
-
-      - name: Commit and push optimized images
-        run: |
+          yarn install 
+          run: yarn build
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
           git checkout -b gh-pages
           git add .
           git commit -m "Workflow Run: Generate Compressed Images"
           git push -u -f origin gh-pages
+

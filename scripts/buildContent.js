@@ -16,7 +16,7 @@ function filterDataByCategory(selectedCategory) {
                 filteredHtml += "<p>" + element.content + "</p>";
             }
             if (element.image) {
-                filteredHtml += "<img class='image' src='cache/images/" + element.id + ".webp' loading='lazy' />";
+                filteredHtml += "<img class='image' src='cache/images/" + element.id + ".png' loading='lazy' />";
             }
             filteredHtml += "</div>";
         }
