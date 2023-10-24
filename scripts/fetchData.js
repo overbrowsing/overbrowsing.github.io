@@ -1,4 +1,4 @@
-import { promises as fsp, createWriteStream } from 'fs';
+import { promises as fsp } from 'fs';
 import gm from 'gm';
 import fetch from 'node-fetch';
 
