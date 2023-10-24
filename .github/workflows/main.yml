@@ -17,23 +17,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install ImageMagick
-        run: sudo apt-get update -y && sudo apt-get install -y imagemagick
-
       - name: Run Yarn Build
         run: yarn build
-
-      - name: Optimize and Convert to Black & White with Dithering
-        run: |
-          for file in cache/images/*; do
-            if [ -f "$file" ]; then
-              filename=$(basename "$file")
-              extension="${filename##*.}"
-              filename="${filename%.*}"
-              output_file="cache/images/$filename.png"
-              convert "$file" -type Grayscale -ordered-dither h4x4a -quality 100% "$output_file"
-            fi
-          done
 
       - name: Commit and push optimized images
         run: |
@@ -41,5 +26,4 @@ jobs:
           git config --global user.email "actions@users.noreply.github.com"
           git add .
           git commit -m "Workflow Run: Generate Compressed Images"
-          git checkout -b gh-pages
-          git push -u -f origin gh-pages
+          git push -u origin main

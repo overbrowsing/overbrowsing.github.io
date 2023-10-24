@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "Overbrowsing dedicated to fostering a deeper understanding of sustainable web design",
   "main": "fetchData.js",
+  "type": "module",
   "scripts": {
-    "serve": "yarn build & node scripts/server.js",
-    "build": "rm -rf cache/images/; rm -rf cache/data.json; mkdir cache cache/images/; node scripts/fetchData.js"
+    "serve": "yarn build & node scripts/server.cjs",
+    "build": "rm -rf cache/images/; rm -rf cache/data.json; mkdir cache cache/images/; node scripts/fetchData.js;"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "gm": "^1.25.0",
+    "node-fetch": "^3.3.2"
   }
 }

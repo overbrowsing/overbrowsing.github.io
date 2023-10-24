@@ -1,14 +1,25 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     word-break: break-word;
-    background-color: #232b24;
-    color: #aaa8a8;
+    background-color: #272A24; 
+    color: #ABB193;
     margin: 0;
     padding: 0;
 }
 
+img {
+    background-color: #ABB193;
+    border-radius: 5px;
+    /* mix-blend-mode: multiply; */
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
+}
+
+img:hover {
+    filter: initial
+}
+
 .container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 20px;
 }
