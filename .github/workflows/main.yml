@@ -17,6 +17,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Remove cache
+        run: |
+          rm -rf cache
+          mkdir cache
+          mkdir cache/images
+
       - name: Install dependencies
         run: |
           yarn install
