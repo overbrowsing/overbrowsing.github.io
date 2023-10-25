@@ -64,6 +64,24 @@ async function downloadAndCompress() {
             const channelData = data[index].contents;
 
             for (const element of channelData) {
+
+                const reducedData = {
+                    title: element.title,
+                    content: element.content,
+                    id: element.id,
+                    image: element.image,
+                    category: category,
+                };
+
+                if (element.source) {
+                    reducedData.source = {
+                        url: element.source.url,
+                        title: element.source.title,
+                        provider: element.source.provider,
+                    };
+                }
+
+        
                 element.category = category;
 
                 if (element.image) {
@@ -75,9 +93,8 @@ async function downloadAndCompress() {
 
                     await fsp.rename(tempOutputFilePath, inputFilePath);
                 }
+            mergedJson.push(reducedData);
             }
-
-            mergedJson.push(...channelData);
         }
 
         mergedJson.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
