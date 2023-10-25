@@ -8,26 +8,38 @@
 </head>
 <body>
     <div class="container">
-        <h1>Overbrowsing</h1>
-        <header>
-            <div class="container">
-                <span id="carbon"></span>
+        <div class="feed">
+            <div class="feed__item">
+                <h1>Overbrowsing</h1>
+                <p id="carbon"></p>
                 <p id="aqi"></p>
                 <p>This site doesn't use cookies.</p>
+                
+                <script type="module">
+                    import data from "../cache/data.json" assert { type: "json" };
+                    let filteredHtml = "";
+                    data.forEach(element => {
+                        filteredHtml += "<div class='feed__item'>";
+                
+                        if (element.content) {
+                        filteredHtml += "<p>" + element.content + "</p>";
+                        }
+                        if (element.image) {
+                        filteredHtml += "<div class='feed__image'><img class='feed__image-img' src='cache/images/" + element.id + ".png' loading='lazy' /></div>";
+                        }
+                        if (element.title) {
+                        filteredHtml += "<caption>" + element.title + "</caption>";
+                        }
+                        filteredHtml += "</div>";
+                    });
+                    
+                    document.querySelector('.feed').insertAdjacentHTML('beforeend', filteredHtml);
+                </script>
             </div>
-        </header>
-        <div class="category-buttons">
-            <button class="category-button" data-category="">Show All</button>
-            <button class="category-button selected" data-category="Design Tools">Design Tools</button>
-            <button class="category-button" data-category="Founding Principals">Founding Principals</button>
         </div>
-        <div class="feed"></div>
     </div>
 
-    
     <script src="scripts/fetchAqi.js" type="module"></script>
     <script src="scripts/fetchCarbon.js"></script>
-    <script src="scripts/buildContent.js" type="module"></script>
-    </script>
-</body>
+    </body>
 </html>

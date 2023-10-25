@@ -1,21 +1,19 @@
+:root {
+    --main-bg-color: #272A24;
+    --text-color: #ABB193;
+    --container-bg-color: var(--text-color);
+  }
+  
 body {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     word-break: break-word;
-    background-color: #272A24; 
-    color: #ABB193;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
-}
-
-img {
-    background-color: #ABB193;
-    border-radius: 5px;
-    /* mix-blend-mode: multiply; */
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
-}
-
-img:hover {
-    filter: initial
+    font-family: Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%;
 }
 
 .container {
@@ -31,21 +29,32 @@ img:hover {
     justify-items: center;
 }
 
-.feed div {
-    border: 1px solid;
+.feed__item {
+    border-bottom: 2px dotted;
+    padding: 50px 0;
     width: 100%;
-    padding: 10px;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: center;
+    align-items: flex-start;
 }
 
-.feed img {
+.feed__image {
+    background-color: var(--container-bg-color);
+    display: inline-block;
+    position: relative;
+    border-radius: 5px;
+}
+
+.feed__image img {
+    background-color: var(--container-bg-color);
+    background-blend-mode: screen;
+    mix-blend-mode: multiply;
+    display: block;
+    height: auto;
     max-width: 100%;
-}
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
+}   
 
-/* Monochrome button styles */
 .category-button {
     background-color: #fff;
     color: #000;
@@ -55,8 +64,7 @@ img:hover {
     cursor: pointer;
 }
 
-/* Selected button style */
 .category-button.selected {
-    background-color: #000;
-    color: #fff;
+background-color: #000;
+color: #fff;
 }
