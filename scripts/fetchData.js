@@ -18,22 +18,27 @@ async function downloadImage(url, filePath) {
     }
 }
 
+// Compression algorithm using sharp 
+// https://sharp.pixelplumbing.com/
+// Image output is currently 87KB, this can be improved. 
 async function processAndOptimizeImage(inputFilePath, outputFilePath) {
     await sharp(inputFilePath)
-        .resize(400) // Adjust dimensions as needed
+        .resize(350) // Adjust dimensions as needed
         .toFormat('png')
         .png({
         dither: .9, // Enable dithering
         palette: true, // Create a color palette for dithering
         colors: 3,
-        quality: 10,  // Adjust quality level as needed
+        quality: 5,  // Adjust quality level as needed
         })
         .toFile(outputFilePath);
+    }
 
-    console.log(`${outputFilePath}: Image optimization done`);
-}
 
-(async () => {
+// This function checks for an image cache and if found deletes it
+// Downloads the images and runs the compresssion algorithm and saves the images to cache/images/
+// Downloads sorts and merges the JSON file and saves it to cache/data.json
+async function downloadAndCompress() {
     try {
         const imagesDir = 'cache/images';
         const tempDir = 'cache/temp';
@@ -81,7 +86,10 @@ async function processAndOptimizeImage(inputFilePath, outputFilePath) {
         
         // Delete the temporary folder
         await fsp.rm(tempDir, { recursive: true });
+        console.log("Images Downloaded")
     } catch (err) {
         console.error('Error:', err);
     }
-})();
+};
+
+downloadAndCompress()
