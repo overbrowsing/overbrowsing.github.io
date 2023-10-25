@@ -3,7 +3,8 @@ const aqiValue = aqi.list[0].main.aqi;
 
 function shouldStopWorkflow(aqiValue) {
   if (aqiValue < 3) {
-    return true; // Return true to stop the workflow
+    console.log('AQI today is: ' + aqiValue + '. Workflow is stopping.');
+    process.exit(1); // Exit with a non-zero code to indicate failure
   }
-  return false; // Return false to continue the workflow
+  console.log('AQI today is: ' + aqiValue + '. Workflow can continue.');
 }
