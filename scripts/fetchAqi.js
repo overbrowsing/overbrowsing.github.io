@@ -24,11 +24,11 @@ async function getAirQualityData() {
 // Assigns AQI numerical value to qualitative value
 function getAirQualityDescription(aqiValue) {
   const airQualityTable = {
-    "1": "Good",
-    "2": "Fair",
-    "3": "Moderate",
-    "4": "Poor",
-    "5": "Very Poor",
+    "1": "good",
+    "2": "fair",
+    "3": "moderate",
+    "4": "poor",
+    "5": "very poor",
   };
   return airQualityTable[aqiValue];
 }
@@ -36,7 +36,7 @@ function getAirQualityDescription(aqiValue) {
 // Prints the AQI qualitative value to HTML
 function displayAirQuality(airQualityDescription) {
   const airQualityElement = document.getElementById("aqi");
-  airQualityElement.textContent = `The air quality today is ${airQualityDescription}.`;
+  airQualityElement.textContent = `This site changes colour based upon air quality. Today air quality is ${airQualityDescription}.`;
 }
 
 // Calculates a change of the background color to a red tone on bad AQI days
