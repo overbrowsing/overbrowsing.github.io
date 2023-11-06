@@ -1,26 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overbrowsing</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Overbrowsing</title>
+  <meta name="description" content="Overbrowsing: dedicated to fostering a deeper understanding of sustainable web design.">
+  <meta property="og:title" content="Overbrowsing">
+  <meta property="og:description" content="Overbrowsing: dedicated to fostering a deeper understanding of sustainable web design.">
+  <meta property="og:image" content="https://overbrowsing.com/assets/share-card.webp">
+  <meta property="og:url" content="https://overbrowsing.com">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
+  <link rel="stylesheet" href="./style.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="feed">
-            <div class="feed__item">
-                <h1>Overbrowsing</h1>
-                <p id="carbon"></p>
-                <p id="aqi"></p>
-                <p>This site doesn't use cookies.</p>
-                
-                <script type="module">
+  <div class="container">
+    <div class="feed">
+      <div class="feed__item">
+        <h1>Overbrowsing</h1>
+        <br>
+        <p>Dedicated to fostering a deeper understanding of sustainable web design.</p>
+        <br>
+        <details>
+          <summary>About</summary>
+          <p id="aqi"></p>
+          <p id="carbon"></p>
+        </details>
+        <details>
+          <summary>Contact</summary>
+          <p><a href="mailto:mail@overbrowsing.com">mail@overbrowsing.com</a></p>
+        </details>
+        <script type="module">
                     import data from "../cache/data.json" assert { type: "json" };
                     let filteredHtml = "";
                     data.forEach(element => {
                         filteredHtml += "<div class='feed__item'>";
-                
+
                         if (element.content) {
                         filteredHtml += "<p>" + element.content + "</p>";
                         }
@@ -35,14 +51,14 @@
                         }
                         filteredHtml += "</div>";
                     });
-                    
                     document.querySelector('.feed').insertAdjacentHTML('beforeend', filteredHtml);
                 </script>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
 
-    <script src="scripts/fetchAqi.js" type="module"></script>
-    <script src="scripts/fetchCarbon.js"></script>
-    </body>
+  <script src="scripts/fetchAqi.js" type="module"></script>
+  <script src="scripts/fetchCarbon.js"></script>
+</body>
+
 </html>
