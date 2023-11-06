@@ -36,7 +36,7 @@ function getAirQualityDescription(aqiValue) {
 // Prints the AQI qualitative value to HTML
 function displayAirQuality(airQualityDescription) {
   const airQualityElement = document.getElementById("aqi");
-  airQualityElement.textContent = `This site changes colour based upon air quality. Today air quality is ${airQualityDescription}.`;
+  airQualityElement.textContent = `The website background changes colour based on air quality. Today, the air quality is ${airQualityDescription}.`;
 }
 
 // Calculates a change of the background color to a red tone on bad AQI days
