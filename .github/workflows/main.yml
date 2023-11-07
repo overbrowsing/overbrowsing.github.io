@@ -35,9 +35,6 @@ jobs:
           yarn install
           yarn build
 
-          # Copy the fetched API data to your build directory
-          cp api_data.json dist/api_data.json
-
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
           git checkout -b gh-pages
