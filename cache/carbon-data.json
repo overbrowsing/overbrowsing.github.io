@@ -1,0 +1,22 @@
+{
+  "url": "https://overbrowsing.com/",
+  "green": true,
+  "bytes": 56481,
+  "cleanerThan": 0.99,
+  "rating": "A+",
+  "statistics": {
+    "adjustedBytes": 42643.155,
+    "energy": 0.0000321687716525048,
+    "co2": {
+      "grid": {
+        "grams": 0.014218597070407122,
+        "litres": 0.00790838369056044
+      },
+      "renewable": {
+        "grams": 0.012327073297239841,
+        "litres": 0.006856318167924798
+      }
+    }
+  },
+  "timestamp": 1699284611
+}

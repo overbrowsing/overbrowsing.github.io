@@ -72,7 +72,7 @@ a[target=_blank] {
 }
 
 @media(prefers-color-scheme:light) {
-  p::after {
+  .carbon::after {
     content: " Please consider using dark mode to save energy.";
   }
 }

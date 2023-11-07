@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "serve": "yarn build & node scripts/server.cjs",
-    "build": "node scripts/fetchData.js;"
+    "build": "node scripts/fetchData.js && API_DATA=\"$(curl -s 'https://api.websitecarbon.com/site?url=https://overbrowsing.com')\" && echo \"$API_DATA\" > cache/carbon-data.json"
   },
   "author": "",
   "license": "MIT",
