@@ -17,6 +17,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Fetch API Data
+        run: |
+          API_DATA=$(curl -s "https://api.websitecarbon.com/site?url=https://overbrowsing.com")
+          echo "$API_DATA" > api_data.json
+        continue-on-error: true
+
       - name: Check if workflow should stop
         id: stop-check
         run: node scripts/stopWorkflow.js
@@ -27,6 +33,10 @@ jobs:
         run: |
           yarn install
           yarn build
+
+          # Copy the fetched API data to your build directory
+          cp api_data.json dist/api_data.json
+
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
           git checkout -b gh-pages
