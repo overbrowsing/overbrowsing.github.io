@@ -13,18 +13,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.get('/api/carbon', async (req, res) => {
-  try {
-    const response = await fetch('https://api.websitecarbon.com/site?url=https://overbrowsing.com');
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'An error occurred' });
-  }
-});
-
-
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
