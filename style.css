@@ -31,8 +31,7 @@ body {
 }
 
 ::selection {
-  background: var(--hh-color-slate);
-  color: var(--hh-color-black);
+  background: var(--ob-color-laurel);
 }
 
 /********** Type **********/
