@@ -34,40 +34,13 @@
           <summary>Contact</summary>
           <p><a href="mailto:mail@overbrowsing.com">mail@overbrowsing.com</a></p>
         </details>
-        <script>
-            import data from "../cache/data.json";
-
-            if (Array.isArray(data)) {
-                let filteredHtml = "";
-                data.forEach(element => {
-                    filteredHtml += "<div class='feed__item'>";
-
-                    if (element.content) {
-                        filteredHtml += "<p>" + element.content + "</p>";
-                    }
-                    if (element.image) {
-                        filteredHtml += "<div class='feed__image'><img src='cache/images/" + element.id + ".png' loading='lazy' /></div>";
-                    }
-                    if (element.title) {
-                        filteredHtml += "<span>" + element.title + "</span>";
-                    }
-                    if (element.source) {
-                        filteredHtml += "<a href=" + element.source.url + ">" + element.source.title + "</a>";
-                    }
-                    filteredHtml += "</div>";
-                });
-                document.querySelector('.feed').insertAdjacentHTML('beforeend', filteredHtml);
-            } else {
-                console.error("Data is not an array.");
-            }
-        </script>
-
       </div>
     </div>
   </div>
 
   <script src="scripts/fetchAqi.js" type="module"></script>
   <script src="scripts/fetchCarbon.js"></script>
+  <script src="scripts/buildContent.js" type="module"></script>
 </body>
 
 </html>
