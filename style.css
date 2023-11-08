@@ -22,7 +22,7 @@ body {
   background: var(--ob-color-laurel);
 }
 
-p, a, details {
+p, a, details, span {
   color: var(--ob-color-laurel);
   text-decoration: none;
   font-family: Arial, sans-serif;
