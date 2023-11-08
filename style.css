@@ -1,29 +1,17 @@
-/********** Variable **********/
 :root {
-  --ob-z-index-1: 100;
-  --ob-z-index-2: 200;
-  --ob-z-index-3: 300;
-  --ob-z-index-4: 400;
-  --ob-z-index-top: 9999;
   --ob-color-seaweed: #272A24;
   --ob-color-laurel: #ABB193;
-  --ob-effect-blur: blur(20px);
-  --ob-spacing-1x: 5px;
-  --ob-spacing-2x: 10px;
-  --ob-spacing-3x: 15px;
-  --ob-spacing-4x: 20px;
-  --ob-font-family: Arial, sans-serif;
-  --ob-font-line-height: 160%;
-  --ob-font-header-size: 30px;
-  --ob-font-body-size: 12px;
 }
 
-/********** Basic **********/
-body {
+* {
   margin: 0;
   padding: 0;
+  font-size: 12px;
+  line-height: 160%;
+}
+
+body {
   background-color: var(--ob-color-seaweed);
-  color: var(--ob-color-laurel);
 }
 
 ::-webkit-scrollbar {
@@ -34,50 +22,39 @@ body {
   background: var(--ob-color-laurel);
 }
 
-/********** Type **********/
-h1 {
-  margin: 0;
-  font-weight: 300;
-  font-size: var(--ob-font-header-size);
-  font-family: var(--ob-font-family);
-}
-
-p, span, a, details, summary {
-  margin: 0;
-  color: var(--hh-color-slate);
+p, a, details {
+  color: var(--ob-color-laurel);
   text-decoration: none;
-  font-style: normal;
-  font-size: var(--ob-font-body-size);
-  font-family: var(--ob-font-family);
-  line-height: var(--ob-font-line-height);
-}
-
-a, a:link, a:hover, a:visited {
-  color: var(--text-color);
-  cursor: pointer;
-}
-
-a[data-more]:hover::after {
-  content: ": "attr(data-more);
+  font-family: Arial, sans-serif;
 }
 
 a[target=_blank] {
+  text-decoration: underline;
   cursor: ne-resize;
 }
 
-/********** Info **********/
-.container {
+#toggle {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
   margin: 0 auto;
-}
-
-@media(prefers-color-scheme:light) {
-  .carbon::after {
-    content: " Please consider using dark mode to save energy.";
-  }
+  padding: 10px;
+  min-width: 100px;
+  border-radius: 5px;
+  background: var(--ob-color-laurel);
+  color: var(--ob-color-seaweed);
+  text-align: center;
+  transform: translate(-50%, 0%);
 }
 
 :focus {
   outline: 0;
+}
+
+details {
+  position: absolute;
+  margin: 10px;
+  width: calc(33vw - 10px);
 }
 
 details>summary::-webkit-details-marker {
@@ -88,43 +65,40 @@ details>summary {
   cursor: s-resize;
 }
 
-details>summary::before {
-  content: '◌ ';
-  font-size: 20px;
-}
-
-details[open] {
-  padding-bottom: 1rem;
-}
-
-details[open]>summary::before {
-  content: '● ';
-}
-
 details[open]>summary {
-  padding-bottom: 1rem;
+  padding-bottom: 5px;
   cursor: n-resize;
 }
 
-/********** Feed **********/
+@media(prefers-color-scheme:light) {
+  details>p:last-child::after {
+    display: inline-block;
+    content: "We've observed that you're currently using Light Mode on your device. We kindly encourage you to explore the benefits of using Dark Mode to help conserve energy.";
+  }
+}
+
+.container {
+  margin: 0 auto;
+}
+
 .feed {
   display: grid;
-  margin: 0 20px;
+  margin: 0 10px;
   gap: 2px;
   grid-template-columns: repeat(3, 1fr);
 }
 
 .feed__item {
-  padding: 20px 0;
+  padding: 10px 0;
   min-height: calc(50vh - 40px);
-  border-bottom: 2px dotted;
+  border-bottom: 2px dotted var(--ob-color-laurel);
 }
 
 .feed__image {
   position: relative;
   display: inline-block;
   border-radius: 5px;
-  background-color: var(--container-bg-color);
+  background-color: var(--ob-color-laurel);
   transition: background-color 0.3s;
 }
 
@@ -132,20 +106,18 @@ details[open]>summary {
   display: block;
   max-width: 100%;
   height: auto;
-  background-color: var(--container-bg-color);
+  background-color: var(--ob-color-laurel);
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
   background-blend-mode: screen;
-  mix-blend-mode: multiply;
+  mix-blend-mode: soft-light;
 }
 
-/********** Animation **********/
 .feed__image img:hover {
   border-radius: 5px;
   background-color: transparent;
   mix-blend-mode: normal;
 }
 
-/********** Mobile **********/
 @media (max-width: 768px) {
   .feed {
     grid-template-columns: 1fr;
