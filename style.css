@@ -54,7 +54,7 @@ a[target=_blank] {
 details {
   position: absolute;
   margin: 10px;
-  width: calc(33vw - 10px);
+  width: calc(25vw - 10px);
 }
 
 details>summary::-webkit-details-marker {
@@ -85,7 +85,7 @@ details[open]>summary {
   display: grid;
   margin: 0 10px;
   gap: 2px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .feed__item {
