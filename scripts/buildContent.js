@@ -15,7 +15,7 @@ fetch(dataPath)
         filteredHtml += "<div class='feed__image'><img src='cache/images/" + element.id + ".png' loading='lazy' /></div>";
       }
       if (element.title) {
-        filteredHtml += "<span>" + element.title + "</span>";
+        filteredHtml += "<span>" + element.title + " " + "</span>";
       }
       if (element.source) {
         filteredHtml += "<a href=" + element.source.url + ">" + element.source.title + "</a>";
