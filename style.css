@@ -24,28 +24,14 @@ body {
 
 p, a, details, span {
   color: var(--ob-color-laurel);
-  text-decoration: none;
   font-family: Arial, sans-serif;
 }
 
 a[target=_blank] {
-  text-decoration: underline;
-  cursor: ne-resize;
+  cursor: alias;
 }
 
-#pop-up {
-  display: none;
-  position: absolute;
-  background-color: white;
-  padding: 10px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  top: 100px;
-  left: 100px;
-}
-
-#circle-menu {
+#nav {
   position: fixed;
   bottom: 10px;
   left: 50%;
@@ -53,84 +39,80 @@ a[target=_blank] {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  width: 50px;
-  height: 50px;
+  padding: 25px 0;
+  min-width: 50px;
+  max-height: 50px;
+  width: 0;
   border: 2px dotted var(--ob-color-laurel);
   border-radius: 50px;
-  background: var(--ob-color-seaweed);
-  text-align: center;
-  transition: width .4s, height .4s .2s;
-  transform: translate(-50%, 0%);
+  background-color: rgba(39, 42, 36, 0.2);
+  transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, max-height 0.4s ease-in-out 0.4s;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.links {
+#nav-container {
   display: none;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
 }
 
-#circle-menu:hover {
-  width: 250px;
-  height: 200px;
+#nav:hover {
+  padding: 0;
+  max-height: 350px;
+  width: 50%;
+  border-radius: 10px;
+  transform: translateX(-50%);
 }
 
-#circle-menu:hover .links {
+#nav:hover #nav-container {
   display: flex;
+  animation: fadeIn .4s .6s ease both;
 }
 
-#circle-menu:hover .links {
-  display: flex;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-#circle-menu a {
-  padding: 5px;
-  transition: background-color 0.2s;
-}
-
-#circle-menu a:hover {
-  text-decoration: underline;
-}
-
-:focus {
-  outline: 0;
-}
-
-details {
-  position: absolute;
-  margin: 10px;
-  width: calc(25vw - 10px);
-}
-
-details:last-of-type {
-  position: absolute;
-  right: 0px;
-  margin: 10px;
-  width: calc(25vw - 10px);
-}
-
-details:last-of-type>summary {
-  text-align: right;
-  cursor: help;
-}
-
-details>summary::-webkit-details-marker {
-  display: none;
-}
-
-details>summary {
-  cursor: s-resize;
-}
-
-details[open]>summary {
-  padding-bottom: 5px;
-  cursor: n-resize;
+#nav-about {
+  padding-bottom: 40px;
+  cursor: default;
 }
 
 @media(prefers-color-scheme:light) {
-  details>p:last-child::after {
+  #nav-about p:last-child::after {
     display: inline-block;
-    content: "We've observed that you're currently using Light Mode on your device. We kindly encourage you to explore the benefits of using Dark Mode to help conserve energy.";
+    content: "We noticed that you're currently using Light Mode on your device. We kindly encourage you to use Dark Mode to help conserve energy.";
   }
+}
+
+#nav-links a {
+  position: relative;
+  padding: 0 20px;
+  text-decoration: none;
+}
+
+#nav-links a:hover::after, #nav-links a:active::after {
+  opacity: 1;
+}
+
+#nav-links a::after {
+  position: absolute;
+  left: 50%;
+  display: block;
+  content: '\00B7';
+  font-size: 20px;
+  opacity: 0;
+  transform: translateX(-50%);
 }
 
 .container {
@@ -175,6 +157,15 @@ details[open]>summary {
 }
 
 @media (max-width: 768px) {
+  #nav:hover {
+    width: calc(100% - 20px);
+    border-radius: 10px;
+  }
+
+  #nav-container {
+    padding: 20px;
+  }
+
   .feed {
     grid-template-columns: 1fr;
   }
