@@ -10,3 +10,5 @@ function shouldStopWorkflow(aqiValue) {
   }
   console.log('AQI today is: ' + aqiValue + '. Workflow can continue.');
 }
+
+shouldStopWorkflow(aqiValue);
