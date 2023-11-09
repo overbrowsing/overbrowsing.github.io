@@ -29,7 +29,7 @@ To get started with Overbrowsing, follow these installation steps:
 Clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/overbrowsing/overbrowsing.github.io.git
+git clone https://github.com/overbrowsing/overbrowsing.com
 ```
 Navigate to the project directory
 
