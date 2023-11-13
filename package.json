@@ -10,8 +10,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@antv/g6": "^4.8.23",
-    "d3": "^7.8.5",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2",
     "nunjucks": "^3.2.4",

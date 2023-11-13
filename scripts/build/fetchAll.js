@@ -39,7 +39,7 @@ async function processAndOptimizeImage(inputFilePath, outputFilePath) {
 // This function checks for an image cache and if found deletes it
 // Downloads the images and runs the compresssion algorithm and saves the images to cache/images/
 // Downloads sorts and merges the JSON file and saves it to cache/data.json
-async function downloadAndCompress() {
+async function compressAndSave() {
     try {
         const imagesDir = 'cache/images';
         const tempDir = 'cache/temp';
@@ -69,6 +69,7 @@ async function downloadAndCompress() {
                 const reducedData = {
                     title: element.title,
                     content: element.content,
+                    contents: element.contents,
                     id: element.id,
                     image: element.image,
                     category: category,
@@ -109,9 +110,6 @@ async function downloadAndCompress() {
         console.error('Error:', err);
     }
 };
-
-downloadAndCompress()
-
 
 // FETCH AQI
 async function fetchAqiAndSave() {
@@ -172,5 +170,9 @@ function saveToJson(data) {
   fs.writeFileSync('cache/aqi-data.json', json, 'utf8');
 }
 
+
+
+
+compressAndSave()
 fetchAqiAndSave();
 

@@ -9,6 +9,13 @@
           <p>{{ item.content }}</p>
         {% endif %}
 
+        {% if item.contents %}
+          {% set innerContent = item.contents %}
+          {% for item in innerContent %}
+            <p>{{item.title}}</p>
+          {% endfor %}
+        {% endif %}
+
         {% if item.image %}
           <div class='feed__image'><img src='../cache/images/{{ item.id }}.png' loading='lazy' /></div>
         {% endif %}
