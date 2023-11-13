@@ -1,0 +1,27 @@
+{% extends 'layout.njk' %}
+{% block content %}
+
+  <div class="feed">
+    {% for item in data %}      
+      <div class='feed__item'>
+
+        {% if item.content %}
+          <p>{{ item.content }}</p>
+        {% endif %}
+
+        {% if item.image %}
+          <div class='feed__image'><img src='../cache/images/{{ item.id }}.png' loading='lazy' /></div>
+        {% endif %}
+      
+        {% if item.title %}
+          <p>{{ item.title }}</p>
+        {% endif %}
+
+        {% if item.source.title %}
+          <a href={{item.source.url}}>{{ item.source.title }}</a>
+        {% endif %}
+
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

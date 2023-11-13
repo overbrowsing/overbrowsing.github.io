@@ -1,17 +1,24 @@
 const express = require('express');
 const path = require('path');
+const nunjucks = require('nunjucks');
 
+const routes = require('./routes/routes.cjs');
+
+const port = "3000";
 const app = express();
-const port = 3000;
 
-// Serve static files from the root directory (CSS, JS, images, etc.)
+// Configure Nunjucks with 'views' as the templates directory
+nunjucks.configure('views', {
+  autoescape: true,
+  express: app
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '/')));
 
-
-// Define a route to serve the index.html from the root
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
+// Use the main router for all routes
+app.use('/', routes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

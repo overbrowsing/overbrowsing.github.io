@@ -2,6 +2,7 @@ import { promises as fsp, existsSync } from 'fs';
 import fetch from 'node-fetch';
 import sharp from 'sharp';
 import path from 'path';
+import fs from 'fs'
 
 const channelCategories = [
     { name: "design-tool-rzfxmnmei8g", category: "Design Tools" },
@@ -110,3 +111,66 @@ async function downloadAndCompress() {
 };
 
 downloadAndCompress()
+
+
+// FETCH AQI
+async function fetchAqiAndSave() {
+  try {
+    const aqi = await getAirQualityData();
+    const aqiValue = aqi.list[0].main.aqi;
+
+    const airQualityDescription = getAirQualityDescription(aqiValue);
+    const backgroundColor = calculateBackgroundColor(aqiValue);
+
+    const data = {
+      aqiValue,
+      airQualityDescription,
+      backgroundColor,
+    };
+
+    // Save data to a JSON file
+    saveToJson(data);
+
+  } catch (error) {
+    console.error('Error fetching or processing air quality data:', error);
+  }
+}
+
+async function getAirQualityData() {
+  const response = await fetch(
+    "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=ac6a8e4517ccb8b2c12e6713125a2d34"
+  );
+  return response.json();
+}
+
+// Assigns AQI numerical value to qualitative value
+function getAirQualityDescription(aqiValue) {
+  const airQualityTable = {
+    "1": "good",
+    "2": "fair",
+    "3": "moderate",
+    "4": "poor",
+    "5": "very poor",
+  };
+  return airQualityTable[aqiValue];
+}
+
+// Calculates a change of the background color to a red tone on bad AQI days
+function calculateBackgroundColor(aqiValue) {
+  let redness = 27;
+
+  if (aqiValue > 2) {
+    redness = Math.round(27 + (aqiValue - 1) * 5.4);
+  }
+
+  return `#${redness}2a24`;
+}
+
+// Save data to a JSON file
+function saveToJson(data) {
+  const json = JSON.stringify(data, null, 2);
+  fs.writeFileSync('cache/aqi-data.json', json, 'utf8');
+}
+
+fetchAqiAndSave();
+

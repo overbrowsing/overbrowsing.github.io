@@ -6,13 +6,14 @@
   "type": "module",
   "scripts": {
     "serve": "yarn build & node server.cjs",
-    "build": "node scripts/fetchData.js && API_DATA=\"$(curl -s 'https://api.websitecarbon.com/site?url=https://overbrowsing.com')\" && echo \"$API_DATA\" > cache/carbon-data.json"
+    "build": "node scripts/fetchAll.js && API_DATA=\"$(curl -s 'https://api.websitecarbon.com/site?url=https://overbrowsing.com')\" && echo \"$API_DATA\" > cache/carbon-data.json"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
     "node-fetch": "^3.3.2",
+    "nunjucks": "^3.2.4",
     "sharp": "^0.32.6"
   }
 }
