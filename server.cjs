@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const nunjucks = require('nunjucks');
 
-const routes = require('./routes/routes.cjs');
+const routes = require('./routes/index.cjs');
 
 const port = "3000";
 const app = express();

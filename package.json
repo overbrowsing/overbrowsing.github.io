@@ -2,15 +2,16 @@
   "name": "overbrowsing",
   "version": "1.0.0",
   "description": "Overbrowsing dedicated to fostering a deeper understanding of sustainable web design",
-  "main": "fetchData.js",
   "type": "module",
   "scripts": {
     "serve": "yarn build & node server.cjs",
-    "build": "node scripts/fetchAll.js && API_DATA=\"$(curl -s 'https://api.websitecarbon.com/site?url=https://overbrowsing.com')\" && echo \"$API_DATA\" > cache/carbon-data.json"
+    "build": "node scripts/build/fetchAll.js && API_DATA=\"$(curl -s 'https://api.websitecarbon.com/site?url=https://overbrowsing.com')\" && echo \"$API_DATA\" > cache/carbon-data.json"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@antv/g6": "^4.8.23",
+    "d3": "^7.8.5",
     "express": "^4.18.2",
     "node-fetch": "^3.3.2",
     "nunjucks": "^3.2.4",

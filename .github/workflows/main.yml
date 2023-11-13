@@ -19,7 +19,7 @@ jobs:
 
       - name: Check if workflow should stop
         id: stop-check
-        run: node scripts/stopWorkflow.js
+        run: node scripts/build/stopWorkflow.js
         continue-on-error: true
 
       - name: Conditional workflow steps

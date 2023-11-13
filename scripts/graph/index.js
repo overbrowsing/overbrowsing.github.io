@@ -8,9 +8,6 @@ fetch('cache/test-data.json')
 
     setAllNodesCollapsed(data);
 
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
     const container = document.createElement('div');
     document.body.appendChild(container);
 
@@ -25,8 +22,9 @@ fetch('cache/test-data.json')
 
     const graph = new G6.TreeGraph({
       container: container,
-      width,
-      height,
+      width: window.innerWidth, // Increase the width for higher resolution
+      height: window.innerHeight, // Increase the height for higher resolution
+      pixelRatio: window.devicePixelRatio * 2 || 1, // Set pixelRatio with a multiplier
       modes: {
         default: [
           'collapse-expand',
@@ -72,10 +70,9 @@ fetch('cache/test-data.json')
       },
     });
 
-
     graph.node(node => {
       const childrenCount = node.children ? node.children.length : 0;
-      const nodeSize = 20 + childrenCount * 12;
+      const nodeSize = 30 + childrenCount * 12; // Increase the default size by 30%
       const isLeaf = !node.children || node.children.length === 0;
 
       const label = isLeaf ? node.id : `${node.id} · ${childrenCount}`;
@@ -122,6 +119,6 @@ fetch('cache/test-data.json')
     graph.fitView();
 
     window.addEventListener('resize', () => {
-      graph.changeSize(window.innerWidth, window.innerHeight);
+      graph.changeSize(window.innerWidth * 2, window.innerHeight * 2); // Adjust the size on window resize
     });
   });
