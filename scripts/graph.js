@@ -1,5 +1,3 @@
-import G6 from '@antv/g6';
-
 fetch('cache/test-data.json')
   .then(res => res.json())
   .then(data => {
