@@ -31,7 +31,7 @@ a[target=_blank] {
   cursor: alias;
 }
 
-#nav {
+nav {
   position: fixed;
   bottom: 10px;
   left: 50%;
@@ -50,17 +50,10 @@ a[target=_blank] {
   transform: translateX(-50%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  z-index: 100000;
 }
 
-#nav-container {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-}
-
-#nav:hover {
+nav:hover {
   padding: 0;
   max-height: 350px;
   width: 50%;
@@ -68,7 +61,15 @@ a[target=_blank] {
   transform: translateX(-50%);
 }
 
-#nav:hover #nav-container {
+.nav-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+}
+
+nav:hover .nav-container {
   display: flex;
   animation: fadeIn .4s .6s ease both;
 }
@@ -83,29 +84,29 @@ a[target=_blank] {
   }
 }
 
-#nav-about {
+.nav-about {
   padding-bottom: 40px;
   cursor: default;
 }
 
 @media(prefers-color-scheme:light) {
-  #nav-about p:last-child::after {
+  .nav-about p:last-child::after {
     display: inline-block;
     content: "We noticed that you're currently using Light Mode on your device. We kindly encourage you to use Dark Mode to help conserve energy.";
   }
 }
 
-#nav-links a {
+.nav-links a {
   position: relative;
   padding: 0 20px;
   text-decoration: none;
 }
 
-#nav-links a:hover::after, #nav-links a:active::after {
+.nav-links a:hover::after, .nav-links a:active::after {
   opacity: 1;
 }
 
-#nav-links a::after {
+.nav-links a::after {
   position: absolute;
   left: 50%;
   display: block;
@@ -157,12 +158,12 @@ a[target=_blank] {
 }
 
 @media (max-width: 768px) {
-  #nav:hover {
+  nav:hover {
     width: calc(100% - 20px);
     border-radius: 10px;
   }
 
-  #nav-container {
+  .nav-container {
     padding: 20px;
   }
 
