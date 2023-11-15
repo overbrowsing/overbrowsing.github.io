@@ -1,36 +1,51 @@
 fetch('cache/data.json')
-.then(res => res.json())
-.then(data => {
-  const restructuredData = {
-    id: 'Overbrowsing',
-    children: [],
-  };
-
-  // Group items by category
-  const groupedByCategory = {};
-  data.forEach(categoryNode => {
-    const category = categoryNode.category || 'Uncategorized'; // Use "Uncategorized" if category is not available
-    if (!groupedByCategory[category]) {
-      groupedByCategory[category] = [];
-    }
-    groupedByCategory[category].push(categoryNode);
-  });
-
-  // Create nodes for each category and add items as children
-  for (const [category, items] of Object.entries(groupedByCategory)) {
-    const categoryNode = {
-      id: category.replace(/\s+/g, '-'), // Replace spaces with hyphens for valid IDs
-      children: items,
+  .then(res => res.json())
+  .then(data => {
+    const restructuredData = {
+      id: 'Overbrowsing',
+      children: [],
     };
-    restructuredData.children.push(categoryNode);
-  }
 
-  const setAllNodesCollapsed = (node) => {
-    node.collapsed = true;
-    node.children && node.children.forEach(setAllNodesCollapsed);
-  };
+    // Group items by category
+    const groupedByCategory = {};
+    data.forEach(categoryNode => {
+      const category = categoryNode.category || 'Uncategorized'; // Use "Uncategorized" if category is not available
+      if (!groupedByCategory[category]) {
+        groupedByCategory[category] = [];
+      }
+      groupedByCategory[category].push(categoryNode);
+    });
 
-  setAllNodesCollapsed(restructuredData);
+    // Create nodes for each category and add items as children
+    for (const [category, items] of Object.entries(groupedByCategory)) {
+      const categoryNode = {
+        id: category.replace(/\s+/g, '-'), // Replace spaces with hyphens for valid IDs
+        children: [],
+      };
+
+      items.forEach(item => {
+        if (item.contents) {
+          // If the item has contents, create a new category and add its contents as children
+          const contentCategoryNode = {
+            id: item.title.replace(/\s+/g, '-'), // Replace spaces with hyphens for valid IDs
+            children: item.contents,
+          };
+          categoryNode.children.push(contentCategoryNode);
+        } else {
+          // If the item doesn't have contents, simply add it as a child
+          categoryNode.children.push(item);
+        }
+      });
+
+      restructuredData.children.push(categoryNode);
+    }
+
+    const setAllNodesCollapsed = (node) => {
+      node.collapsed = true;
+      node.children && node.children.forEach(setAllNodesCollapsed);
+    };
+
+    setAllNodesCollapsed(restructuredData);
 
     const container = document.createElement('div');
     document.body.appendChild(container);
