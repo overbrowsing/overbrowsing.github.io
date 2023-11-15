@@ -10,9 +10,8 @@ const aqiData = JSON.parse(fs.readFileSync('./cache/aqi-data.json', 'utf8'));
 router.get('/', async function(req, res, next) {
 
   const data = {
-    message: 'Hello world!',
+    message: 'Home',
     layout: 'layout.njk',
-    title: 'Nunjucks example',
     carbonData: carbonData,
     aqiData: aqiData
   };
@@ -25,9 +24,8 @@ router.get('/feed', async function(req, res, next) {
   const jsonData = JSON.parse(fs.readFileSync('./cache/data.json', 'utf8'));
 
   const data = {
-    message: 'Feed!',
+    message: 'Feed',
     layout: 'layout.njk',
-    title: 'Nunjucks example 2',
     data: jsonData,
     carbonData: carbonData,
     aqiData: aqiData
@@ -35,5 +33,18 @@ router.get('/feed', async function(req, res, next) {
 
   res.render('feed.njk', data);
 });
+
+// Route for the /about page
+router.get('/about', async function(req, res, next) {
+  const data = {
+    message: 'Feed!',
+    layout: 'layout.njk',
+    carbonData: carbonData,
+    aqiData: aqiData
+  };
+  res.render('about.njk', data);
+});
+
+
 
 module.exports = router;

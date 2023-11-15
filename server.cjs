@@ -3,15 +3,26 @@ const path = require('path');
 const nunjucks = require('nunjucks');
 
 const routes = require('./routes/index.cjs');
+const dateFilter = require('nunjucks-date-filter');
+
 
 const port = "3000";
 const app = express();
 
-// Configure Nunjucks with 'views' as the templates directory
-nunjucks.configure('views', {
-  autoescape: true,
-  express: app
-});
+
+function setUpNunjucks() {
+
+  let env = nunjucks.configure('views', {
+      autoescape: true,
+      express: app
+  });
+
+  // note that 'date' is the function name you'll use in the template. As shown in nunjucks-date-filter's readme
+  env.addFilter('date', dateFilter);
+
+}
+
+setUpNunjucks();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

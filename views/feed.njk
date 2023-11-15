@@ -5,6 +5,14 @@
     {% for item in data %}      
       <div class='feed__item'>
 
+        {% if item.category %}
+          <b class="feed__title">{{ item.category }} 
+            {% if item.title %}
+              · {{ item.title }}
+          {% endif %} 
+          </b>
+        {% endif %}
+
         {% if item.content %}
           <p>{{ item.content }}</p>
         {% endif %}
@@ -20,13 +28,17 @@
           <div class='feed__image'><img src='../cache/images/{{ item.id }}.png' loading='lazy' /></div>
         {% endif %}
       
-        {% if item.title %}
-          <p>{{ item.title }}</p>
+
+        {% if item.source or item.date %}
+          {% set url = item.source.provider.url or item.source.url or '' %}
+            <br></br>
+            <b class="feed__date">
+             
+              {% if item.date %}{{ item.date | date("MMMM DD, YYYY") }}{% endif %} {% if not item.image and url %}· {{ url }}{% endif %}
+            </b>    
         {% endif %}
 
-        {% if item.source.title %}
-          <a href={{item.source.url}}>{{ item.source.title }}</a>
-        {% endif %}
+
 
       </div>
     {% endfor %}
