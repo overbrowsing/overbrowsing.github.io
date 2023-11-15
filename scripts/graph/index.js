@@ -1,12 +1,36 @@
-fetch('cache/test-data.json')
-  .then(res => res.json())
-  .then(data => {
-    const setAllNodesCollapsed = (node) => {
-      node.collapsed = true;
-      node.children && node.children.forEach(setAllNodesCollapsed);
-    };
+fetch('cache/data.json')
+.then(res => res.json())
+.then(data => {
+  const restructuredData = {
+    id: 'Overbrowsing',
+    children: [],
+  };
 
-    setAllNodesCollapsed(data);
+  // Group items by category
+  const groupedByCategory = {};
+  data.forEach(categoryNode => {
+    const category = categoryNode.category || 'Uncategorized'; // Use "Uncategorized" if category is not available
+    if (!groupedByCategory[category]) {
+      groupedByCategory[category] = [];
+    }
+    groupedByCategory[category].push(categoryNode);
+  });
+
+  // Create nodes for each category and add items as children
+  for (const [category, items] of Object.entries(groupedByCategory)) {
+    const categoryNode = {
+      id: category.replace(/\s+/g, '-'), // Replace spaces with hyphens for valid IDs
+      children: items,
+    };
+    restructuredData.children.push(categoryNode);
+  }
+
+  const setAllNodesCollapsed = (node) => {
+    node.collapsed = true;
+    node.children && node.children.forEach(setAllNodesCollapsed);
+  };
+
+  setAllNodesCollapsed(restructuredData);
 
     const container = document.createElement('div');
     document.body.appendChild(container);
@@ -36,7 +60,7 @@ fetch('cache/test-data.json')
               if (!node.children || node.children.length === 0) {
                 // Populate the 'pop-up' div with node information
                 popup.innerHTML = `
-                  <p>${node.id}</p>
+                  <p>${node.title}</p>
                   <p>Description: ${node.description || 'N/A'}</p>
                   <p>URL: <a href="${node.url}" target="_blank">${node.url || 'N/A'}</a></p>
                 `;
@@ -72,10 +96,12 @@ fetch('cache/test-data.json')
 
     graph.node(node => {
       const childrenCount = node.children ? node.children.length : 0;
-      const nodeSize = 30 + childrenCount * 12; // Increase the default size by 30%
+      // TODO: turn back on when QA is done
+      // const nodeSize = 30 + childrenCount * 12; // Increase the default size by 30%
+      const nodeSize = 50; // Increase the default size by 30%
       const isLeaf = !node.children || node.children.length === 0;
 
-      const label = isLeaf ? node.id : `${node.id} · ${childrenCount}`;
+      const label = isLeaf ? node.title : `${node.id} · ${childrenCount}`;
       const media = node.media ? node.media : '';
 
       if (node.new) {
@@ -114,11 +140,11 @@ fetch('cache/test-data.json')
       }
     });
 
-    graph.data(data);
+    graph.data(restructuredData);
     graph.render();
     graph.fitView();
-
+    
     window.addEventListener('resize', () => {
-      graph.changeSize(window.innerWidth * 2, window.innerHeight * 2); // Adjust the size on window resize
+      graph.changeSize(window.innerWidth * 2, window.innerHeight * 2);
     });
   });
