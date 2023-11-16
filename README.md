@@ -1,18 +1,15 @@
 ## Introduction
 
-[Overbrowsing](https://en.wikipedia.org/wiki/Browsing_(herbivory)#:~:text=Overbrowsing%20occurs%20when%20overpopulated%20or%20densely-concentrated%20herbivores%20exert%20extreme%20pressure%20on%20plants,%20reducing%20the%20carrying%20capacity%20and%20altering%20the%20ecological%20functions%20of%20their%20habitat.): dedicated to fostering a deeper understanding of sustainable web design
-and development practices and their implications for our environment and society.
+Overbrowsing is an applied research think tank dedicated to advancing our understanding of sustainable web design and development practises.
 
 
-The term overbrowsing encapsulates our mission: a vigilant acknowledgment of the
-excesses and and superfluous elements often overlooked within the digital landscape.Our purpose is to raise consciousness, disseminate knowledge concerning the
-imperative need to curtail this surplus, and kindle palpable, tangible change.
+Overbrowsing occurs when herbivores graze excessively, exerting pressure on the environment, and this word, which has a common origin with internet browsing, corresponds with the initiative's core mission.
 
 
-Overbrowsing advocates for conscious strategies, resource optimisation, and ethical
-considerations. We expound why a sustainable web is pivotal for our planet, while
-simultaneously enhancing user experiences and ensuring equitable access, fostering a
-harmonious coexistence between technology and our planet.
+We are committed to shaping an innovative and mindful digital future, our approach is a blend of inquiry and action. The goal is to raise awareness, share crucial insights on the urgent need to reduce excess, and ignite tangible change. 
+
+
+The project advocates for conscious strategies, resource optimisation, and ethical considerations. Fostering a harmonious coexistence between technology and the planet.
 
 ## Table of Contents
 - [Installation](#installation)
