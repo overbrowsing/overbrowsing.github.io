@@ -6,15 +6,13 @@
 * {
   font-size: 13px;
   line-height: 160%;
-
-
 }
 
 body {
+  overflow-x: hidden;
   background-color: var(--ob-color-seaweed);
   color: var(--ob-color-laurel);
   font-family: Arial, sans-serif;
-  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -33,7 +31,6 @@ a[target=_blank] {
   cursor: alias;
 }
 
-
 .section {
   margin: 100px 0;
 }
@@ -42,66 +39,63 @@ a[target=_blank] {
   margin: 0 auto;
 }
 
-
 .container--narrow {
   margin: auto;
   max-width: 600px;
 }
 
-
 .container--narrow h2 {
-  border-bottom: 1px dashed var(--ob-color-laurel);
   margin: 40px 0 10px 0;
   padding-bottom: 5px;
+  border-bottom: 1px dashed var(--ob-color-laurel);
 }
 
 nav {
-  align-items: center;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  background-color: #A9AD98;
-  border: 2px dotted var(--ob-color-laurel);
-  border-radius: 50px;
+  position: fixed;
   bottom: 10px;
-  color: var(--ob-color-seaweed);
+  left: 50%;
+  z-index: 100000;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  left: 50%;
-  max-height: 50px;
-  min-width: 50px;
   padding: 25px 0;
-  position: fixed;
-  transform: translateX(-50%);
-  transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, max-height 0.4s ease-in-out 0.4s;
+  min-width: 50px;
+  max-height: 50px;
   width: 0;
-  z-index: 100000;
+  border: 2px dotted var(--ob-color-laurel);
+  border-radius: 50px;
+  background-color: #A9AD98;
+  color: var(--ob-color-seaweed);
+  transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, max-height 0.4s ease-in-out 0.4s;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 nav:hover {
-  border-radius: 10px;
-  max-height: 350px;
   padding: 0;
-  transform: translateX(-50%);
+  max-height: 350px;
   width: 50%;
+  border-radius: 10px;
+  transform: translateX(-50%);
 }
 
 .nav-container {
-  align-items: center;
   display: none;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   padding: 40px;
 }
-
 
 .test {
   display: block;
 }
 
 nav:hover .nav-container {
-  animation: fadeIn .4s .6s ease both;
   display: flex;
+  animation: fadeIn .4s .6s ease both;
 }
 
 @keyframes fadeIn {
@@ -115,15 +109,15 @@ nav:hover .nav-container {
 }
 
 .nav-about {
+  padding-bottom: 20px;
   border-bottom: 2px var(--ob-color-seaweed) dashed;
   cursor: default;
-  padding-bottom: 20px;
 }
 
 @media(prefers-color-scheme:light) {
   .nav-about p:last-child::after {
-    content: "We noticed that you're currently using Light Mode on your device. We kindly encourage you to use Dark Mode to help conserve energy.";
     display: inline-block;
+    content: "We noticed that you're currently using Light Mode on your device. We kindly encourage you to use Dark Mode to help conserve energy.";
   }
 }
 
@@ -132,67 +126,65 @@ nav:hover .nav-container {
 }
 
 .nav-links a {
-  padding: 0 20px;
   position: relative;
+  padding: 0 20px;
   text-decoration: none;
 }
 
-.nav-links a:hover::after, 
+.nav-links a:hover::after,
 .nav-links a:active::after {
   opacity: 1;
 }
 
 .nav-links a::after {
-  content: '\00B7';
-  display: block;
-  font-size: 20px;
-  left: 50%;
-  opacity: 0;
   position: absolute;
-
-
+  left: 50%;
+  display: block;
+  content: '\00B7';
+  font-size: 20px;
+  opacity: 0;
   transform: translateX(-50%);
 }
 
 .feed {
   display: grid;
+  margin: 0 10px;
   gap: 2px;
   grid-template-columns: repeat(3, 1fr);
-  margin: 0 10px;
 }
 
 .feed__item {
-  border: 1px solid var(--ob-color-laurel);
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
   margin: 10px;
-  min-height: calc(50vh - 40px);
   padding: 20px;
+  min-height: calc(50vh - 40px);
+  border: 1px solid var(--ob-color-laurel);
+  border-radius: 5px;
 }
 
 .feed__image {
-  background-color: var(--ob-color-laurel);
-  border-radius: 5px;
-  display: inline-block;
   position: relative;
-  transition: background-color 0.3s;
+  display: inline-block;
   width: 100%;
+  border-radius: 5px;
+  background-color: var(--ob-color-laurel);
+  transition: background-color 0.3s;
 }
 
 .feed__image img {
-  background-blend-mode: screen;
-  background-color: var(--ob-color-laurel);
   display: block;
-  height: auto;
-  mix-blend-mode: soft-light;
-  transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
   width: 100%;
+  height: auto;
+  background-color: var(--ob-color-laurel);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
+  background-blend-mode: screen;
+  mix-blend-mode: soft-light;
 }
 
 .feed__image img:hover {
-  background-color: transparent;
   border-radius: 5px;
+  background-color: transparent;
   mix-blend-mode: normal;
 }
 
@@ -207,8 +199,8 @@ nav:hover .nav-container {
 
 @media (max-width: 768px) {
   nav:hover {
-    border-radius: 10px;
     width: calc(100% - 20px);
+    border-radius: 10px;
   }
 
   .nav-container {
