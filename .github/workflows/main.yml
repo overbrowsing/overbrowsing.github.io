@@ -36,32 +36,23 @@ jobs:
       - name: Deploy to gh-pages
         if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
         run: |
-          # Create a temporary directory to clone the repository
-          mkdir deploy
-          cd deploy
+          git checkout -b gh-pages
 
-          # Clone the repository
-          git clone https://github.com/${{ github.repository }}
+          # Create a temporary directory
+          tmp_dir=$(mktemp -d)
 
-          # Move into the repository directory
-          cd overbrowsing.com
+          # Move the contents of _site to the temporary directory
+          mv _site/* $tmp_dir
 
-          # Switch to the gh-pages branch
-          git checkout gh-pages
+          # Remove all files and directories in the current directory
+          rm -r *
 
-          # Clear existing contents
-          rm -rf *
+          # Move the contents back to the current directory
+          mv $tmp_dir/* .
 
-          # Copy contents from _site
-          cp -r ../_site/* .
+          # Remove the temporary directory
+          rmdir $tmp_dir
 
-          # Add, commit, and push changes
           git add .
-          git commit -m "Update gh-pages with latest build"
-          git push origin gh-pages
-
-      - name: Clean up
-        if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
-        run: |
-          cd ..
-          rm -rf deploy
+          git commit -m "updating content"
+          git push -f -u origin gh-pages
