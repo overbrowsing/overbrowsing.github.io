@@ -33,10 +33,26 @@ jobs:
           yarn install
           yarn build
 
-          mv _site/* .
-          mv _site/.git .git
-          rm -rf _site
+          # Create a temporary directory
+          mkdir temp
+
+          # Move the contents of _site to the temp directory
+          mv _site/* temp/
+
+          # Remove everything from the working directory
+          rm -rf *
+
+          # Move the contents of temp back to the working directory
+          mv temp/* .
+
+          # Remove the temp directory
+          rm -rf temp
+
+          # Add all changes
           git add .
+
+          # Commit the changes
           git commit -m "Update gh-pages with _site contents"
-          git branch -M gh-pages
+
+          # Push the changes to the gh-pages branch
           git push -u -f origin gh-pages
