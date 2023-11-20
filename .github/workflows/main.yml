@@ -38,23 +38,23 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
-          git checkout -b gh-pages
 
-          # Create a temporary directory
-          tmp_dir=$(mktemp -d)
+          # Delete gh-pages branch if it exists
+          git branch -D gh-pages || true
 
-          # Move the contents of _site to the temporary directory
-          mv _site/* $tmp_dir
+          # Create and checkout a new gh-pages branch from main
+          git checkout -b gh-pages main
 
-          # Remove all files and directories in the current directory
-          rm -r *
+          # Remove all files and directories in the current directory except for _site
+          find . -maxdepth 1 ! -name '_site' -exec rm -r {} \;
 
-          # Move the contents back to the current directory
-          mv $tmp_dir/* .
+          # Move all contents of _site to the root
+          mv _site/* .
 
-          # Remove the temporary directory
-          rmdir $tmp_dir
+          # Delete the _site folder
+          rm -r _site
 
+          # Commit and push changes to the new gh-pages branch
           git add .
           git commit -m "Workflow Run: Generate Compressed Images"
           git push -u -f origin gh-pages
