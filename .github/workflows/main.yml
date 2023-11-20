@@ -8,7 +8,6 @@ on:
     - cron: '0 11 * * *'
 
 permissions: write-all
-
 jobs:
   optimize_images_and_deploy:
     runs-on: ubuntu-latest
@@ -26,7 +25,7 @@ jobs:
         run: echo "stopWorkflow=${{ steps.stop-check.outputs.stopWorkflow }}" > stopWorkflow.env
 
       - name: Set Stop Workflow Environment Variable
-        run: echo "::set-env name=STOP_WORKFLOW::$(cat stopWorkflow.env)"
+        run: echo "STOP_WORKFLOW=$(cat stopWorkflow.env)" >> $GITHUB_ENV
 
       - name: Conditional workflow steps
         if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
