@@ -37,7 +37,7 @@ jobs:
           mkdir temp
 
           # Move the contents of _site to the temp directory
-          mv _site/* temp/
+          mv _site/* temp/ || true
 
           # Remove everything from the working directory
           rm -rf *
