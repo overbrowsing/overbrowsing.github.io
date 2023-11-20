@@ -20,10 +20,13 @@ jobs:
       - name: Check if workflow should stop
         id: stop-check
         run: node scripts/build/stopWorkflow.js
-        continue-on-error: true
 
+      - name: Set Stop Workflow Output
+        id: set-stop-output
+        run: echo "stopWorkflow=${{ steps.stop-check.outputs.stopWorkflow }}" >> $GITHUB_ENV
+        
       - name: Conditional workflow steps
-        if: ${{ github.event_name == 'push' || steps.stop-check.outcome != 'failure' }}
+        if: ${{ github.event_name == 'push' || steps.stop-check.outputs.stopWorkflow != 'true' }}
         run: |
           yarn install
           yarn build
