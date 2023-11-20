@@ -35,7 +35,7 @@ async function processChannel(channel) {
   const data = await fetch(`https://api.are.na/v2/channels/${channel.name}?per=200`).then(resp => resp.json());
   const category = channel.category;
 
-  const imagesDir = 'cache/images';
+  const imagesDir = '_site/images';
   await fsp.mkdir(imagesDir, { recursive: true });
 
   const mergedJson = [];
@@ -61,7 +61,7 @@ async function processChannel(channel) {
 
     if (element.image) {
       const inputFilePath = path.join(imagesDir, `${element.id}.png`);
-      const tempOutputFilePath = path.join('cache/temp', `${element.id}.png`);
+      const tempOutputFilePath = path.join('_site/temp', `${element.id}.png`);
 
       await downloadImage(element.image.display.url, inputFilePath);
       await processAndOptimizeImage(inputFilePath, tempOutputFilePath);
@@ -77,20 +77,21 @@ async function processChannel(channel) {
 
 async function compressAndSave() {
   try {
-    if (existsSync('cache/images')) {
-      await fsp.rm('cache/images', { recursive: true });
+
+    if (existsSync('_site/images')) {
+      await fsp.rm('_site/images', { recursive: true });
     }
 
-    await fsp.mkdir('cache/temp', { recursive: true });
+    await fsp.mkdir('_site/temp', { recursive: true });
 
     const data = await Promise.all(channelCategories.map(processChannel));
 
     const mergedJson = data.flat().sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    await fsp.writeFile("cache/data.json", JSON.stringify(mergedJson));
+    await fsp.writeFile("_site/data/data.json", JSON.stringify(mergedJson));
     
     // Delete the temporary folder
-    await fsp.rm('cache/temp', { recursive: true });
+    await fsp.rm('_site/temp', { recursive: true });
 
     console.log("Images Downloaded");
   } catch (err) {
@@ -154,7 +155,7 @@ function calculateBackgroundColor(aqiValue) {
 // Save data to a JSON file
 function saveToJson(data) {
   const json = JSON.stringify(data, null, 2);
-  fsp.writeFile('cache/aqi-data.json', json, 'utf8');
+  fsp.writeFile('_site/data/aqi-data.json', json, 'utf8');
 }
 
 

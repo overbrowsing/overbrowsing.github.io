@@ -31,9 +31,19 @@ jobs:
           yarn install
           yarn build
 
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@users.noreply.github.com"
-          git checkout -b gh-pages
+          # Move into the _site directory
+          cd _site
+
+          # Initialize a new Git repository
+          git init
+
+          # Configure Git
+          git config user.name "GitHub Actions"
+          git config user.email "actions@users.noreply.github.com"
+
+          # Add and commit all files
           git add .
-          git commit -m "Workflow Run: Generate Compressed Images"
-          git push -u -f origin gh-pages
+          git commit -m "Deploy to GitHub Pages"
+
+          # Force push to the gh-pages branch of your repository
+          git push -f https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git master:gh-pages
