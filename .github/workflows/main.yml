@@ -39,11 +39,8 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
       
-          # Delete gh-pages branch if it exists
-          git branch -D gh-pages || true
-      
           # Create and checkout a new gh-pages branch from main
-          git checkout -b gh-pages main
+          git checkout -b gh-pages 
       
           # Remove all files and directories in the current directory except for _site
           find . -maxdepth 1 ! -name '_site' ! -name '.' ! -name '..' -exec rm -r {} \;
