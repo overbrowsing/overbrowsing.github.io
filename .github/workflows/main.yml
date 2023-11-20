@@ -17,20 +17,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Fetch API Data
-        run: |
-          API_DATA=$(curl -s "https://api.websitecarbon.com/site?url=https://overbrowsing.com")
-          # Create or update the carbon-data.json file
-          echo "$API_DATA" > cache/carbon-data.json
-        continue-on-error: true
-
       - name: Check if workflow should stop
         id: stop-check
-        run: node scripts/stopWorkflow.js
-        continue-on-error: true
+        run: node scripts/build/stopWorkflow.js
 
+      - name: Set Stop Workflow Output
+        id: set-stop-output
+        run: echo "stopWorkflow=${{ steps.stop-check.outputs.stopWorkflow }}" >> $GITHUB_ENV
+        
       - name: Conditional workflow steps
-        if: ${{ github.event_name == 'push' || steps.stop-check.outcome != 'failure' }}
+        if: ${{ github.event_name == 'push' || steps.stop-check.outputs.stopWorkflow != 'true' }}
         run: |
           yarn install
           yarn build

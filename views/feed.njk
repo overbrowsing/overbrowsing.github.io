@@ -1,0 +1,78 @@
+{% extends 'layout.njk' %}
+{% block content %}
+
+  <div class="feed">
+    {% for item in data  %} 
+      <!-- Format Date -->
+      {% if item.date %}
+        {% set formattedItemDate = item.date | string %}
+        {% set formattedItemDateObject = formattedItemDate | parseDate %}
+        {% set formattedDateString = formattedItemDateObject.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric'}) %}
+
+        {% set ageInDays = (currentDate - formattedItemDateObject) / (1000 * 60 * 60 * 24) %}
+      {% endif %}
+      
+     <div class='feed__item' data-category="{{ item.category | default('') }}">
+        {% if item.category %}
+          <b class="feed__title">{{ item.category }} 
+            {% if item.title %}
+              · {{ item.title }}
+            {% endif %} 
+        
+            <!-- Marker if item is new -->
+            {% if ageInDays <= 7 %}
+              <div class="circle"></div>
+            {% endif %}
+          </b>
+        {% endif %}
+
+        {% if item.content %}
+          <p>{{ item.content }}</p>
+        {% endif %}
+
+        {% if item.contents %}
+          {% set innerContent = item.contents %}
+          {% for innerItem in innerContent %}
+            <p>{{innerItem.title}}</p>
+          {% endfor %}
+        {% endif %}
+
+        {% if item.image %}
+          <div class='feed__image'><img src='../cache/images/{{ item.id }}.png' loading='lazy' /></div>
+        {% endif %}
+
+        {% if item.source or item.date %}
+          {% set url = item.source.provider.url or item.source.url or '' %}
+            <br></br>
+            <b class="feed__date">
+              {% if formattedDateString %}{{ formattedDateString }}{% endif %} {% if not item.image and url %}· {{ url }}{% endif %}
+            </b>     
+        {% endif %}
+
+      </div>
+    {% endfor %}
+  </div>
+
+  <script>
+    function filterByCategory(category) {
+      // Show only items with the selected category
+      let feedItems = document.querySelectorAll('.feed__item');
+      feedItems.forEach(item => {
+        if (item.getAttribute('data-category') === category || category === 'all') {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function resetFilter() {
+      // Show all items
+      let feedItems = document.querySelectorAll('.feed__item');
+      feedItems.forEach(item => {
+        item.style.display = 'block';
+      });
+    }
+  </script>
+
+{% endblock %}

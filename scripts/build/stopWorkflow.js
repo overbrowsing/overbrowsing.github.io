@@ -5,8 +5,11 @@ const aqiValue = aqi.list[0].main.aqi;
 // It checks the AQI value and stops the build if it is below a set value.
 function shouldStopWorkflow(aqiValue) {
   if (aqiValue < 3) {
+    console.log('::set-output name=stopWorkflow::true'); // Set output variable
     console.log('AQI today is: ' + aqiValue + '. Workflow is stopping.');
-    process.exit(1); // Exit with a non-zero code to indicate failure
+    process.exit(0); // Exit with a zero code to indicate successful completion
   }
   console.log('AQI today is: ' + aqiValue + '. Workflow can continue.');
 }
+
+shouldStopWorkflow(aqiValue);
