@@ -46,4 +46,4 @@ jobs:
           git commit -m "Deploy to GitHub Pages"
 
           # Force push to the gh-pages branch of your repository
-          git push -f https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git master:gh-pages
+          git push -u -f origin gh-pages
