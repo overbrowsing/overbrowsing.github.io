@@ -75,7 +75,7 @@ nav {
 
 nav:hover {
   padding: 0;
-  max-height: 350px;
+  max-height: 400px;
   width: 50%;
   border-radius: 10px;
   transform: translateX(-50%);

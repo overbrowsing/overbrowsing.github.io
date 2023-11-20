@@ -3,8 +3,6 @@ const path = require('path');
 const nunjucks = require('nunjucks');
 
 const routes = require('./routes/index.cjs');
-const dateFilter = require('nunjucks-date-filter');
-
 
 const port = "3000";
 const app = express();
@@ -16,10 +14,12 @@ function setUpNunjucks() {
       autoescape: true,
       express: app
   });
+  // Custom filter function to convert date string to a JavaScript Date object
+  const parseDate = function (dateString) {
+    return new Date(dateString);
+  };
 
-  // note that 'date' is the function name you'll use in the template. As shown in nunjucks-date-filter's readme
-  env.addFilter('date', dateFilter);
-
+  env.addFilter('parseDate', parseDate);
 }
 
 setUpNunjucks();

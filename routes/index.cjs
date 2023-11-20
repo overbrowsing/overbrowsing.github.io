@@ -10,7 +10,7 @@ const aqiData = JSON.parse(fs.readFileSync('./cache/aqi-data.json', 'utf8'));
 router.get('/', async function(req, res, next) {
 
   const data = {
-    message: 'Home',
+    page: 'home',
     layout: 'layout.njk',
     carbonData: carbonData,
     aqiData: aqiData
@@ -24,7 +24,7 @@ router.get('/feed', async function(req, res, next) {
   const jsonData = JSON.parse(fs.readFileSync('./cache/data.json', 'utf8'));
   const currentDate = new Date();
   const data = {
-    message: 'Feed',
+    page: 'feed',
     layout: 'layout.njk',
     data: jsonData,
     carbonData: carbonData,
@@ -38,7 +38,7 @@ router.get('/feed', async function(req, res, next) {
 // Route for the /about page
 router.get('/about', async function(req, res, next) {
   const data = {
-    message: 'Feed!',
+    page: 'about',
     layout: 'layout.njk',
     carbonData: carbonData,
     aqiData: aqiData
