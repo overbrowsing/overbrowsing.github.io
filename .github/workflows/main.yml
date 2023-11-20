@@ -45,5 +45,5 @@ jobs:
           git add .
           git commit -m "Deploy to GitHub Pages"
 
-          # Force push to the gh-pages branch of your repository
-          git push -u -f origin gh-pages
+          # Force push to a new branch named gh-pages
+          git push -u -f origin HEAD:refs/heads/gh-pages
