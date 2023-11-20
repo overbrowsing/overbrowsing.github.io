@@ -36,6 +36,8 @@ jobs:
       - name: Deploy to gh-pages
         if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
         run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@users.noreply.github.com"
           git checkout -b gh-pages
 
           # Create a temporary directory
@@ -54,5 +56,5 @@ jobs:
           rmdir $tmp_dir
 
           git add .
-          git commit -m "updating content"
-          git push -f -u origin gh-pages
+          git commit -m "Workflow Run: Generate Compressed Images"
+          git push -u -f origin gh-pages
