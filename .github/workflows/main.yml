@@ -30,17 +30,38 @@ jobs:
       - name: Conditional workflow steps
         if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
         run: |
-          steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
-              ref: gh-pages # This checks out the gh-pages branch
-      
-            - name: Copy contents from _site
-              run: rsync -av --delete ../main/_site/ ./
-      
-            - name: Commit and push changes
-              run: |
-                git add -A
-                git commit -m "Update gh-pages with _site contents"
-                git push origin gh-pages
-      
+          yarn install
+          yarn build
+
+      - name: Deploy to gh-pages
+        if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
+        run: |
+          # Create a temporary directory to clone the repository
+          mkdir deploy
+          cd deploy
+
+          # Clone the repository
+          git clone https://github.com/${{ github.repository }}
+
+          # Move into the repository directory
+          cd <your-repository-name>
+
+          # Switch to the gh-pages branch
+          git checkout gh-pages
+
+          # Clear existing contents
+          rm -rf *
+
+          # Copy contents from _site
+          cp -r ../_site/* .
+
+          # Add, commit, and push changes
+          git add .
+          git commit -m "Update gh-pages with latest build"
+          git push origin gh-pages
+
+      - name: Clean up
+        if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
+        run: |
+          cd ..
+          rm -rf deploy
