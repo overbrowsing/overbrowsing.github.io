@@ -197,6 +197,15 @@ nav:hover .nav-container {
   padding-top: 10px;
 }
 
+.circle {
+  width: 14px;
+  height: 14px;
+  background-color: var(--ob-color-laurel);
+  border-radius: 100px;
+  vertical-align: middle;
+  float: right;
+}
+
 @media (max-width: 768px) {
   nav:hover {
     width: calc(100% - 20px);

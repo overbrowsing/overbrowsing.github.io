@@ -1,15 +1,41 @@
 {% extends 'layout.njk' %}
 {% block content %}
 
+  <!-- Generate filter buttons dynamically from unique categories -->
+  <div class="filter-buttons">
+    {% set uniqueCategories = [] %}
+    {% for item in data %}
+      {% if item.category not in uniqueCategories %}
+        {% set _ = uniqueCategories.push(item.category) %}
+        <button onclick="filterByCategory('{{ item.category }}')">{{ item.category }}</button>
+      {% endif %}
+    {% endfor %}
+    <button onclick="resetFilter()">Reset</button>
+  </div>
+
   <div class="feed">
-    {% for item in data %}      
-      <div class='feed__item'>
+  {% for item in data  %} 
+  <div class='feed__item' data-category="{{ item.category | default('') }}">
+
+
 
         {% if item.category %}
           <b class="feed__title">{{ item.category }} 
             {% if item.title %}
               · {{ item.title }}
           {% endif %} 
+          
+          <!-- Add circle div for items less than a week old -->
+          {% if item.date %}
+            {% set formattedItemDate = item.date | date("YYYY-MM-DDTHH:mm:ss.SSSZ") | date("D MMMM YYYY HH:mm:ss") | string %}
+            {% set formattedItemDateInMilliseconds = formattedItemDate | date("x") %}
+
+            {% set ageInDays = (currentDate - formattedItemDateInMilliseconds) / (1000 * 60 * 60 * 24) %}
+                  
+              {% if ageInDays <= 7 %}
+                <span class="circle"></span>
+              {% endif %}
+          {% endif %}
           </b>
         {% endif %}
 
@@ -19,28 +45,47 @@
 
         {% if item.contents %}
           {% set innerContent = item.contents %}
-          {% for item in innerContent %}
-            <p>{{item.title}}</p>
+          {% for innerItem in innerContent %}
+            <p>{{innerItem.title}}</p>
           {% endfor %}
         {% endif %}
 
         {% if item.image %}
           <div class='feed__image'><img src='../cache/images/{{ item.id }}.png' loading='lazy' /></div>
         {% endif %}
-      
 
         {% if item.source or item.date %}
           {% set url = item.source.provider.url or item.source.url or '' %}
             <br></br>
             <b class="feed__date">
-             
               {% if item.date %}{{ item.date | date("MMMM DD, YYYY") }}{% endif %} {% if not item.image and url %}· {{ url }}{% endif %}
             </b>    
         {% endif %}
 
-
-
       </div>
     {% endfor %}
   </div>
+
+  <script>
+    function filterByCategory(category) {
+      // Show only items with the selected category
+      let feedItems = document.querySelectorAll('.feed__item');
+      feedItems.forEach(item => {
+        if (item.getAttribute('data-category') === category || category === 'all') {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function resetFilter() {
+      // Show all items
+      let feedItems = document.querySelectorAll('.feed__item');
+      feedItems.forEach(item => {
+        item.style.display = 'block';
+      });
+    }
+  </script>
+
 {% endblock %}

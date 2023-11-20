@@ -99,7 +99,7 @@ async function compressAndSave() {
             mergedJson.push(reducedData);
             }
         }
-        mergedJson.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        mergedJson.sort((a, b) => new Date(b.date) - new Date(a.date));
 
         await fsp.writeFile("cache/data.json", JSON.stringify(mergedJson));
         

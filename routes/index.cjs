@@ -22,13 +22,14 @@ router.get('/', async function(req, res, next) {
 // Route for the /feed page
 router.get('/feed', async function(req, res, next) {
   const jsonData = JSON.parse(fs.readFileSync('./cache/data.json', 'utf8'));
-
+  const currentDate = new Date();
   const data = {
     message: 'Feed',
     layout: 'layout.njk',
     data: jsonData,
     carbonData: carbonData,
-    aqiData: aqiData
+    aqiData: aqiData,
+    currentDate: currentDate
   };
 
   res.render('feed.njk', data);
