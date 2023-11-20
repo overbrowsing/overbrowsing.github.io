@@ -30,29 +30,17 @@ jobs:
       - name: Conditional workflow steps
         if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
         run: |
-          yarn install
-          yarn build
-
-          # Create a temporary directory
-          mkdir temp
-
-          # Move the contents of _site to the temp directory
-          mv _site/* temp/ || true
-
-          # Remove everything from the working directory
-          rm -rf *
-
-          # Move the contents of temp back to the working directory
-          mv temp/* .
-
-          # Remove the temp directory
-          rm -rf temp
-
-          # Add all changes
-          git add .
-
-          # Commit the changes
-          git commit -m "Update gh-pages with _site contents"
-
-          # Push the changes to the gh-pages branch
-          git push -u -f origin gh-pages
+          steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              ref: gh-pages # This checks out the gh-pages branch
+      
+            - name: Copy contents from _site
+              run: rsync -av --delete ../main/_site/ ./
+      
+            - name: Commit and push changes
+              run: |
+                git add -A
+                git commit -m "Update gh-pages with _site contents"
+                git push origin gh-pages
+      
