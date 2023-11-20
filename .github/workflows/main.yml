@@ -1,4 +1,4 @@
-name: Image Optimization and Deployment
+name: Build Overbrowsing
 
 on:
   push:
@@ -23,27 +23,21 @@ jobs:
 
       - name: Set Stop Workflow Output
         id: set-stop-output
-        run: echo "stopWorkflow=${{ steps.stop-check.outputs.stopWorkflow }}" >> $GITHUB_ENV
-        
+        run: echo "stopWorkflow=${{ steps.stop-check.outputs.stopWorkflow }}" > stopWorkflow.env
+
+      - name: Set Stop Workflow Environment Variable
+        run: echo "::set-env name=STOP_WORKFLOW::$(cat stopWorkflow.env)"
+
       - name: Conditional workflow steps
-        if: ${{ github.event_name == 'push' || steps.stop-check.outputs.stopWorkflow != 'true' }}
+        if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
         run: |
           yarn install
           yarn build
 
-          # Move into the _site directory
-          cd _site
-
-          # Initialize a new Git repository
-          git init
-
-          # Configure Git
-          git config user.name "GitHub Actions"
-          git config user.email "actions@users.noreply.github.com"
-
-          # Add and commit all files
+          mv _site/* .
+          mv _site/.git .git
+          rm -rf _site
           git add .
-          git commit -m "Deploy to GitHub Pages"
-
-          # Force push to a new branch named gh-pages
-          git push -u -f origin HEAD:refs/heads/gh-pages
+          git commit -m "Update gh-pages with _site contents"
+          git branch -M gh-pages
+          git push -u -f origin gh-pages
