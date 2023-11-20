@@ -44,7 +44,7 @@ jobs:
           git clone https://github.com/${{ github.repository }}
 
           # Move into the repository directory
-          cd <your-repository-name>
+          cd overbrowsing.com
 
           # Switch to the gh-pages branch
           git checkout gh-pages
