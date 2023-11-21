@@ -28,7 +28,6 @@
             <a href="/feed">Research</a>
             <a href="/about">About</a>
         </div>
-
         {% if page == "feed" %}
           <!-- Generate filter buttons dynamically from unique categories -->
           <p>Categories</p>
@@ -44,8 +43,6 @@
           </div>
         {% endif %}
     </nav>
-
-    {% block  content %}
-    {% endblock %}    
+    {% block  content %}{% endblock %}    
     </body>
 </html>
