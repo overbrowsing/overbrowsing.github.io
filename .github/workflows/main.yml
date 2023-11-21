@@ -38,7 +38,13 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
-          git checkout -b gh-pages
+
+          # Check if gh-pages branch exists
+          if git show-ref --quiet refs/heads/gh-pages; then
+            git checkout gh-pages
+          else
+            git checkout -b gh-pages
+          fi
 
           # Handle local modifications
           git add -u
@@ -49,13 +55,11 @@ jobs:
           # Remove existing files in the branch
           find . -maxdepth 1 ! -name '_site' ! -name '.' ! -name '..' -exec rm -r {} \;
 
-          
           # Move all contents of _site to the root
           mv _site/* .
 
           # Delete the _site folder
           rm -r _site
-
 
           git add .
           git commit -m "Workflow Run: Generate Compressed Images"
