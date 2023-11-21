@@ -2,7 +2,6 @@
 {% block content %}
   <div class="feed">
     {% for item in data  %} 
-      <!-- Format Date -->
       {% if item.date %}
         {% set formattedItemDate = item.date | string %}
         {% set formattedItemDateObject = formattedItemDate | parseDate %}
@@ -16,7 +15,6 @@
               · {{ item.title }}
             {% endif %} 
       
-            <!-- Marker if item is new -->
             {% if ageInDays <= 7 %}
               <div class="circle"></div>
             {% endif %}

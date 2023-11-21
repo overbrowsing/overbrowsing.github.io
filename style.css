@@ -217,7 +217,7 @@ nav:hover .nav-container {
   }
 
   .feed {
-    grid-template-columns: 1fr;
+    display: initial;
   }
 
   .feed__item {
