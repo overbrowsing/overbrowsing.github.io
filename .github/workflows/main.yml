@@ -42,8 +42,8 @@ jobs:
           # Ensure you are in the repository's root directory
           cd $GITHUB_WORKSPACE
             
-          # Create and checkout a new gh-pages branch from main
-          git checkout -b gh-pages 
+          # Switch to the existing gh-pages branch
+          git checkout gh-pages 
           
           # Remove all files and directories in the current directory except for _site
           find . -maxdepth 1 ! -name '_site' ! -name '.' ! -name '..' -exec rm -r {} \;
@@ -54,7 +54,7 @@ jobs:
           # Delete the _site folder
           rm -r _site
           
-          # Commit and push changes to the new gh-pages branch
+          # Commit and push changes to the gh-pages branch
           git add .
           git commit -m "Workflow Run: Generate Compressed Images"
           git push -u -f origin gh-pages
