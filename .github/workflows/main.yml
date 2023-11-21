@@ -38,11 +38,13 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
-          git checkout -b gh-pages
+          git checkout gh-pages
 
           # Handle local modifications
           git add -u
           git reset --hard
+
+          git merge main
 
           # Remove existing files in the branch
           find . -maxdepth 1 ! -name '_site' ! -name '.' ! -name '..' -exec rm -r {} \;
