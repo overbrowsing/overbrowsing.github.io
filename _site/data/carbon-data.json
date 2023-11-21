@@ -1,1 +1,4 @@
-{}
+{
+  "error": "Resource at given URL could not be successfully tested (returned 404 Not Found status).",
+  "url": "https://overbrowsing.com"
+}
