@@ -39,18 +39,21 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
       
+          # Ensure you are in the repository's root directory
+          cd $GITHUB_WORKSPACE
+            
           # Create and checkout a new gh-pages branch from main
           git checkout -b gh-pages 
-      
+          
           # Remove all files and directories in the current directory except for _site
           find . -maxdepth 1 ! -name '_site' ! -name '.' ! -name '..' -exec rm -r {} \;
-      
+          
           # Move all contents of _site to the root
           mv _site/* .
-      
+          
           # Delete the _site folder
           rm -r _site
-      
+          
           # Commit and push changes to the new gh-pages branch
           git add .
           git commit -m "Workflow Run: Generate Compressed Images"
