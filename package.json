@@ -9,7 +9,8 @@
     "fetch:data": "echo 'Fetching Carbon info...' && API_DATA=\"$(curl -s 'https://api.websitecarbon.com/site?url=https://overbrowsing.com')\" ; echo \"$API_DATA\" > _site/data/carbon-data.json",
     "minify:css": "echo 'Minifying CSS' && uglifycss style.css > _site/style.css",
     "build:data": "echo 'Building and minimizing API Data. This takes a few seconds...' && node scripts/build/fetchAll.js",
-    "build": "yarn clean && yarn copy:assets && yarn fetch:data && yarn minify:css && yarn build:data",
+    "build:template": "echo 'Building HTML' && node scripts/build/build.cjs",
+    "build": "yarn clean && yarn copy:assets && yarn fetch:data && yarn minify:css && yarn build:data && yarn build:template",
     "serve": "yarn build && echo 'Starting the server...' && node server.cjs"
   },
   "author": "",
