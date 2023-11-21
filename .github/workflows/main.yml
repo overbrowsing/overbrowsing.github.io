@@ -52,8 +52,7 @@ jobs:
 
           git merge main
 
-          # TODO Delete all the files on the branch that aren't being served statically. 
-          # I was trying to use this but it wasn't working. 
+          # Delete all the files on the branch that aren't being served statically. 
           git ls-files | grep -v '^_site/' | xargs rm -r
 
           # Move all contents of _site to the root
