@@ -1,22 +1,4 @@
 {
-  "url": "https://overbrowsing.com/",
-  "green": true,
-  "bytes": 343016,
-  "cleanerThan": 0.93,
-  "rating": "A+",
-  "statistics": {
-    "adjustedBytes": 258977.08,
-    "energy": 0.000195364872738719,
-    "co2": {
-      "grid": {
-        "grams": 0.0863512737505138,
-        "litres": 0.04802857846003576
-      },
-      "renewable": {
-        "grams": 0.07486381923347714,
-        "litres": 0.041639256257659976
-      }
-    }
-  },
-  "timestamp": 1700564632
+  "error": "Resource at given URL could not be successfully tested (returned 404 Not Found status).",
+  "url": "https://overbrowsing.com"
 }

@@ -5,7 +5,8 @@ import path from 'path';
 
 const channelCategories = [
   { name: "design-tool-rzfxmnmei8g", category: "Design Tools" },
-  { name: "founding-principles", category: "Founding Principals" },
+  { name: "principles-sfqb0jsjmws", category: "Principals" },
+  { name: "foklolre-fisuon", category: "Folklore" },
   // Add more channel names and categories as needed
 ];
 

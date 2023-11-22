@@ -50,6 +50,11 @@ a[target=_blank] {
   border-bottom: 1px dashed var(--ob-color-laurel);
 }
 
+svg {
+  display: block;
+  margin: auto;
+}
+
 nav {
   position: fixed;
   bottom: 10px;
