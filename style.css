@@ -29,7 +29,8 @@ a {
 
 a[target=_blank] {
   cursor: alias;
-}
+} 
+
 
 .section {
   margin: 100px 0;

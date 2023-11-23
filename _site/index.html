@@ -18,8 +18,8 @@
         <div class="nav-container">
         <div class="nav-about">
             <p><b>Overbrowsing</b> compiles sustainable web design resources, tools, strategies, principles, and other related media. The term Overbrowsing carries a <a href="https://en.wikipedia.org/wiki/Browsing_(herbivory)#:~:text=Overbrowsing%20occurs%20when%20overpopulated%20or%20densely-concentrated%20herbivores%20exert%20extreme%20pressure%20on%20plants,%20reducing%20the%20carrying%capacity%20and%20altering%20the%20ecological%20functions%20of%20their%20habitat." target="_blank">dual meaning</a> that aligns with the core mission of the initiative.</p>
-            <p>This is a low-consumption site that uses just NaNg CO2e and runs on clean energy.</p>
-            <p>The website background changes color based on air quality. Today, the air quality is fair.</p>
+            <p>This is a low-consumption site that uses just 0.07g CO2e and runs on clean energy.</p>
+            <p>The website background changes color based on air quality. Today, the air quality is good.</p>
             <p>Overbrowsing is <a href="https://are.na/are-na/powered-by-are-na" target="_blank">Powered by Are.na</a> and employs techniques and principles to make it low-consumption. See our <a href="https://github.com/overbrowsing/overbrowsing.com" target="_blank">Github</a> to find out more about the construction of this website.</p>
             <p>The project was created by <a href="https://headless.horse" target="_blank">Headless Horse</a> and <a href="https://printerscanner.net" target="_blank">printer_scanner</a>.</p>
         </div>
@@ -32,193 +32,36 @@
     </nav>
     
   
+    <script defer src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+      .node circle {
+        stroke: #ABB193;
+        stroke-width: 2px;
+        fill: #272A24;
+      }
+
+      .link {
+        fill: none;
+        stroke: #ABB193;
+        stroke-width: 1px;
+        display: block;
+      }
+
+      .node text {
+        font-size: 12px;
+        fill: #ABB193 !important;
+        text-anchor: middle;
+        pointer-events: none; /* Prevent text selection while dragging */
+        max-width: 100px
+      }
+
+
+      .hidden {
+        display: none;
+      }
+    </style>
     <script defer>
-      // Create an SVG container
-      const svgContainer = createSvgContainer('100%', 800);
-      svgContainer.classList.add('svg-container'); // Add the CSS class for the sway animation
-      document.body.appendChild(svgContainer);
 
-      function createSvgContainer(width, height) {
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('width', width);
-        svg.setAttribute('height', height);
-        return svg;
-      }
-
-      function createNodeGroup(id, cx, cy, r, text, parentCx, parentCy, hasChildren) {
-        const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-        group.setAttribute('data-id', id);
-
-        const linesGroup = createLinesGroup(cx, cy, r, parentCx, parentCy, hasChildren);
-        group.appendChild(linesGroup);
-
-        if (hasChildren) {
-          const circle = createCircle(cx, cy, r);
-          group.appendChild(circle);
-        } else {
-          const circle = createCircle(cx, cy, r, "#272A24", "transparent");
-          group.appendChild(circle);
-        }
-
-        if (text !== undefined) {
-          const textElement = createTextElement(cx, cy, text);
-          group.appendChild(textElement);
-        }
-
-        return group;
-      }
-
-      function createLinesGroup(cx, cy, r, parentCx, parentCy, hasChildren) {
-        const linesGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-
-        if (parentCx !== undefined && parentCy !== undefined) {
-          const line = createDottedLine(cx, cy, parentCx, parentCy, r);
-          linesGroup.appendChild(line);
-        }
-
-        return linesGroup;
-      }
-
-      function createDottedLine(x1, y1, x2, y2, r) {
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        const lineLength = 20;
-        const angle = Math.atan2(y2 - y1, x2 - x1);
-        const extendedParentCx = x1 + (r + lineLength) * Math.cos(angle);
-        const extendedParentCy = y1 + (r + lineLength) * Math.sin(angle);
-
-        line.setAttribute('x1', extendedParentCx);
-        line.setAttribute('y1', extendedParentCy);
-        line.setAttribute('x2', x2);
-        line.setAttribute('y2', y2);
-        line.setAttribute('stroke', '#ABB193');
-        line.setAttribute('stroke-dasharray', '5,5');
-        return line;
-      }
-
-    function createCircle(cx, cy, r, stroke = "#ABB193", fill = "#272A24") {
-        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        circle.setAttribute('cx', cx);
-        circle.setAttribute('cy', cy);
-        circle.setAttribute('r', r);
-        circle.setAttribute('stroke', stroke);
-        circle.setAttribute('fill', fill);
-        circle.classList.add('circle', 'expand-animation'); // Add the CSS class for the pulse and expand animations
-        return circle;
-    }
-
-    function createTextElement(x, y, text) {
-        const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        textElement.setAttribute('x', x);
-        textElement.setAttribute('y', y);
-        textElement.setAttribute('text-anchor', 'middle');
-        textElement.setAttribute('fill', '#ABB193');
-        textElement.textContent = text;
-
-        // Set max-width style property to 50px
-        textElement.style.maxWidth = '50px';
-        textElement.style.overflow = 'hidden';
-        textElement.style.textOverflow = 'ellipsis';
-
-        return textElement;
-    }
-
-    function createTextElementWithLink(x, y, text, href) {
-        const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        textElement.setAttribute('x', x);
-        textElement.setAttribute('y', y);
-        textElement.setAttribute('text-anchor', 'middle');
-        textElement.setAttribute('fill', '#ABB193');
-
-        // Create an <a> tag
-        const link = document.createElementNS('http://www.w3.org/2000/svg', 'a');
-        link.setAttribute('href', href);
-        link.setAttribute('target', '_blank'); // Set the target attribute as needed
-
-        // Create a text node for the link
-        const textNode = document.createTextNode(text);
-
-        // Append the text node to the <a> tag
-        link.appendChild(textNode);
-
-        // Append the <a> tag to the <text> element
-        textElement.appendChild(link);
-
-        // Set max-width style property to 50px
-        textElement.style.maxWidth = '50px';
-        textElement.style.overflow = 'hidden';
-        textElement.style.textOverflow = 'ellipsis';
-
-        return textElement;
-    }
-
-
-    function generateSVGElements(node, cx, cy, radius, parentCx, parentCy) {
-    if (node.children) {
-        const angleStep = (Math.PI * 2) / node.children.length;
-        node.children.forEach((child, index) => {
-        const angle = index * angleStep;
-        const childCx = cx + radius * Math.cos(angle) * 2;
-        const childCy = cy + radius * Math.sin(angle) * 2;
-
-        generateSVGElements(child, childCx, childCy, radius / 2, cx, cy);
-        });
-    }
-
-    const hasChildren = node.children && node.children.length > 0;
-
-    if (node.title) {
-        const group = createNodeGroup(node.id, cx, cy, 50, node.title, parentCx, parentCy, hasChildren);
-        svgContainer.appendChild(group);
-
-        group.style.display = 'none';
-
-        if (node.id === 'Overbrowsing') {
-        group.style.display = 'block';
-        }
-
-        if (hasChildren) {
-        group.addEventListener('click', (event) => {
-            event.stopPropagation();
-            toggle(node, group);
-        });
-        } else {
-        // Check if it's a leaf node, and if yes, create a text element with a link
-        const linkHref = 'https://example.com'; // Set the desired link href
-        const textElement = createTextElementWithLink(cx, cy, node.title, linkHref);
-        group.appendChild(textElement);
-        }
-    }
-    }
-
-      function toggle(node, element) {
-        if (node.children) {
-          node.children.forEach(child => {
-            const childElement = svgContainer.querySelector(`g[data-id="${child.id}"]`);
-
-            if (childElement) {
-              const isDirectParent = element === svgContainer.querySelector(`g[data-id="${node.id}"]`);
-              childElement.style.display = isDirectParent ? (childElement.style.display === 'block' ? 'none' : 'block') : 'none';
-
-              if (isDirectParent && childElement.style.display === 'none') {
-                turnOffDescendants(child);
-              }
-            }
-          });
-        }
-      }
-
-      function turnOffDescendants(node) {
-        if (node.children) {
-          node.children.forEach(child => {
-            const childElement = svgContainer.querySelector(`g[data-id="${child.id}"]`);
-
-            if (childElement) {
-              childElement.style.display = 'none';
-              turnOffDescendants(child);
-            }
-          });
-        }
-      }
 
       fetch('data/data.json')
         .then(res => res.json())
@@ -250,6 +93,7 @@
               if (item.contents) {
                 const contentCategoryNode = {
                   id: item.title.replace(/\s+/g, '-'),
+                  title: item.title,
                   children: item.contents,
                 };
                 categoryNode.children.push(contentCategoryNode);
@@ -261,7 +105,128 @@
             restructuredData.children.push(categoryNode);
           }
 
-          generateSVGElements(restructuredData, 400, 400, 150);
+          const width = 1000;
+          const height = 1000;
+
+          const svg = d3.select('body').append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+          const simulation = d3.forceSimulation()
+            .force('link', d3.forceLink().id(d => d.id).distance(100))
+            .force('charge', d3.forceManyBody())
+            .force('center', d3.forceCenter(width / 2, height / 2));
+
+          const flatten = (root) => {
+            const nodes = [];
+            const links = [];
+
+            const recurse = (node, parent) => {
+              if (node.children) {
+                node.children.forEach(child => {
+                  links.push({ ...node, source: node.id, target: child.id });
+                  recurse(child, node);
+                });
+              }
+              nodes.push({ ...node, parent });
+            };
+
+            recurse(root, null);
+
+            return { nodes, links };
+          };
+
+          const { nodes, links } = flatten(restructuredData);
+
+          const link = svg.selectAll('.link')
+            .data(links)
+            .enter().append('path')
+            .attr('class', 'link')
+
+          const node = svg.selectAll('.node')
+            .data(nodes)
+            .enter().append('g')
+            .attr('class', 'node')
+            .attr('data-id', d => d.id) // Set the data-id attribute
+            .on('click', clicked)
+            .call(d3.drag()
+              .on('start', dragstarted)
+              .on('drag', dragged)
+              .on('end', dragended));
+
+          // Append circles only for nodes with children
+          node.filter(d => d.children)
+            .append('circle')
+            .attr('r', 50);
+
+          node.append('text')
+            .attr('dy', 5)
+            .attr('color', "white")
+            .text(d => d.title);
+
+          simulation.nodes(nodes).on('tick', () => {
+            link
+              .attr('data-id', d => d.id) // Set the data-id attribute
+              .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`)
+
+
+            node
+              .attr('transform', d => `translate(${d.x},${d.y})`);
+          });
+
+          simulation.force('link').links(links);
+
+          function dragstarted(d) {
+            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+          }
+
+          function dragged(d) {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+          }
+
+          function dragended(d) {
+            if (!d3.event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+          }
+
+          function clicked(d) {
+            toggleVisibility(d);
+            update();
+          }
+
+// Set the initial display property to none for each element
+
+          function toggleVisibility(node) {
+            if (node.children) {
+              node.children.forEach(child => {
+                const childElements = svg.selectAll(`g[data-id="${child.id}"]`);
+                if (childElements.node()) {
+                  childElements.style('display', childElements.style('display') === 'none' ? 'block' : 'none');
+                }
+                toggleVisibility(child); // Recursively toggle visibility for child nodes
+              });
+              
+              // Toggle visibility for associated links
+              const childLinks = document.querySelectorAll(`.link[data-id="${node.id}"]`);
+              childLinks.forEach(child => {
+                if (child.style.display !== "none") {
+                  child.style.display = "none";
+                } else {
+                  child.style.display = "block";
+                }
+              });
+
+              toggleVisibility(node.children); // Recursively toggle visibility for child links
+            }
+          }
+
+          function update() {
+            // Update any additional visual elements as needed
+          }
         });
     </script>
   

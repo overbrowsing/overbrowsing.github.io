@@ -1,4 +1,22 @@
 {
-  "error": "Resource at given URL could not be successfully tested (returned 404 Not Found status).",
-  "url": "https://overbrowsing.com"
+  "url": "https://overbrowsing.com/",
+  "green": true,
+  "bytes": 343024,
+  "cleanerThan": 0.93,
+  "rating": "A+",
+  "statistics": {
+    "adjustedBytes": 258983.12,
+    "energy": 0.00019536942914128304,
+    "co2": {
+      "grid": {
+        "grams": 0.0863532876804471,
+        "litres": 0.04802969860786467
+      },
+      "renewable": {
+        "grams": 0.07486556524693966,
+        "litres": 0.04164022739034783
+      }
+    }
+  },
+  "timestamp": 1700732355
 }
