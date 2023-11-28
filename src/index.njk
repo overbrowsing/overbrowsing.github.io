@@ -37,6 +37,11 @@
       .hidden {
         display: none;
       }
+
+      svg {
+        width: 100%;
+        height: 100%;
+      }
     </style>
     <script defer>
 
@@ -91,7 +96,7 @@
             .attr('height', height);
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(135))
+            .force('link', d3.forceLink().id(d => d.id).distance(200))
             .force('charge', d3.forceManyBody())
             .force('center', d3.forceCenter(width / 2, height / 2));
 
@@ -163,7 +168,7 @@
           simulation.force('link').links(links);
 
           function dragstarted(d) {
-            if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+            if (!d3.event.active) simulation.alphaTarget(1).restart();
             d.fx = d.x;
             d.fy = d.y;
           }
@@ -174,7 +179,7 @@
           }
 
           function dragended(d) {
-            if (!d3.event.active) simulation.alphaTarget(0);
+            if (!d3.event.active) simulation.alphaTarget(1);
             d.fx = null;
             d.fy = null;
           }
@@ -204,7 +209,7 @@
                   }
                 }
                 if (childElements.style('display') == 'none') {
-toggleVisibility(child); // Recursively toggle visibility for child nodes
+                  toggleVisibility(child); // Recursively toggle visibility for child nodes
                 }
                 
               });
