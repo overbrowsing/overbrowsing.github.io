@@ -165,7 +165,6 @@
               .on('end', dragended));
 
           node.append('circle')
-            .attr('r', d => (d.children ? 50 + d.children.length * 5 : 75))            
             .filter(d => d.children)
             .style('stroke', '#ABB193');
 
@@ -205,7 +204,7 @@
           node
             .attr('transform', d => `translate(${d.x},${d.y})`)
             .select('circle')  // Select the circle within the node
-            .attr('r', d => (d.children ? 50 + d.children.length * 5 : 75))    
+            .attr('r', d => (d.children ? 50 + d.children.length * 3 : 75))            
             });
 
           simulation.force('link').links(links);
