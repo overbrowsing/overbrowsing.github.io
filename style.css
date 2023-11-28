@@ -206,13 +206,27 @@ nav:hover .nav-container {
   padding-top: 10px;
 }
 
-.circle {
+.new-indicator {
   width: 14px;
   height: 14px;
   background-color: var(--ob-color-laurel);
   border-radius: 100px;
   vertical-align: middle;
   float: right;
+}
+
+.leaf {
+  overflow: ellipse;
+  background-color: #272A24;
+  border-radius: 10px;
+  white-space: pre-wrap;
+  text-align: center;
+  transition: background-color 0.3s;
+  padding: 5px;
+
+}
+.leaf:hover {
+  background-color: #4c4e4a;
 }
 
 @keyframes dash {
@@ -223,15 +237,18 @@ nav:hover .nav-container {
 
 g a {
   color: #ABB193;
+  transition: fill 0.3s ease;
 }
 
 .node circle {
   stroke-width: 2px;
   transition: fill 0.3s ease;
+  fill: #40443B;
 }
 
-.node:hover circle {
-  background-color: #40443B;
+.node circle:hover {
+  fill: #473a33;
+  stroke: #462c1d;
 
 }
 

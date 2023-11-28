@@ -59,7 +59,7 @@
           const svg = d3.select('body').append('svg');
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(d => 300 - (d.depth * 30)).strength(0.1))
+            .force('link', d3.forceLink().id(d => d.id).distance(d => 250 - (d.depth * 20)).strength(0.1))
             .force('charge', d3.forceManyBody().strength(-10))
             .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
             .alphaDecay(0.02)
@@ -108,13 +108,11 @@
               .on('drag', dragged)
               .on('end', dragended));
 
-          node
-            .filter(d => d.children)
-            .append('circle')
-            .style('fill', '#272A24')
-            .style('stroke', '#ABB193');
+        node
+          .filter(d => d.children)
+          .append('circle')
+          .style('stroke', '#ABB193');
 
-        // Append foreignObject for items with children
         node.filter(d => d.children)
           .append('foreignObject')
           .attr('width', 100)
@@ -132,16 +130,12 @@
           .append('a')
           .attr('href', d => 'feed#' + d.id)  // Set the href attribute to d.url
           .append('foreignObject')
-          .attr('width', 100)
+          .attr('width', 150)
           .attr('height', 40)
           .attr('x', -50)
           .attr('y', -5)
           .append('xhtml:div')
-          .style('overflow', 'visible')
-          .style('background-color', '#272A24')
-          .style('border-radius', '10px')
-          .style('white-space', 'pre-wrap')
-          .style('text-align', 'center')
+          .attr('class', 'leaf')
           .html(d => d.title);
 
         simulation.nodes(nodes).on('tick', () => {
@@ -154,6 +148,20 @@
             .select('circle')  // Select the circle within the node
             .attr('r', d => (d.children ? 50 + d.children.length * 3 : 75))            
             });
+          
+          // delete above below node and enable this if we want to set contraints based on page width
+          /*
+              .attr('transform', d => {
+                // Constrain x and y positions
+                const x = Math.max(0, Math.min(pageWidth, d.x));
+                const y = Math.max(0, Math.min(pageHeight, d.y));
+                return `translate(${x},${y})`;
+              })
+              .select('circle')
+              .attr('r', d => (d.children ? 50 + d.children.length * 3 : 75));
+          });
+        */
+
 
           simulation.force('link').links(links);
 
