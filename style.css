@@ -215,6 +215,64 @@ nav:hover .nav-container {
   float: right;
 }
 
+@keyframes dash {
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+g a {
+  color: #ABB193;
+}
+
+.node circle {
+  stroke-width: 2px;
+  transition: fill 0.3s ease;
+}
+
+.node:hover circle {
+  background-color: #40443B;
+
+}
+
+
+.link {
+  fill: none;
+  stroke: #ABB193;
+  stroke-width: 1px;
+  stroke-dasharray: 3 3;
+  transition: stroke 0.3s ease;
+  pointer-events: auto;
+}
+
+.link-hover {
+  stroke-width: 2px;
+  animation: dash 40s linear;
+  stroke: #d4d9c0;
+}
+
+.node text {
+  font-size: 12px;
+  fill: #ABB193 !important;
+  text-anchor: middle;
+  pointer-events: none;
+  max-width: 100px;
+  background-color: #272A24; 
+}
+
+.node, .link {
+  display: none;
+}
+
+.root {
+  display: block;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
 @media (max-width: 768px) {
   nav:hover {
     width: calc(100% - 20px);

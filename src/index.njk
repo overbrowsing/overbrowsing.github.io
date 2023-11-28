@@ -2,62 +2,6 @@
 {% block content %}
   {% block scripts %}
     <script defer src="https://d3js.org/d3.v5.min.js"></script>
-    <style>
-      @keyframes dash {
-        to {
-          stroke-dashoffset: 1000;
-        }
-      }
-
-      g a {
-        color: #ABB193;
-      }
-
-      .node circle {
-        stroke-width: 2px;
-        fill: #272A24;
-        transition: fill 0.3s ease;
-      }
-
-      .node:hover circle {
-        fill: #40443B;
-      }
-
-      .link {
-        fill: none;
-        stroke: #ABB193;
-        stroke-width: 1px;
-        stroke-dasharray: 3 3;
-        transition: stroke 0.3s ease;
-        pointer-events: auto;
-      }
-
-      .link-hover {
-        stroke-width: 2px;
-        animation: dash 60s linear;
-      }
-
-      .node text {
-        font-size: 12px;
-        fill: #ABB193 !important;
-        text-anchor: middle;
-        pointer-events: none;
-        max-width: 100px;
-      }
-
-      .node, .link {
-        display: none;
-      }
-
-      .root {
-        display: block;
-      }
-
-      svg {
-        width: 100%;
-        height: 100%;
-      }
-    </style>
     <script defer>
 
       fetch('data/data.json')
@@ -115,7 +59,7 @@
           const svg = d3.select('body').append('svg');
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(d => 325 - (d.depth * 30)).strength(0.1))
+            .force('link', d3.forceLink().id(d => d.id).distance(d => 300 - (d.depth * 30)).strength(0.1))
             .force('charge', d3.forceManyBody().strength(-10))
             .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
             .alphaDecay(0.02)
@@ -164,8 +108,10 @@
               .on('drag', dragged)
               .on('end', dragended));
 
-          node.append('circle')
+          node
             .filter(d => d.children)
+            .append('circle')
+            .style('fill', '#272A24')
             .style('stroke', '#ABB193');
 
         // Append foreignObject for items with children
@@ -192,6 +138,8 @@
           .attr('y', -5)
           .append('xhtml:div')
           .style('overflow', 'visible')
+          .style('background-color', '#272A24')
+          .style('border-radius', '10px')
           .style('white-space', 'pre-wrap')
           .style('text-align', 'center')
           .html(d => d.title);
