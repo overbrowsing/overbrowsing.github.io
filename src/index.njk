@@ -48,23 +48,23 @@
     max-width: 100px;
   }
 
-      .node {
-        display: none
-      }
+  .node {
+    display: none
+  }
 
-      .root {
-        display: block
-      }
+  .root {
+    display: block
+  }
 
 
-      .hidden {
-        display: none;
-      }
+  .hidden {
+    display: none;
+  }
 
-      svg {
-        width: 100%;
-        height: 100%;
-      }
+  svg {
+    width: 100%;
+    height: 100%;
+  }
     </style>
     <script defer>
 
@@ -129,8 +129,10 @@
             const recurse = (node, parent) => {
               if (node.children) {
                 node.children.forEach(child => {
-                  links.push({ ...node, source: node.id, target: child.id });
-                  recurse(child, node);
+                  if (child.title) { // Check if the child has a title
+                    links.push({ ...node, source: node.id, target: child.id });
+                    recurse(child, node);
+                  }
                 });
               }
               nodes.push({ ...node, parent });
@@ -144,12 +146,11 @@
           const { nodes, links } = flatten(restructuredData);
 
           const link = svg.selectAll('.link')
-            .data(links)
-            .enter().append('path')
-            .attr('class', 'link')
-            .attr('data-id', d => d.target.id); // Set the data-id attribute to the child's ID
-
-
+              .data(links)
+              .enter().append('path')
+              .attr('class', 'link')
+              .attr('data-id', d => d.target.id) // Set the data-id attribute to the child's ID
+          
           const node = svg.selectAll('.node')
             .data(nodes)
             .enter().append('g')
@@ -169,15 +170,11 @@
             .append('circle')
             .attr('r', 75);
 
-        link.filter(d => d.target.title) // Filter links with a target node that has a title
-          .attr('class', 'link')
-          .attr('data-id', d => d.target.id); // Set the data-id attribute to the child's ID
-
-        node.append('text')
-          .attr('dy', 10)
-          .attr('color', 'white')
-          .style('overflow', 'visible') // Allow text to overflow
-          .text(d => d.title);
+          node.append('text')
+            .attr('dy', 10)
+            .attr('color', 'white')
+            .style('overflow', 'visible') // Allow text to overflow
+            .text(d => d.children ? `${d.title} · ${d.children.length}` : d.title);
 
 
           simulation.nodes(nodes).on('tick', () => {
@@ -209,33 +206,34 @@
           }
 
           function clicked(d) {
-            toggleVisibility(d);
-            update();
+            toggle(d);
           }
 
+          function handleMouseOver(d) {
+            // Find the corresponding link and apply hover styles
+            d3.select(this).select('circle').transition().duration(300).attr('r', 80);
 
-function handleMouseOver(d) {
-  // Find the corresponding link and apply hover styles
-  const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
-    
-  if (correspondingLink) {
-    correspondingLink.classList.add("link-hover")
-  }
-}
-function handleMouseOut(d) {
-  // Revert styles on mouseout
-  d3.select(this).select('circle').transition().duration(200).attr('fill', '#272A24');
+            const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
+              
+            if (correspondingLink) {
+              correspondingLink.classList.add("link-hover")
+            }
+          }
+          function handleMouseOut(d) {
+            d3.select(this).select('circle').transition().duration(300).attr('r', 75);
 
-  const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
-    
-  if (correspondingLink) {
-    correspondingLink.classList.remove("link-hover")
-  }
-}
+            // Revert styles on mouseout
+            const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
+              
+            if (correspondingLink) {
+              correspondingLink.classList.remove("link-hover")
+            }
+          }
 
-          function toggleVisibility(node) {
+          function toggle(node) {
             if (node.children) {
               node.children.forEach(child => {
+                if (child.title) {
                 const childElements = svg.selectAll(`g[data-id="${child.id}"]`);
                 const childLinks = svg.selectAll(`.link[data-id="${child.id}"]`);
 
@@ -253,16 +251,11 @@ function handleMouseOut(d) {
                   }
                 }
                 if (childElements.style('display') == 'none') {
-                  toggleVisibility(child); // Recursively toggle visibility for child nodes
+                  toggle(child); // Recursively toggle visibility for child nodes
                 }
-                
+                }
               });
             }
-          }
-
-
-          function update() {
-            // Update any additional visual elements as needed
           }
         });
     </script>
