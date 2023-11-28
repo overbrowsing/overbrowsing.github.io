@@ -13,7 +13,8 @@
         fill: none;
         stroke: #ABB193;
         stroke-width: 1px;
-        display: block;
+        stroke-dasharray: 3 3; /* Add this line to make the links dotted */
+        display: none;
       }
 
       .node text {
@@ -22,6 +23,14 @@
         text-anchor: middle;
         pointer-events: none; /* Prevent text selection while dragging */
         max-width: 100px
+      }
+
+      .node {
+        display: none
+      }
+
+      .root {
+        display: block
       }
 
 
@@ -82,7 +91,7 @@
             .attr('height', height);
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(100))
+            .force('link', d3.forceLink().id(d => d.id).distance(135))
             .force('charge', d3.forceManyBody())
             .force('center', d3.forceCenter(width / 2, height / 2));
 
@@ -111,12 +120,15 @@
             .data(links)
             .enter().append('path')
             .attr('class', 'link')
+            .attr('data-id', d => d.target.id); // Set the data-id attribute to the child's ID
+
 
           const node = svg.selectAll('.node')
             .data(nodes)
             .enter().append('g')
-            .attr('class', 'node')
+            .attr('class', d => (d.id === 'Overbrowsing' ? 'node root' : 'node')) // Add 'root' class for the root node
             .attr('data-id', d => d.id) // Set the data-id attribute
+            .attr('data-parent', d => (d.parent ? d.parent.id : null)) // Set the data-parent attribute
             .on('click', clicked)
             .call(d3.drag()
               .on('start', dragstarted)
@@ -126,18 +138,23 @@
           // Append circles only for nodes with children
           node.filter(d => d.children)
             .append('circle')
-            .attr('r', 50);
+            .attr('r', 75);
 
-          node.append('text')
-            .attr('dy', 5)
-            .attr('color', "white")
-            .text(d => d.title);
+        link.filter(d => d.target.title) // Filter links with a target node that has a title
+          .attr('class', 'link')
+          .attr('data-id', d => d.target.id); // Set the data-id attribute to the child's ID
+
+        node.append('text')
+          .attr('dy', 10)
+          .attr('color', 'white')
+          .style('overflow', 'visible') // Allow text to overflow
+          .text(d => d.title);
+
 
           simulation.nodes(nodes).on('tick', () => {
             link
-              .attr('data-id', d => d.id) // Set the data-id attribute
+              .attr('data-id', d => d.target.id) // Update the data-id attribute to the child's ID
               .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`)
-
 
             node
               .attr('transform', d => `translate(${d.x},${d.y})`);
@@ -167,26 +184,28 @@
             update();
           }
 
-// Set the initial display property to none for each element
-
           function toggleVisibility(node) {
             if (node.children) {
               node.children.forEach(child => {
                 const childElements = svg.selectAll(`g[data-id="${child.id}"]`);
+                const childLinks = svg.selectAll(`.link[data-id="${child.id}"]`);
+
                 if (childElements.node()) {
-                  childElements.style('display', childElements.style('display') === 'none' ? 'block' : 'none');
+                  const dataParentValue = childElements.attr('data-parent');
+                  const parentElement = svg.select(`g[data-id="${dataParentValue}"]`);
+
+                  // Check if the parentElement is visible before toggling child elements
+                  if (parentElement.style('display') == 'none') { 
+                    childElements.style('display', 'none');
+                    childLinks.style('display', 'none');
+                  } else {
+                    childElements.style('display', childElements.style('display') === 'none' ? 'block' : 'none');
+                    childLinks.style('display', childLinks.style('display') === 'none' ? 'block' : 'none');
+                  }
+
                 }
+
                 toggleVisibility(child); // Recursively toggle visibility for child nodes
-              });
-              
-              // Toggle visibility for associated links
-              const childLinks = document.querySelectorAll(`.link[data-id="${node.id}"]`);
-              childLinks.forEach(child => {
-                if (child.style.display !== "none") {
-                  child.style.display = "none";
-                } else {
-                  child.style.display = "block";
-                }
               });
 
               toggleVisibility(node.children); // Recursively toggle visibility for child links
