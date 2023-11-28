@@ -8,7 +8,7 @@
         {% set formattedDateString = formattedItemDateObject.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric'}) %}
         {% set ageInDays = (currentDate - formattedItemDateObject) / (1000 * 60 * 60 * 24) %}
       {% endif %}    
-     <div class='feed__item' data-category="{{ item.category | default('') }}">
+     <div class='feed__item' data-category="{{ item.category | default('') }}" id={{item.id}}>
         {% if item.category %}
           <b class="feed__title">{{ item.category }} 
             {% if item.title %}

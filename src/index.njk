@@ -3,72 +3,62 @@
   {% block scripts %}
     <script defer src="https://d3js.org/d3.v5.min.js"></script>
     <style>
-
-
-    @keyframes dash {
-      to {
-        stroke-dashoffset: 1000;
+      @keyframes dash {
+        to {
+          stroke-dashoffset: 1000;
+        }
       }
-    }
 
-  .node circle {
-    /* Your existing styles */
-    stroke: #ABB193;
-    stroke-width: 2px;
-    fill: #272A24;
-    transition: fill 0.3s ease;
-  }
+      g a {
+        color: #ABB193;
+      }
 
-  .node:hover circle {
-    fill: #4CAF50; /* Change the fill color on hover */
-  }
+      .node circle {
+        stroke-width: 2px;
+        fill: #272A24;
+        transition: fill 0.3s ease;
+      }
 
-.link {
-  /* Your existing styles */
-  fill: none;
-  stroke: #ABB193;
-  stroke-width: 1px;
-  stroke-dasharray: 3 3;
-  display: none;
-  transition: stroke 0.3s ease;
-  pointer-events: auto; /* Enable pointer events */
-}
+      .node:hover circle {
+        fill: #40443B;
+      }
 
-  .link-hover {
-    stroke-width: 2px;
-    animation: dash 60s linear; 
-  }
+      .link {
+        fill: none;
+        stroke: #ABB193;
+        stroke-width: 1px;
+        stroke-dasharray: 3 3;
+        transition: stroke 0.3s ease;
+        pointer-events: auto;
+      }
 
-  .node text {
-    /* Your existing styles */
-    font-size: 12px;
-    fill: #ABB193 !important;
-    text-anchor: middle;
-    pointer-events: none;
-    max-width: 100px;
-  }
+      .link-hover {
+        stroke-width: 2px;
+        animation: dash 60s linear;
+      }
 
-  .node {
-    display: none
-  }
+      .node text {
+        font-size: 12px;
+        fill: #ABB193 !important;
+        text-anchor: middle;
+        pointer-events: none;
+        max-width: 100px;
+      }
 
-  .root {
-    display: block
-  }
+      .node, .link {
+        display: none;
+      }
 
+      .root {
+        display: block;
+      }
 
-  .hidden {
-    display: none;
-  }
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+      svg {
+        width: 100%;
+        height: 100%;
+      }
     </style>
     <script defer>
-
-
       fetch('data/data.json')
         .then(res => res.json())
         .then(data => {
@@ -82,9 +72,7 @@
 
           data.forEach(categoryNode => {
             const category = categoryNode.category || 'Uncategorized';
-            if (!groupedByCategory[category]) {
-              groupedByCategory[category] = [];
-            }
+            groupedByCategory[category] = groupedByCategory[category] || [];
             groupedByCategory[category].push(categoryNode);
           });
 
@@ -116,11 +104,13 @@
 
           const svg = d3.select('body').append('svg');
 
+        const simulation = d3.forceSimulation()
+          .force('link', d3.forceLink().id(d => d.id).distance(300).strength(0.1))
+          .force('charge', d3.forceManyBody().strength(-10))
+          .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
+          .alphaDecay(0.02)
+          .alphaTarget(0.1) // Adjust alphaTarget for smoother transitions and closer starting positions
 
-          const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(200))
-            .force('charge', d3.forceManyBody())
-            .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2));
 
           const flatten = (root) => {
             const nodes = [];
@@ -129,7 +119,7 @@
             const recurse = (node, parent) => {
               if (node.children) {
                 node.children.forEach(child => {
-                  if (child.title) { // Check if the child has a title
+                  if (child.title) {
                     links.push({ ...node, source: node.id, target: child.id });
                     recurse(child, node);
                   }
@@ -146,17 +136,17 @@
           const { nodes, links } = flatten(restructuredData);
 
           const link = svg.selectAll('.link')
-              .data(links)
-              .enter().append('path')
-              .attr('class', 'link')
-              .attr('data-id', d => d.target.id) // Set the data-id attribute to the child's ID
-          
+            .data(links)
+            .enter().append('path')
+            .attr('class', 'link')
+            .attr('data-id', d => d.target.id);
+
           const node = svg.selectAll('.node')
             .data(nodes)
             .enter().append('g')
-            .attr('class', d => (d.id === 'Overbrowsing' ? 'node root' : 'node')) // Add 'root' class for the root node
-            .attr('data-id', d => d.id) // Set the data-id attribute
-            .attr('data-parent', d => (d.parent ? d.parent.id : null)) // Set the data-parent attribute
+            .attr('class', d => (d.id === 'Overbrowsing' ? 'node root' : 'node'))
+            .attr('data-id', d => d.id)
+            .attr('data-parent', d => (d.parent ? d.parent.id : null))
             .on('click', clicked)
             .on('mouseover', handleMouseOver)
             .on('mouseout', handleMouseOut)
@@ -165,22 +155,43 @@
               .on('drag', dragged)
               .on('end', dragended));
 
-          // Append circles only for nodes with children
+          node.append('circle')
+            .attr('r', d => (d.children ? 75 : 50))
+            .filter(d => d.children)
+            .style('stroke', '#ABB193');
+
+          // Append foreignObject for items with children
           node.filter(d => d.children)
-            .append('circle')
-            .attr('r', 75);
+            .append('foreignObject')
+            .attr('width', 100)
+            .attr('height', 40)
+            .attr('x', -50)
+            .attr('y', -5)
+            .append('xhtml:div')
+            .style('overflow', 'visible')
+            .style('white-space', 'pre-wrap')
+            .style('text-align', 'center')
+            .html(d => `${d.title} · ${d.children.length}`);
 
-          node.append('text')
-            .attr('dy', 10)
-            .attr('color', 'white')
-            .style('overflow', 'visible') // Allow text to overflow
-            .text(d => d.children ? `${d.title} · ${d.children.length}` : d.title);
-
+          // Append a tag for items without children
+          node.filter(d => !d.children)
+            .append('a')
+            .attr('href', d => 'feed#' + d.id)  // Set the href attribute to d.url
+            .append('foreignObject')
+            .attr('width', 100)
+            .attr('height', 40)
+            .attr('x', -50)
+            .attr('y', -5)
+            .append('xhtml:div')
+            .style('overflow', 'visible')
+            .style('white-space', 'pre-wrap')
+            .style('text-align', 'center')
+            .html(d => d.title);
 
           simulation.nodes(nodes).on('tick', () => {
             link
-              .attr('data-id', d => d.target.id) // Update the data-id attribute to the child's ID
-              .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`)
+              .attr('data-id', d => d.target.id)
+              .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`);
 
             node
               .attr('transform', d => `translate(${d.x},${d.y})`);
@@ -189,7 +200,7 @@
           simulation.force('link').links(links);
 
           function dragstarted(d) {
-            if (!d3.event.active) simulation.alphaTarget(0.7).restart(); // Set a lower alphaTarget when drag starts
+            if (!d3.event.active) simulation.alphaTarget(0.1).restart();
             d.fx = d.x;
             d.fy = d.y;
           }
@@ -200,7 +211,7 @@
           }
 
           function dragended(d) {
-            if (!d3.event.active) simulation.alphaTarget(1); // Set alphaTarget back to 1 when drag ends
+            if (!d3.event.active) simulation.alphaTarget(1);
             d.fx = null;
             d.fy = null;
           }
@@ -210,23 +221,18 @@
           }
 
           function handleMouseOver(d) {
-            // Find the corresponding link and apply hover styles
-            d3.select(this).select('circle').transition().duration(300).attr('r', 80);
-
+            d3.select(this).select('circle').transition().duration(300).attr('r', d => (d.children ? 80 : 60));
             const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
-              
             if (correspondingLink) {
-              correspondingLink.classList.add("link-hover")
+              correspondingLink.classList.add("link-hover");
             }
           }
-          function handleMouseOut(d) {
-            d3.select(this).select('circle').transition().duration(300).attr('r', 75);
 
-            // Revert styles on mouseout
+          function handleMouseOut(d) {
+            d3.select(this).select('circle').transition().duration(300).attr('r', d => (d.children ? 75 : 40));
             const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
-              
             if (correspondingLink) {
-              correspondingLink.classList.remove("link-hover")
+              correspondingLink.classList.remove("link-hover");
             }
           }
 
@@ -234,25 +240,25 @@
             if (node.children) {
               node.children.forEach(child => {
                 if (child.title) {
-                const childElements = svg.selectAll(`g[data-id="${child.id}"]`);
-                const childLinks = svg.selectAll(`.link[data-id="${child.id}"]`);
+                  const childElements = svg.selectAll(`g[data-id="${child.id}"]`);
+                  const childLinks = svg.selectAll(`.link[data-id="${child.id}"]`);
 
-                if (childElements.node()) {
-                  const dataParentValue = childElements.attr('data-parent');
-                  const parentElement = svg.select(`g[data-id="${dataParentValue}"]`);
+                  if (childElements.node()) {
+                    const dataParentValue = childElements.attr('data-parent');
+                    const parentElement = svg.select(`g[data-id="${dataParentValue}"]`);
 
-                  // Check if the parentElement is visible before toggling child elements
-                  if (parentElement.style('display') == 'none') { 
-                    childElements.style('display', 'none');
-                    childLinks.style('display', 'none');
-                  } else {
-                    childElements.style('display', childElements.style('display') === 'none' ? 'block' : 'none');
-                    childLinks.style('display', childLinks.style('display') === 'none' ? 'block' : 'none');
+                    if (parentElement.style('display') == 'none') {
+                      childElements.style('display', 'none');
+                      childLinks.style('display', 'none');
+                    } else {
+                      childElements.style('display', childElements.style('display') === 'none' ? 'block' : 'none');
+                      childLinks.style('display', childLinks.style('display') === 'none' ? 'block' : 'none');
+                    }
                   }
-                }
-                if (childElements.style('display') == 'none') {
-                  toggle(child); // Recursively toggle visibility for child nodes
-                }
+
+                  if (childElements.style('display') == 'none') {
+                    toggle(child);
+                  }
                 }
               });
             }
