@@ -3,27 +3,50 @@
   {% block scripts %}
     <script defer src="https://d3js.org/d3.v5.min.js"></script>
     <style>
-      .node circle {
-        stroke: #ABB193;
-        stroke-width: 2px;
-        fill: #272A24;
-      }
 
-      .link {
-        fill: none;
-        stroke: #ABB193;
-        stroke-width: 1px;
-        stroke-dasharray: 3 3; /* Add this line to make the links dotted */
-        display: none;
-      }
 
-      .node text {
-        font-size: 12px;
-        fill: #ABB193 !important;
-        text-anchor: middle;
-        pointer-events: none; /* Prevent text selection while dragging */
-        max-width: 100px
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 1000;
       }
+    }
+
+  .node circle {
+    /* Your existing styles */
+    stroke: #ABB193;
+    stroke-width: 2px;
+    fill: #272A24;
+    transition: fill 0.3s ease;
+  }
+
+  .node:hover circle {
+    fill: #4CAF50; /* Change the fill color on hover */
+  }
+
+.link {
+  /* Your existing styles */
+  fill: none;
+  stroke: #ABB193;
+  stroke-width: 1px;
+  stroke-dasharray: 3 3;
+  display: none;
+  transition: stroke 0.3s ease;
+  pointer-events: auto; /* Enable pointer events */
+}
+
+  .link-hover {
+    stroke-width: 2px;
+    animation: dash 60s linear; 
+  }
+
+  .node text {
+    /* Your existing styles */
+    font-size: 12px;
+    fill: #ABB193 !important;
+    text-anchor: middle;
+    pointer-events: none;
+    max-width: 100px;
+  }
 
       .node {
         display: none
@@ -88,17 +111,16 @@
             restructuredData.children.push(categoryNode);
           }
 
-          const width = 1000;
-          const height = 1000;
+          const pageWidth = document.documentElement.clientWidth;
+          const pageHeight = document.documentElement.clientHeight;
 
-          const svg = d3.select('body').append('svg')
-            .attr('width', width)
-            .attr('height', height);
+          const svg = d3.select('body').append('svg');
+
 
           const simulation = d3.forceSimulation()
             .force('link', d3.forceLink().id(d => d.id).distance(200))
             .force('charge', d3.forceManyBody())
-            .force('center', d3.forceCenter(width / 2, height / 2));
+            .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2));
 
           const flatten = (root) => {
             const nodes = [];
@@ -135,6 +157,8 @@
             .attr('data-id', d => d.id) // Set the data-id attribute
             .attr('data-parent', d => (d.parent ? d.parent.id : null)) // Set the data-parent attribute
             .on('click', clicked)
+            .on('mouseover', handleMouseOver)
+            .on('mouseout', handleMouseOut)
             .call(d3.drag()
               .on('start', dragstarted)
               .on('drag', dragged)
@@ -168,7 +192,7 @@
           simulation.force('link').links(links);
 
           function dragstarted(d) {
-            if (!d3.event.active) simulation.alphaTarget(1).restart();
+            if (!d3.event.active) simulation.alphaTarget(0.7).restart(); // Set a lower alphaTarget when drag starts
             d.fx = d.x;
             d.fy = d.y;
           }
@@ -179,7 +203,7 @@
           }
 
           function dragended(d) {
-            if (!d3.event.active) simulation.alphaTarget(1);
+            if (!d3.event.active) simulation.alphaTarget(1); // Set alphaTarget back to 1 when drag ends
             d.fx = null;
             d.fy = null;
           }
@@ -188,6 +212,26 @@
             toggleVisibility(d);
             update();
           }
+
+
+function handleMouseOver(d) {
+  // Find the corresponding link and apply hover styles
+  const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
+    
+  if (correspondingLink) {
+    correspondingLink.classList.add("link-hover")
+  }
+}
+function handleMouseOut(d) {
+  // Revert styles on mouseout
+  d3.select(this).select('circle').transition().duration(200).attr('fill', '#272A24');
+
+  const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
+    
+  if (correspondingLink) {
+    correspondingLink.classList.remove("link-hover")
+  }
+}
 
           function toggleVisibility(node) {
             if (node.children) {
@@ -215,6 +259,7 @@
               });
             }
           }
+
 
           function update() {
             // Update any additional visual elements as needed
