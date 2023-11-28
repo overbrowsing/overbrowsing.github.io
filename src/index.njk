@@ -202,13 +202,12 @@
                     childElements.style('display', childElements.style('display') === 'none' ? 'block' : 'none');
                     childLinks.style('display', childLinks.style('display') === 'none' ? 'block' : 'none');
                   }
-
                 }
-
-                toggleVisibility(child); // Recursively toggle visibility for child nodes
+                if (childElements.style('display') == 'none') {
+toggleVisibility(child); // Recursively toggle visibility for child nodes
+                }
+                
               });
-
-              toggleVisibility(node.children); // Recursively toggle visibility for child links
             }
           }
 
