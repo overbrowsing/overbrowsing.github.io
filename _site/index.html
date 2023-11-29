@@ -32,7 +32,6 @@
     </nav>
     
   
-    <script defer src="https://d3js.org/d3.v5.min.js"></script>
     <script defer>
 
       fetch('data/data.json')
@@ -59,7 +58,7 @@
           for (const [category, items] of Object.entries(groupedByCategory)) {
             const categoryNode = {
               id: category.replace(/\s+/g, '-'),
-              title: category.replace(/\s+/g, '-'),
+              title: category,
               children: [],
               depth: depthCounter,
             };
@@ -261,6 +260,9 @@
         });
     </script>
   
+    
+    
+      <script defer src="https://d3js.org/d3.v5.min.js"></script>
     
     </body>
 </html>
