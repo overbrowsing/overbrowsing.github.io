@@ -44,5 +44,8 @@
         {% endif %}
     </nav>
     {% block  content %}{% endblock %}    
+    {% if page == "home" %}
+      <script defer src="https://d3js.org/d3.v5.min.js"></script>
+    {% endif %}
     </body>
 </html>

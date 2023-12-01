@@ -1,4 +1,7 @@
-// buildTemplates.js
+/* 
+Compiles the nunjucks templates to static html in _site folder
+*/
+
 const nunjucks = require('nunjucks');
 const fs = require('fs');
 const path = require('path');

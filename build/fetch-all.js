@@ -1,11 +1,18 @@
+/* 
+This file pulls in data from all are.na channels, downloads and compresses the images and saves the data to _site/data/data.json and images under _site/images/
+It also calls the OpenWeather API and the WebsiteCarbon api and saves the data in _site/data/
+*/
+
 import { promises as fsp, existsSync } from 'fs';
 import fetch from 'node-fetch';
 import sharp from 'sharp';
 import path from 'path';
 
 const channelCategories = [
-  { name: "design-tool-rzfxmnmei8g", category: "Design Tools" },
-  { name: "founding-principles", category: "Founding Principals" },
+  { name: "principles-sfqb0jsjmws", category: "Principals" },
+  { name: "development-2jvozc0jhuo", category: "Development" },
+  { name: "how-to-help", category: "How to help" },
+  { name: "what-to-know", category: "What to know" },
   // Add more channel names and categories as needed
 ];
 

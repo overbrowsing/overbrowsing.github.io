@@ -1,5 +1,232 @@
 {% extends 'layout.njk' %}
-{% block  content %}
-<script src="./graph/g6.min.js"></script>
-<script src="./graph/index.js"></script>
+{% block content %}
+  {% block scripts %}
+    <script defer>
+
+      fetch('data/data.json')
+        .then(res => res.json())
+        .then(data => {
+          const restructuredData = {
+            id: 'Overbrowsing',
+            title: 'Overbrowsing',
+            children: [],
+            depth: 0
+          };
+
+          const groupedByCategory = {};
+
+          data.forEach(categoryNode => {
+            const category = categoryNode.category || 'Uncategorized';
+            groupedByCategory[category] = groupedByCategory[category] || [];
+            groupedByCategory[category].push(categoryNode);
+          });
+          
+          let depthCounter = 1; // Start depth from 1
+
+
+          for (const [category, items] of Object.entries(groupedByCategory)) {
+            const categoryNode = {
+              id: category.replace(/\s+/g, '-'),
+              title: category,
+              children: [],
+              depth: depthCounter,
+            };
+
+            items.forEach(item => {
+              if (item.contents) {
+                const contentCategoryNode = {
+                  id: item.title.replace(/\s+/g, '-'),
+                  title: item.title,
+                  children: item.contents,
+                  depth: depthCounter + 1,
+                };
+                categoryNode.children.push(contentCategoryNode);
+              } else {
+                categoryNode.children.push({
+                  ...item,
+                  depth: depthCounter + 1,
+                });
+              }
+            });
+            restructuredData.children.push(categoryNode);
+            depthCounter += 1;
+          }
+
+          const pageWidth = document.documentElement.clientWidth;
+          const pageHeight = document.documentElement.clientHeight;
+
+          const svg = d3.select('body').append('svg');
+
+          const simulation = d3.forceSimulation()
+            .force('link', d3.forceLink().id(d => d.id).distance(d => 250 - (d.depth * 20)).strength(0.1))
+            .force('charge', d3.forceManyBody().strength(-10))
+            .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
+            .alphaDecay(0.02)
+            .alphaTarget(0.1);
+
+          const flatten = (root) => {
+            const nodes = [];
+            const links = [];
+
+            const recurse = (node, parent) => {
+              if (node.children) {
+                node.children.forEach(child => {
+                  if (child.title) {
+                    links.push({ ...node, source: node.id, target: child.id });
+                    recurse(child, node);
+                  }
+                });
+              }
+              nodes.push({ ...node, parent });
+            };
+
+            recurse(root, null);
+
+            return { nodes, links };
+          };
+
+          const { nodes, links } = flatten(restructuredData);
+
+          const link = svg.selectAll('.link')
+            .data(links)
+            .enter().append('path')
+            .attr('class', 'link')
+            .attr('data-id', d => d.target.id);
+
+          const node = svg.selectAll('.node')
+            .data(nodes)
+            .enter().append('g')
+            .attr('class', d => (d.id === 'Overbrowsing' ? 'node root' : 'node'))
+            .attr('data-id', d => d.id)
+            .attr('data-parent', d => (d.parent ? d.parent.id : null))
+            .on('click', clicked)
+            .on('mouseover', handleMouseOver)
+            .on('mouseout', handleMouseOut)
+            .call(d3.drag()
+              .on('start', dragstarted)
+              .on('drag', dragged)
+              .on('end', dragended));
+
+        node
+          .filter(d => d.children)
+          .append('circle')
+          .style('stroke', '#ABB193');
+
+        node.filter(d => d.children)
+          .append('foreignObject')
+          .attr('width', 100)
+          .attr('height', 40)
+          .attr('x', -50)
+          .attr('y', -5)
+          .append('xhtml:div')
+          .style('overflow', 'visible')
+          .style('white-space', 'pre-wrap')
+          .style('text-align', 'center')
+          .html(d => `${d.title} · ${d.children.filter(child => child.title).length}`);
+
+        // Append a tag for items without children
+        node.filter(d => !d.children)
+          .append('a')
+          .attr('href', d => 'feed#' + d.id)  // Set the href attribute to d.url
+          .append('foreignObject')
+          .attr('width', 150)
+          .attr('height', 40)
+          .attr('x', -50)
+          .attr('y', -5)
+          .append('xhtml:div')
+          .attr('class', 'leaf')
+          .html(d => d.title);
+
+        simulation.nodes(nodes).on('tick', () => {
+          link
+            .attr('data-id', d => d.target.id)
+            .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`);
+
+          node
+            .attr('transform', d => `translate(${d.x},${d.y})`)
+            .select('circle')  // Select the circle within the node
+            .attr('r', d => (d.children ? 50 + d.children.length * 3 : 75))            
+            });
+          
+          // delete above below node and enable this if we want to set contraints based on page width
+          /*
+              .attr('transform', d => {
+                // Constrain x and y positions
+                const x = Math.max(0, Math.min(pageWidth, d.x));
+                const y = Math.max(0, Math.min(pageHeight, d.y));
+                return `translate(${x},${y})`;
+              })
+              .select('circle')
+              .attr('r', d => (d.children ? 50 + d.children.length * 3 : 75));
+          });
+        */
+
+
+          simulation.force('link').links(links);
+
+          function dragstarted(d) {
+            if (!d3.event.active) simulation.alphaTarget(0.1).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+          }
+
+          function dragged(d) {
+            d.fx = d3.event.x;
+            d.fy = d3.event.y;
+          }
+
+          function dragended(d) {
+            if (!d3.event.active) simulation.alphaTarget(1);
+            d.fx = null;
+            d.fy = null;
+          }
+
+          function clicked(d) {
+            toggle(d);
+          }
+
+          function handleMouseOver(d) {
+            const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
+            if (correspondingLink) {
+              correspondingLink.classList.add("link-hover");
+            }
+          }
+
+          function handleMouseOut(d) {
+            const correspondingLink = document.querySelector(`.link[data-id="${d.id}"]`);
+            if (correspondingLink) {
+              correspondingLink.classList.remove("link-hover");
+            }
+          }
+
+          function toggle(node) {
+            if (node.children) {
+              node.children.forEach(child => {
+                if (child.title) {
+                  const childElements = svg.selectAll(`g[data-id="${child.id}"]`);
+                  const childLinks = svg.selectAll(`.link[data-id="${child.id}"]`);
+
+                  if (childElements.node()) {
+                    const dataParentValue = childElements.attr('data-parent');
+                    const parentElement = svg.select(`g[data-id="${dataParentValue}"]`);
+
+                    if (parentElement.style('display') == 'none') {
+                      childElements.style('display', 'none');
+                      childLinks.style('display', 'none');
+                    } else {
+                      childElements.style('display', childElements.style('display') === 'none' ? 'block' : 'none');
+                      childLinks.style('display', childLinks.style('display') === 'none' ? 'block' : 'none');
+                    }
+                  }
+
+                  if (childElements.style('display') == 'none') {
+                    toggle(child);
+                  }
+                }
+              });
+            }
+          }
+        });
+    </script>
+  {% endblock %}
 {% endblock %}
