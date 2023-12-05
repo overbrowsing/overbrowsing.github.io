@@ -3,30 +3,46 @@
 <section class="section">
   <div class="container--narrow">
     <h2>About Overbrowsing</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam laoreet orci vitae interdum gravida. Sed feugiat sapien sed vestibulum posuere. Nam at erat tempus libero feugiat sagittis. Vivamus consequat scelerisque dolor, ultrices efficitur tortor ullamcorper id. Aenean rhoncus enim ut quam lacinia, vel cursus justo tempus. Fusce nec iaculis eros. Phasellus tristique euismod fermentum.
-    </p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam laoreet orci vitae interdum gravida. Sed feugiat sapien sed vestibulum posuere. Nam at erat tempus libero feugiat sagittis. Vivamus consequat scelerisque dolor, ultrices efficitur tortor ullamcorper id. Aenean rhoncus enim ut quam lacinia, vel cursus justo tempus. Fusce nec iaculis eros. Phasellus tristique euismod fermentum.
-    </p>
+    <p>Overbrowsing is an applied research think tank dedicated to advancing our understanding of sustainable web design and development practises.</p> 
+    <p>Overbrowsing occurs when herbivores graze excessively, exerting pressure on the environment, and this word, which has a common origin with internet browsing, corresponds with the initiative's core mission.</p>
+    <p>We are committed to shaping an innovative and mindful digital future, our approach is a blend of inquiry and action. The goal is to raise awareness, share crucial insights on the urgent need to reduce excess, and ignite tangible change.</p>
+    <p>The project advocates for conscious strategies, resource optimisation, and ethical considerations. Fostering a harmonious coexistence between technology and the planet.</p>
 
+
+    <h2>Why we made it</h2>
+    <p>Our motivation stems from the observation that many existing resources tend to attribute challenges in web development to the efforts of developers. In contrast, we assert that the root cause lies in a design problem. We firmly believe that a significant number of these issues can be effectively addressed through enhanced design methodologies.</p>
+    <p>By positioning our initiative as a design-first project and actively involving the design community, we aim to disseminate key concepts and principles related to creating a more sustainable internet. While several resources, like <a href="https://www.websitecarbon.com/">Website Carbon</a>, focus on post-event monitoring, our objective is to adopt a proactive approach. We strive to discover innovative UI/UX and design ideas that not only deliver exceptional experiences but also maintain a balance between design, functionality, and accessibility for visitors.</p>
+    <p>As an organisation, our vision extends beyond addressing immediate problems with the internet and technology. Recognising that programming languages, tools, and systems evolve over time, we aim to shift the focus to overarching issues related to the creation of web pages. Drawing inspiration from well-established disciplines such as architecture, we seek to establish parallels and incorporate principles from these disciplines to develop a more holistic approach to sustainable web design.</p>
+    <p>Every byte counts.</p>
+
+    <h2>How we made it</h2>
+    <h3>Design</h3>
     <ul>
-      <li>Principles would go here</li>
-      <li>Principles would go here</li>
-      <li>Principles would go here</li>
-      <li>Principles would go here</li>
-      <li>Principles would go here</li>
+      <li>Overbrowsing uses a Page Weight Budget: CSS 00Kb, Javascript 2Mb, Third parties, 000Kb.</li>
+      <li>The site uses only web fonts, minimising HTTP requests.</li>
+      <li>The colour palette is dark green, green being the most energy-efficient LED colour and a darker shade being more energy-conserving on OLED devices.</li>
+      <li>We have also darkened images until they are hovered over to conserve energy on OLED devices.</li>
+      <li>There is a short bit of CSS that creates a notice, suggesting that visitors should change their operating system’s theme to Dark Mode to conserve energy.</li>
+      <li>The Overbrowsing logo represents the 8 lunar phases; the site favicon updates itself based upon which moon phase we’re in. This script uses just 000 bytes, 000 bytes smaller than the average favicon .ico file.</li>
+      <li>Website Carbon’s API is used to monitor site’s footprint.</li>
+      <li>OpenWeatherMap API dynamically adjust the site background colour from red to green based upon air quality.</li>
+      <li>The site is powered by the Are.na API, our choice of this platform is driven by its thriving community. It serves as the perfect platform to connect and share information, specifically targeting the community of individuals we aim to engage.</li>
+      <li>A principle we followed to only Javascript where we couldn’t create something with CSS.</li>
     </ul>
 
-    <h2>About Overbrowsing</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam laoreet orci vitae interdum gravida. Sed feugiat sapien sed vestibulum posuere. Nam at erat tempus libero feugiat sagittis. Vivamus consequat scelerisque dolor, ultrices efficitur tortor ullamcorper id. Aenean rhoncus enim ut quam lacinia, vel cursus justo tempus. Fusce nec iaculis eros. Phasellus tristique euismod fermentum.</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam laoreet orci vitae interdum gravida. Sed feugiat sapien sed vestibulum posuere. Nam at erat tempus libero feugiat sagittis. Vivamus consequat scelerisque dolor, ultrices efficitur tortor ullamcorper id. Aenean rhoncus enim ut quam lacinia, vel cursus justo tempus. Fusce nec iaculis eros. Phasellus tristique euismod fermentum.</p>
-
+    <h3>Stack</h3>
     <ul>
-      <li>Principles would go here</li>
-      <li>Principles would go here</li>
-      <li>Principles would go here</li>
-      <li>Principles would go here</li>
-      <li>Principles would go here</li>
+      <li><a href="https://d3js.org/">d3.js<a></li>
+      <li><a href="https://mozilla.github.io/nunjucks/">Nunjucks<a></li>
+      <li><a href="https://sharp.pixelplumbing.com/">Sharp Node.js image processing<a></li>
+      <li><a href="https://www.are.na/are-na-engineering">Are.na API<a></li>
+      <li><a href="https://openweathermap.org/api">OpenWeatherMap API<a></li>
+      <li><a href="https://www.websitecarbon.com/api/">Website Carbon API<a></li>
+      <li><a href="https://withcabin.com/">Cabin Analytics<a></li>
     </ul>
+
+    <h3>Credits</h3>
+    <p>This site was built by <a href="https://headless.horse/">Headless Horse</a> and <a href="https://printerscanner.net">printer_scanner</a></p>
   </div>
 </section>
 {% endblock %}
