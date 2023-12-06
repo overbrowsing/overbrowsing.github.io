@@ -56,9 +56,9 @@ function compileNunjucksTemplates() {
               aqiData: aqiData
             };
             break;
-          case 'feed.njk':
+          case 'research.njk':
             routeData = {
-              page: 'feed',
+              page: 'research',
               data: jsonData,
               carbonData: carbonData,
               aqiData: aqiData,

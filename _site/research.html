@@ -13,360 +13,22 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
   <link rel="stylesheet" href="./style.css">
 </head>
-  <body style="background-color: #382a24">
+  <body style="background-color: #432a24">
     <nav>
         <div class="nav-container">
         <div class="nav-about">
-          <p><b>Overbrowsing</b> is an applied research think tank dedicated to fostering a deeper understanding of sustainable web design. This is a low-consumption site that uses just NaNg CO2e and runs on clean energy. The website background changes color based on air quality. Today, the air quality is moderate.</p>
+          <p><b>Overbrowsing</b> is an applied research think tank dedicated to fostering a deeper understanding of sustainable web design. This is a low-consumption site that uses just NaNg CO2e and runs on clean energy. The website background changes color based on air quality. Today, the air quality is poor.</p>
         </div>
         <div class="nav-links">
             <a href="/">Graph</a>
-            <a href="/feed">Research</a>
+            <a href="/research">Research</a>
             <a href="/about">About</a>
         </div>
-        
-          <!-- Generate filter buttons dynamically from unique categories -->
-          <p>Categories</p>
-          <div class="filter-buttons">
-            <button onclick="resetFilter()">All</button>
-            
-            
-              
-                
-                <button onclick="filterByCategory('Principals')">Principals</button>
-              
-            
-              
-            
-              
-            
-              
-                
-                <button onclick="filterByCategory('What to know')">What to know</button>
-              
-            
-              
-            
-              
-                
-                <button onclick="filterByCategory('Design')">Design</button>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-                
-                <button onclick="filterByCategory('Development')">Development</button>
-              
-            
-              
-            
-              
-            
-              
-                
-                <button onclick="filterByCategory('How to help')">How to help</button>
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-          </div>
-        
     </nav>
     
-  <div class="feed">
+  <h1 class="visually-hidden">Research</h1>
+  <div class="text-link view-all" onclick="resetFilter()">View All</div>
+  <div class="research">
      
       
         
@@ -374,9 +36,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=3561535>
+     <div class='research__item' data-category="Principals" id=3561535>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
              
       
             
@@ -392,7 +54,7 @@
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -404,9 +66,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=14373856>
+     <div class='research__item' data-category="Principals" id=14373856>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · f8ff6185b3e90ea6e0029b01f324a3c53bd3dbf6.jpg
              
@@ -419,12 +81,12 @@
         
         
         
-          <div class='feed__image'><img src='images/14373856.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/14373856.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -436,9 +98,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=9096934>
+     <div class='research__item' data-category="Principals" id=9096934>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · @hisuperhi
              
@@ -451,12 +113,12 @@
         
         
         
-          <div class='feed__image'><img src='images/9096934.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/9096934.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -468,9 +130,9 @@
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048849>
+     <div class='research__item' data-category="What to know" id=25048849>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Branch  · Sustainable interaction design principles
              
@@ -483,12 +145,12 @@
         
         
         
-          <div class='feed__image'><img src='images/25048849.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048849.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -500,9 +162,9 @@
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048854>
+     <div class='research__item' data-category="What to know" id=25048854>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Re-nourish
              
@@ -515,12 +177,12 @@
         
         
         
-          <div class='feed__image'><img src='images/25048854.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048854.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -532,9 +194,9 @@
         
         
           
-     <div class='feed__item' data-category="Design" id=25048832>
+     <div class='research__item' data-category="Design" id=25048832>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · These are the world’s most sustainable fonts
              
@@ -547,12 +209,12 @@
         
         
         
-          <div class='feed__image'><img src='images/25048832.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048832.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -564,9 +226,9 @@
         
         
           
-     <div class='feed__item' data-category="Design" id=12470167>
+     <div class='research__item' data-category="Design" id=12470167>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Sustainability → Ordinary Things | Sustainable Branding &amp;amp; Design
              
@@ -579,12 +241,12 @@
         
         
         
-          <div class='feed__image'><img src='images/12470167.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/12470167.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -596,9 +258,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=3625039>
+     <div class='research__item' data-category="Principals" id=3625039>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Internet Garden
              
@@ -611,12 +273,12 @@
         
         
         
-          <div class='feed__image'><img src='images/3625039.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/3625039.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -628,9 +290,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=15101266>
+     <div class='research__item' data-category="Principals" id=15101266>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · How to set up your own digital garden
              
@@ -643,12 +305,12 @@
         
         
         
-          <div class='feed__image'><img src='images/15101266.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/15101266.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -660,9 +322,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=9983551>
+     <div class='research__item' data-category="Principals" id=9983551>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
              
       
             
@@ -673,12 +335,12 @@
         
         
         
-          <div class='feed__image'><img src='images/9983551.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/9983551.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -690,9 +352,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=20271127>
+     <div class='research__item' data-category="Principals" id=20271127>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Code of Design
              
@@ -705,12 +367,12 @@
         
         
         
-          <div class='feed__image'><img src='images/20271127.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/20271127.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -722,9 +384,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=22395626>
+     <div class='research__item' data-category="Principals" id=22395626>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
              
       
             
@@ -735,12 +397,12 @@
         
         
         
-          <div class='feed__image'><img src='images/22395626.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/22395626.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -752,9 +414,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=11628280>
+     <div class='research__item' data-category="Principals" id=11628280>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Geography of Websites
              
@@ -791,7 +453,7 @@
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -803,9 +465,9 @@
         
         
           
-     <div class='feed__item' data-category="Principals" id=13033448>
+     <div class='research__item' data-category="Principals" id=13033448>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
              
       
             
@@ -821,7 +483,7 @@
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 · https://mor10.com/ethics-open-source/
             </b>     
         
@@ -833,9 +495,9 @@
         
         
           
-     <div class='feed__item' data-category="Development" id=25033974>
+     <div class='research__item' data-category="Development" id=25033974>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · w3c · Web sustainability guidelines checklist
              
@@ -848,12 +510,12 @@
         
         
         
-          <div class='feed__image'><img src='images/25033974.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033974.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -865,9 +527,9 @@
         
         
           
-     <div class='feed__item' data-category="Development" id=24862186>
+     <div class='research__item' data-category="Development" id=24862186>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Frontend architecture for design systems
              
@@ -886,7 +548,7 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -898,9 +560,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Development" id=24862067>
+     <div class='research__item' data-category="Development" id=24862067>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Agile Manifesto
              
@@ -913,12 +575,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/24862067.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862067.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -930,9 +592,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048359>
+     <div class='research__item' data-category="How to help" id=25048359>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Climeworks · CDR service
              
@@ -945,12 +607,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048359.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048359.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -962,9 +624,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048351>
+     <div class='research__item' data-category="How to help" id=25048351>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Global Thermostat · Carbon removal
              
@@ -977,12 +639,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048351.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048351.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -994,9 +656,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048311>
+     <div class='research__item' data-category="How to help" id=25048311>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Nori · Carbon removal credits
              
@@ -1009,12 +671,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048311.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048311.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1026,9 +688,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034264>
+     <div class='research__item' data-category="How to help" id=25034264>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Carbon Fund · Offset your carbon footprint
              
@@ -1041,12 +703,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034264.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034264.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1058,9 +720,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034263>
+     <div class='research__item' data-category="How to help" id=25034263>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · United Nations · The 17 Goals
              
@@ -1073,12 +735,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034263.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034263.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1090,9 +752,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=24862061>
+     <div class='research__item' data-category="How to help" id=24862061>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Wren · Carbon footprint calculator
              
@@ -1105,12 +767,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/24862061.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862061.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1122,9 +784,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Design" id=25034099>
+     <div class='research__item' data-category="Design" id=25034099>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Lowww · Directory of low-carbon websites
              
@@ -1137,12 +799,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034099.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034099.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1154,9 +816,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048600>
+     <div class='research__item' data-category="What to know" id=25048600>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Goods Index · Circular packaging resource
              
@@ -1169,12 +831,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048600.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048600.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1186,9 +848,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048582>
+     <div class='research__item' data-category="What to know" id=25048582>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Lumi · Sustainable print resource
              
@@ -1201,12 +863,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048582.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048582.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1218,9 +880,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048570>
+     <div class='research__item' data-category="What to know" id=25048570>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Waste Not · Sustainable suppliers
              
@@ -1233,12 +895,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048570.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048570.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1250,9 +912,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048543>
+     <div class='research__item' data-category="What to know" id=25048543>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · A Better Source · Environmentally conscious resources
              
@@ -1265,12 +927,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048543.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048543.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1282,9 +944,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048536>
+     <div class='research__item' data-category="What to know" id=25048536>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Nike · Circular design guide
              
@@ -1297,12 +959,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048536.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048536.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1314,9 +976,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048534>
+     <div class='research__item' data-category="What to know" id=25048534>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Seaborne · Guides to sustainable business practices
              
@@ -1329,12 +991,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048534.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048534.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1346,9 +1008,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048531>
+     <div class='research__item' data-category="What to know" id=25048531>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · A Plastic Planet
              
@@ -1361,12 +1023,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048531.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048531.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1378,9 +1040,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048477>
+     <div class='research__item' data-category="What to know" id=25048477>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · France to help pay for clothes to be mended to cut waste
              
@@ -1393,12 +1055,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048477.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048477.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1410,9 +1072,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048474>
+     <div class='research__item' data-category="What to know" id=25048474>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · WRAP · No plastic packaging
              
@@ -1425,12 +1087,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048474.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048474.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1442,9 +1104,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048473>
+     <div class='research__item' data-category="What to know" id=25048473>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · KIDV · Product protection
              
@@ -1457,12 +1119,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048473.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048473.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1474,9 +1136,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034255>
+     <div class='research__item' data-category="What to know" id=25034255>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Branch Magazine
              
@@ -1489,12 +1151,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034255.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034255.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1506,9 +1168,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034235>
+     <div class='research__item' data-category="What to know" id=25034235>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · 99% Invisible · The lost cities of Geo
              
@@ -1521,12 +1183,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034235.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034235.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1538,9 +1200,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862486>
+     <div class='research__item' data-category="What to know" id=24862486>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Fixers Know What ‘Repairable’ Means
              
@@ -1553,12 +1215,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/24862486.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862486.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1570,9 +1232,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862469>
+     <div class='research__item' data-category="What to know" id=24862469>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Go Climate · The carbon footprint of servers
              
@@ -1585,12 +1247,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/24862469.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862469.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1602,9 +1264,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862241>
+     <div class='research__item' data-category="What to know" id=24862241>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Ecoact · The net zero glossary
              
@@ -1617,12 +1279,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/24862241.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862241.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1634,9 +1296,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862108>
+     <div class='research__item' data-category="What to know" id=24862108>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Apple · Environmental progress report
              
@@ -1649,12 +1311,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/24862108.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862108.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1666,9 +1328,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862085>
+     <div class='research__item' data-category="What to know" id=24862085>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · IBM · Design for sustainability
              
@@ -1681,12 +1343,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/24862085.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862085.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1698,9 +1360,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Development" id=2532205>
+     <div class='research__item' data-category="Development" id=2532205>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Tools
              
@@ -1716,7 +1378,7 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1728,9 +1390,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048529>
+     <div class='research__item' data-category="What to know" id=25048529>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · The link between fossil fuels, single-use plastics, and climate change
              
@@ -1743,12 +1405,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048529.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048529.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1760,9 +1422,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048524>
+     <div class='research__item' data-category="What to know" id=25048524>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Plasticfree
              
@@ -1775,12 +1437,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048524.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048524.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1792,9 +1454,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048519>
+     <div class='research__item' data-category="What to know" id=25048519>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · How to rethink environmental folklore
              
@@ -1807,12 +1469,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048519.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048519.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1824,9 +1486,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Design" id=25048509>
+     <div class='research__item' data-category="Design" id=25048509>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · How can we practice design without harming the planet?
              
@@ -1839,12 +1501,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048509.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048509.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1856,9 +1518,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Design" id=25048496>
+     <div class='research__item' data-category="Design" id=25048496>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Designing for sustainability
              
@@ -1871,12 +1533,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048496.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048496.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1888,9 +1550,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Design" id=25034074>
+     <div class='research__item' data-category="Design" id=25034074>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Web fonts: when you need them, when you don’t
              
@@ -1903,12 +1565,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034074.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034074.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1920,9 +1582,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Design" id=25034122>
+     <div class='research__item' data-category="Design" id=25034122>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Designing the SDD brand
              
@@ -1935,12 +1597,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034122.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034122.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1952,9 +1614,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Design" id=25034112>
+     <div class='research__item' data-category="Design" id=25034112>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Creative compression
              
@@ -1967,12 +1629,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034112.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034112.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -1984,9 +1646,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048466>
+     <div class='research__item' data-category="What to know" id=25048466>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Telecosm
              
@@ -1999,12 +1661,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048466.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048466.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2016,9 +1678,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048457>
+     <div class='research__item' data-category="What to know" id=25048457>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Designing for packaging sustainability
              
@@ -2031,12 +1693,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048457.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048457.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2048,9 +1710,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048450>
+     <div class='research__item' data-category="What to know" id=25048450>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Probable Futures
              
@@ -2063,12 +1725,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048450.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048450.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2080,9 +1742,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048370>
+     <div class='research__item' data-category="How to help" id=25048370>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · 350.org
              
@@ -2095,12 +1757,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048370.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048370.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2112,9 +1774,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048363>
+     <div class='research__item' data-category="How to help" id=25048363>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Climate Justice Alliance
              
@@ -2127,12 +1789,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048363.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048363.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2144,9 +1806,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048331>
+     <div class='research__item' data-category="How to help" id=25048331>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Environmental Defence Fund
              
@@ -2159,12 +1821,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048331.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048331.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2176,9 +1838,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048329>
+     <div class='research__item' data-category="How to help" id=25048329>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Friends of the Earth
              
@@ -2191,12 +1853,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048329.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048329.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2208,9 +1870,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048301>
+     <div class='research__item' data-category="How to help" id=25048301>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Surfrider Foundation
              
@@ -2223,12 +1885,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048301.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048301.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2240,9 +1902,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048335>
+     <div class='research__item' data-category="What to know" id=25048335>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Environmental Data &amp;amp; Governance Initiative
              
@@ -2255,12 +1917,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048335.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048335.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2272,9 +1934,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=25048321>
+     <div class='research__item' data-category="What to know" id=25048321>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Intersectional Environmentalist
              
@@ -2287,12 +1949,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048321.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048321.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2304,9 +1966,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048197>
+     <div class='research__item' data-category="How to help" id=25048197>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · EPEAT registry
              
@@ -2319,12 +1981,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048197.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048197.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2336,9 +1998,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034272>
+     <div class='research__item' data-category="How to help" id=25034272>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Change Climate Project
              
@@ -2351,12 +2013,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034272.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034272.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2368,9 +2030,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034269>
+     <div class='research__item' data-category="How to help" id=25034269>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · ClimatePartner
              
@@ -2383,12 +2045,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034269.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034269.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2400,9 +2062,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034268>
+     <div class='research__item' data-category="How to help" id=25034268>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Envirotechnical
              
@@ -2415,12 +2077,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034268.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034268.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2432,9 +2094,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034267>
+     <div class='research__item' data-category="How to help" id=25034267>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Green Web Foundation
              
@@ -2447,12 +2109,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034267.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034267.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2464,9 +2126,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="How to help" id=25048218>
+     <div class='research__item' data-category="How to help" id=25048218>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Global Greengrants Fund
              
@@ -2479,12 +2141,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048218.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048218.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2496,9 +2158,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Development" id=25048183>
+     <div class='research__item' data-category="Development" id=25048183>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · WP2Static
              
@@ -2511,12 +2173,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25048183.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25048183.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 4, 2023 
             </b>     
         
@@ -2528,9 +2190,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="Development" id=25034117>
+     <div class='research__item' data-category="Development" id=25034117>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Web font performance
              
@@ -2543,12 +2205,12 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
         
-          <div class='feed__image'><img src='images/25034117.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034117.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2560,9 +2222,9 @@ But that&#39;s all you really needed in those days. As long as you were feeding 
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862272>
+     <div class='research__item' data-category="What to know" id=24862272>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Turning on a light does not require dozens of lights to turn on elsewhere
              
@@ -2582,7 +2244,7 @@ Cloud Begins With Coal</p>
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2594,9 +2256,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862478>
+     <div class='research__item' data-category="What to know" id=24862478>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Greenhouse Gas Protocol
              
@@ -2609,12 +2271,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/24862478.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862478.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2626,9 +2288,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034111>
+     <div class='research__item' data-category="What to know" id=25034111>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · The awareness and practices of developers toward sustainable web design
              
@@ -2641,12 +2303,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034111.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034111.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2658,9 +2320,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034238>
+     <div class='research__item' data-category="What to know" id=25034238>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Digital advertising big carbon tax
              
@@ -2673,12 +2335,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034238.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034238.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2690,9 +2352,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034241>
+     <div class='research__item' data-category="What to know" id=25034241>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · TikTok emissions
              
@@ -2705,12 +2367,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034241.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034241.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2722,9 +2384,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034253>
+     <div class='research__item' data-category="What to know" id=25034253>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · How to build a low-tech website
              
@@ -2737,12 +2399,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034253.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034253.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2754,9 +2416,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034257>
+     <div class='research__item' data-category="What to know" id=25034257>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Black Google
              
@@ -2769,12 +2431,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034257.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034257.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2786,9 +2448,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034261>
+     <div class='research__item' data-category="What to know" id=25034261>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Examination of environmental beliefs
              
@@ -2801,12 +2463,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034261.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034261.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2818,9 +2480,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034285>
+     <div class='research__item' data-category="What to know" id=25034285>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · The website obesity crisis
              
@@ -2833,12 +2495,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034285.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034285.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2850,9 +2512,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862106>
+     <div class='research__item' data-category="What to know" id=24862106>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Cloud begins with coal
              
@@ -2865,12 +2527,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/24862106.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862106.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2882,9 +2544,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=24862088>
+     <div class='research__item' data-category="What to know" id=24862088>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Community internet access in rural areas
              
@@ -2897,12 +2559,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/24862088.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862088.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2914,9 +2576,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="Principals" id=24862220>
+     <div class='research__item' data-category="Principals" id=24862220>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Load only what is needed
              
@@ -2934,7 +2596,7 @@ Cloud Begins With Coal</p>
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2946,9 +2608,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034287>
+     <div class='research__item' data-category="What to know" id=25034287>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Bloat
              
@@ -2961,12 +2623,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034287.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034287.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -2978,9 +2640,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034270>
+     <div class='research__item' data-category="How to help" id=25034270>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Circular economy introduction
              
@@ -2993,12 +2655,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034270.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034270.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3010,9 +2672,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034250>
+     <div class='research__item' data-category="What to know" id=25034250>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Why tree planting alone won’t save the world
              
@@ -3025,12 +2687,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034250.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034250.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3042,9 +2704,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034247>
+     <div class='research__item' data-category="What to know" id=25034247>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Top 10 social media sites adopting renewable energy
              
@@ -3057,12 +2719,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034247.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034247.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3074,9 +2736,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=12528590>
+     <div class='research__item' data-category="What to know" id=12528590>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Google reinforces undersea cables after shark bites
              
@@ -3089,12 +2751,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/12528590.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/12528590.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3106,9 +2768,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034229>
+     <div class='research__item' data-category="What to know" id=25034229>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Data centre emissions rival air travel as digital demand soars
              
@@ -3121,12 +2783,12 @@ Cloud Begins With Coal</p>
         
         
         
-          <div class='feed__image'><img src='images/25034229.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034229.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3138,9 +2800,9 @@ Cloud Begins With Coal</p>
         
         
           
-     <div class='feed__item' data-category="Principals" id=24970576>
+     <div class='research__item' data-category="Principals" id=24970576>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Do all the good you can
              
@@ -3167,12 +2829,12 @@ can.”
         
         
         
-          <div class='feed__image'><img src='images/24970576.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24970576.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3184,9 +2846,9 @@ can.”
         
         
           
-     <div class='feed__item' data-category="Principals" id=24862252>
+     <div class='research__item' data-category="Principals" id=24862252>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Internet politics
              
@@ -3206,7 +2868,7 @@ Charles Lim Yi Yong</p>
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3218,9 +2880,9 @@ Charles Lim Yi Yong</p>
         
         
           
-     <div class='feed__item' data-category="Principals" id=24862268>
+     <div class='research__item' data-category="Principals" id=24862268>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Energy Impact of digital consumption
              
@@ -3248,7 +2910,7 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3260,9 +2922,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Principals" id=24862176>
+     <div class='research__item' data-category="Principals" id=24862176>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Your website is temporary
              
@@ -3280,7 +2942,7 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3292,9 +2954,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Principals" id=24862159>
+     <div class='research__item' data-category="Principals" id=24862159>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Instagram is not real life
              
@@ -3307,12 +2969,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/24862159.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862159.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3324,9 +2986,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Principals" id=24858235>
+     <div class='research__item' data-category="Principals" id=24858235>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Always design a thing by considering it in its next larger context
              
@@ -3344,7 +3006,7 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3356,9 +3018,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034127>
+     <div class='research__item' data-category="Design" id=25034127>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Frontend architecture for design systems
              
@@ -3371,12 +3033,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034127.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034127.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3388,9 +3050,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034120>
+     <div class='research__item' data-category="Design" id=25034120>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Best practices for sustainable e-commerce websites
              
@@ -3403,12 +3065,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034120.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034120.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3420,9 +3082,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034110>
+     <div class='research__item' data-category="Design" id=25034110>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Do you really need that custom webfont?
              
@@ -3435,12 +3097,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034110.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034110.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3452,9 +3114,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034108>
+     <div class='research__item' data-category="Design" id=25034108>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · The delightful modern system font stack
              
@@ -3467,12 +3129,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034108.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034108.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3484,9 +3146,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034138>
+     <div class='research__item' data-category="How to help" id=25034138>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Web Neutral Project
              
@@ -3499,12 +3161,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034138.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034138.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3516,9 +3178,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="How to help" id=25034118>
+     <div class='research__item' data-category="How to help" id=25034118>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Climate Action Tech
              
@@ -3531,12 +3193,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034118.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034118.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3548,9 +3210,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="How to help" id=24862480>
+     <div class='research__item' data-category="How to help" id=24862480>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Heated newsletter
              
@@ -3563,12 +3225,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/24862480.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862480.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3580,9 +3242,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="How to help" id=24862137>
+     <div class='research__item' data-category="How to help" id=24862137>
         
-          <b class="feed__title">How to help 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('How to help')">How to help</span>
             
               · Carbonfund. Carbon neutrality for individuals and businesses
              
@@ -3595,12 +3257,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/24862137.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862137.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3612,9 +3274,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034079>
+     <div class='research__item' data-category="Design" id=25034079>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Sustainable web manifesto
              
@@ -3627,12 +3289,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034079.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034079.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3644,9 +3306,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034077>
+     <div class='research__item' data-category="Design" id=25034077>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · What is sustainable web design?
              
@@ -3659,12 +3321,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034077.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034077.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3676,9 +3338,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034106>
+     <div class='research__item' data-category="Design" id=25034106>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Sustainable Digital Design
              
@@ -3691,12 +3353,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034106.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034106.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3708,9 +3370,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034102>
+     <div class='research__item' data-category="Design" id=25034102>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · The lowwwcarbon website showcase
              
@@ -3723,12 +3385,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034102.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034102.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3740,9 +3402,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25034076>
+     <div class='research__item' data-category="Development" id=25034076>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Reduce web font size
              
@@ -3755,12 +3417,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034076.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034076.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3772,9 +3434,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034060>
+     <div class='research__item' data-category="Design" id=25034060>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · The low impact website
              
@@ -3787,12 +3449,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034060.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034060.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3804,9 +3466,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034057>
+     <div class='research__item' data-category="Design" id=25034057>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Should I use a carousel?
              
@@ -3819,12 +3481,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034057.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034057.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3836,9 +3498,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034056>
+     <div class='research__item' data-category="Design" id=25034056>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Has the design used the minimum number of custom fonts?
              
@@ -3851,12 +3513,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034056.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034056.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3868,9 +3530,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Design" id=25034055>
+     <div class='research__item' data-category="Design" id=25034055>
         
-          <b class="feed__title">Design 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Design')">Design</span>
             
               · Deceptive patterns
              
@@ -3883,12 +3545,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034055.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034055.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3900,9 +3562,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034059>
+     <div class='research__item' data-category="What to know" id=25034059>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Website Carbon calculator
              
@@ -3915,12 +3577,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034059.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034059.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3932,9 +3594,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25034065>
+     <div class='research__item' data-category="Development" id=25034065>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · The performance cost of custom web fonts, and how to solve it
              
@@ -3947,12 +3609,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034065.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034065.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3964,9 +3626,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25033975>
+     <div class='research__item' data-category="Development" id=25033975>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Implementing system fonts
              
@@ -3979,12 +3641,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25033975.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033975.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -3996,9 +3658,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25033947>
+     <div class='research__item' data-category="Development" id=25033947>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Use SVG
              
@@ -4011,12 +3673,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25033947.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033947.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4028,9 +3690,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=24862163>
+     <div class='research__item' data-category="Development" id=24862163>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Browser pre-requests
              
@@ -4048,7 +3710,7 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4060,9 +3722,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25034011>
+     <div class='research__item' data-category="Development" id=25034011>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Performance budget calculator
              
@@ -4075,12 +3737,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034011.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034011.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4092,9 +3754,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25033997>
+     <div class='research__item' data-category="Development" id=25033997>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Optimising speed by lazy loading
              
@@ -4107,12 +3769,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25033997.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033997.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4124,9 +3786,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25033992>
+     <div class='research__item' data-category="Development" id=25033992>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · How web content can affect power usage
              
@@ -4139,12 +3801,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25033992.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033992.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4156,9 +3818,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25033990>
+     <div class='research__item' data-category="Development" id=25033990>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · How performance budgets improve websites
              
@@ -4171,12 +3833,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25033990.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033990.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4188,9 +3850,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034030>
+     <div class='research__item' data-category="What to know" id=25034030>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · CO2 emissions on the web
              
@@ -4203,12 +3865,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034030.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034030.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4220,9 +3882,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034022>
+     <div class='research__item' data-category="What to know" id=25034022>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · All websites should be designed for slow internet on the train
              
@@ -4235,12 +3897,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25034022.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034022.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4252,9 +3914,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25033987>
+     <div class='research__item' data-category="Development" id=25033987>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Best practices for fonts
              
@@ -4267,12 +3929,12 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
         
-          <div class='feed__image'><img src='images/25033987.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033987.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4284,9 +3946,9 @@ accounting for all the electricity used in the entire ICT ecosystem needed to ma
         
         
           
-     <div class='feed__item' data-category="Development" id=25033976>
+     <div class='research__item' data-category="Development" id=25033976>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Your website doesn&#39;t need to look the same everywhere
              
@@ -4312,12 +3974,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033976.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033976.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4329,9 +3991,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="What to know" id=25034002>
+     <div class='research__item' data-category="What to know" id=25034002>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Google Search Now Tags ‘Slow To Load’ Websites
              
@@ -4344,12 +4006,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25034002.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25034002.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4361,9 +4023,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033995>
+     <div class='research__item' data-category="Development" id=25033995>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Improving Facebook on Android
              
@@ -4376,12 +4038,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033995.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033995.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4393,9 +4055,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033972>
+     <div class='research__item' data-category="Development" id=25033972>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · w3c web sustainability guidelines
              
@@ -4408,12 +4070,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033972.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033972.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4425,9 +4087,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033969>
+     <div class='research__item' data-category="Development" id=25033969>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · System font stack
              
@@ -4440,12 +4102,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033969.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033969.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4457,9 +4119,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033959>
+     <div class='research__item' data-category="Development" id=25033959>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Extract critical CSS
              
@@ -4472,12 +4134,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033959.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033959.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4489,9 +4151,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033964>
+     <div class='research__item' data-category="Development" id=25033964>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Cost of a pixel colour
              
@@ -4504,12 +4166,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033964.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033964.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4521,9 +4183,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033950>
+     <div class='research__item' data-category="Development" id=25033950>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Lazy loading
              
@@ -4536,12 +4198,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033950.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033950.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4553,9 +4215,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033942>
+     <div class='research__item' data-category="Development" id=25033942>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Fast load times
              
@@ -4568,12 +4230,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033942.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033942.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4585,9 +4247,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033944>
+     <div class='research__item' data-category="Development" id=25033944>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Use WebP images
              
@@ -4600,12 +4262,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033944.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033944.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4617,9 +4279,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033945>
+     <div class='research__item' data-category="Development" id=25033945>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Best practices for speeding up your site
              
@@ -4632,12 +4294,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033945.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033945.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4649,9 +4311,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033937>
+     <div class='research__item' data-category="Development" id=25033937>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · You don&#39;t need javascript
              
@@ -4664,12 +4326,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033937.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033937.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4681,9 +4343,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033932>
+     <div class='research__item' data-category="Development" id=25033932>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · How to use an emoji as a favicon
              
@@ -4696,12 +4358,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033932.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033932.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4713,9 +4375,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=25033921>
+     <div class='research__item' data-category="Development" id=25033921>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · You might not need jQuery
              
@@ -4728,12 +4390,12 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
         
-          <div class='feed__image'><img src='images/25033921.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033921.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4745,9 +4407,9 @@ _Sep 13, 2016, 11:25:18 PM_
         
         
           
-     <div class='feed__item' data-category="Development" id=24862259>
+     <div class='research__item' data-category="Development" id=24862259>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Size of the digital universe
              
@@ -4779,12 +4441,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/24862259.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/24862259.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4796,9 +4458,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Development" id=25033902>
+     <div class='research__item' data-category="Development" id=25033902>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · You might not need a CSS framework
              
@@ -4811,12 +4473,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/25033902.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033902.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4828,9 +4490,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Development" id=25033887>
+     <div class='research__item' data-category="Development" id=25033887>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Use responsive images
              
@@ -4843,12 +4505,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/25033887.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033887.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4860,9 +4522,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Development" id=25033884>
+     <div class='research__item' data-category="Development" id=25033884>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Optimise images with compression
              
@@ -4875,12 +4537,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/25033884.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033884.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4892,9 +4554,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Development" id=25033875>
+     <div class='research__item' data-category="Development" id=25033875>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Extend your HTTP cache
              
@@ -4907,12 +4569,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/25033875.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033875.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4924,9 +4586,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Development" id=25033892>
+     <div class='research__item' data-category="Development" id=25033892>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Use a static site generator
              
@@ -4939,12 +4601,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/25033892.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033892.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4956,9 +4618,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Development" id=25033881>
+     <div class='research__item' data-category="Development" id=25033881>
         
-          <b class="feed__title">Development 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Development')">Development</span>
             
               · Use image CDNs to optimise images
              
@@ -4971,12 +4633,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/25033881.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/25033881.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 3, 2023 
             </b>     
         
@@ -4988,9 +4650,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Principals" id=11621130>
+     <div class='research__item' data-category="Principals" id=11621130>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · mind-garden-hierarchy.png
              
@@ -5003,12 +4665,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/11621130.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/11621130.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               December 1, 2023 
             </b>     
         
@@ -5020,9 +4682,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Principals" id=10118817>
+     <div class='research__item' data-category="Principals" id=10118817>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · digital gardens
              
@@ -5033,12 +4695,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/10118817.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/10118817.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 27, 2023 
             </b>     
         
@@ -5050,9 +4712,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="What to know" id=15571031>
+     <div class='research__item' data-category="What to know" id=15571031>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Environment
              
@@ -5063,12 +4725,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/15571031.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/15571031.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 22, 2023 
             </b>     
         
@@ -5080,9 +4742,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="What to know" id=15571893>
+     <div class='research__item' data-category="What to know" id=15571893>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Google Sustainability
              
@@ -5093,12 +4755,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/15571893.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/15571893.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 22, 2023 
             </b>     
         
@@ -5110,9 +4772,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="What to know" id=10285495>
+     <div class='research__item' data-category="What to know" id=10285495>
         
-          <b class="feed__title">What to know 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('What to know')">What to know</span>
             
               · Climate Science, Risk &amp;amp; Solutions
              
@@ -5123,12 +4785,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/10285495.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/10285495.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 22, 2023 
             </b>     
         
@@ -5140,9 +4802,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Principals" id=16252792>
+     <div class='research__item' data-category="Principals" id=16252792>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · frb2aa6wuaef5oi?format=jpg-name=medium
              
@@ -5153,12 +4815,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/16252792.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/16252792.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 22, 2023 
             </b>     
         
@@ -5170,9 +4832,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Principals" id=14001913>
+     <div class='research__item' data-category="Principals" id=14001913>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
              
       
             
@@ -5186,7 +4848,7 @@ Data Source: IDC Digital Universe 2013
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 21, 2023 · https://newpublic.substack.com/p/-tend-to-your-digital-gardens-flowers
             </b>     
         
@@ -5198,9 +4860,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Principals" id=5631821>
+     <div class='research__item' data-category="Principals" id=5631821>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Editing the Past
              
@@ -5211,12 +4873,12 @@ Data Source: IDC Digital Universe 2013
         
         
         
-          <div class='feed__image'><img src='images/5631821.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/5631821.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 
             </b>     
         
@@ -5228,9 +4890,9 @@ Data Source: IDC Digital Universe 2013
         
         
           
-     <div class='feed__item' data-category="Principals" id=14006566>
+     <div class='research__item' data-category="Principals" id=14006566>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
              
       
             
@@ -5250,7 +4912,7 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 
             </b>     
         
@@ -5262,9 +4924,9 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
           
-     <div class='feed__item' data-category="Principals" id=6389634>
+     <div class='research__item' data-category="Principals" id=6389634>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · d35926ae-e4bf-404f-8d65-3344138f9b77.jpg
              
@@ -5275,12 +4937,12 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
         
-          <div class='feed__image'><img src='images/6389634.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/6389634.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 
             </b>     
         
@@ -5292,9 +4954,9 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
           
-     <div class='feed__item' data-category="Principals" id=20702188>
+     <div class='research__item' data-category="Principals" id=20702188>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · The Threshold | Hermitage
              
@@ -5305,12 +4967,12 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
         
-          <div class='feed__image'><img src='images/20702188.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/20702188.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 
             </b>     
         
@@ -5322,9 +4984,9 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
           
-     <div class='feed__item' data-category="Principals" id=20702108>
+     <div class='research__item' data-category="Principals" id=20702108>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · Digital Gardening for Non-Technical Folks
              
@@ -5335,12 +4997,12 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
         
-          <div class='feed__image'><img src='images/20702108.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/20702108.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 
             </b>     
         
@@ -5352,9 +5014,9 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
           
-     <div class='feed__item' data-category="Principals" id=8157288>
+     <div class='research__item' data-category="Principals" id=8157288>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · You and your mind garden
              
@@ -5365,12 +5027,12 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
         
-          <div class='feed__image'><img src='images/8157288.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/8157288.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 
             </b>     
         
@@ -5382,9 +5044,9 @@ And weeding is hard work, and it&#39;s boring, and it&#39;s tedious, and it&#39;
         
         
           
-     <div class='feed__item' data-category="Principals" id=1579182>
+     <div class='research__item' data-category="Principals" id=1579182>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · The Internet
              
@@ -5402,7 +5064,7 @@ Kleon, A. (2012). Steal Like An Artist. Ten Things Nobody Told You About Being C
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 
             </b>     
         
@@ -5414,9 +5076,9 @@ Kleon, A. (2012). Steal Like An Artist. Ten Things Nobody Told You About Being C
         
         
           
-     <div class='feed__item' data-category="Principals" id=22056133>
+     <div class='research__item' data-category="Principals" id=22056133>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
             
               · uwuxrnazfdjheic2fopqp9earktrcvcl_k58gchujsy.png
              
@@ -5427,12 +5089,12 @@ Kleon, A. (2012). Steal Like An Artist. Ten Things Nobody Told You About Being C
         
         
         
-          <div class='feed__image'><img src='images/22056133.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/22056133.png' loading='lazy' /></div>
         
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 
             </b>     
         
@@ -5444,9 +5106,9 @@ Kleon, A. (2012). Steal Like An Artist. Ten Things Nobody Told You About Being C
         
         
           
-     <div class='feed__item' data-category="Principals" id=738750>
+     <div class='research__item' data-category="Principals" id=738750>
         
-          <b class="feed__title">Principals 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('Principals')">Principals</span>
              
       
             
@@ -5460,7 +5122,7 @@ Kleon, A. (2012). Steal Like An Artist. Ten Things Nobody Told You About Being C
         
           
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               November 20, 2023 · http://www.newyorker.com/culture/culture-desk/workplace-by-facebook-or-a-party-in-the-office?mbid=nl_161011_Daily&amp;CNDID=40658091&amp;spMailingID=9670305&amp;spUserID=MTMzMTg0Nzk3MTgwS0&amp;spJobID=1020852209&amp;spReportId=MTAyMDg1MjIwOQS2
             </b>     
         
@@ -5470,21 +5132,23 @@ Kleon, A. (2012). Steal Like An Artist. Ten Things Nobody Told You About Being C
   <script>
     function filterByCategory(category) {
       // Show only items with the selected category
-      let feedItems = document.querySelectorAll('.feed__item');
-      feedItems.forEach(item => {
+      let researchItems = document.querySelectorAll('.research__item');
+      researchItems.forEach(item => {
         if (item.getAttribute('data-category') === category || category === 'all') {
           item.style.display = 'block';
         } else {
           item.style.display = 'none';
         }
+      document.querySelector('.view-all').style.display = "block";
       });
     }
     function resetFilter() {
       // Show all items
-      let feedItems = document.querySelectorAll('.feed__item');
-      feedItems.forEach(item => {
+      let researchItems = document.querySelectorAll('.research__item');
+      researchItems.forEach(item => {
         item.style.display = 'block';
       });
+      document.querySelector('.view-all').style.display = "none";
     }
   </script>
     

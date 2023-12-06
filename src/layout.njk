@@ -21,23 +21,9 @@
         </div>
         <div class="nav-links">
             <a href="/">Graph</a>
-            <a href="/feed">Research</a>
+            <a href="/research">Research</a>
             <a href="/about">About</a>
         </div>
-        {% if page == "feed" %}
-          <!-- Generate filter buttons dynamically from unique categories -->
-          <p>Categories</p>
-          <div class="filter-buttons">
-            <button onclick="resetFilter()">All</button>
-            {% set uniqueCategories = [] %}
-            {% for item in data %}
-              {% if item.category not in uniqueCategories %}
-                {% set _ = uniqueCategories.push(item.category) %}
-                <button onclick="filterByCategory('{{ item.category }}')">{{ item.category }}</button>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endif %}
     </nav>
     {% block  content %}{% endblock %}    
     {% if page == "home" %}

@@ -63,7 +63,7 @@
           const svg = d3.select('body').append('svg');
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(d => 300 - (d.depth * 25)).strength(0.1))
+            .force('link', d3.forceLink().id(d => d.id).distance(d => pageWidth * .2 - (d.depth * 25)).strength(0.1))
             .force('charge', d3.forceManyBody().strength(-10))
             .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
             .force('collision', d3.forceCollide().radius(d => d.children ? 50 + d.children.length * 3 : 75).strength(0.02)) // Adjust the strength
@@ -128,7 +128,7 @@
         // Append a tag for items without children
         node.filter(d => !d.children)
           .append('a')
-          .attr('href', d => 'feed#' + d.id)  // Set the href attribute to d.url
+          .attr('href', d => 'research#' + d.id)  // Set the href attribute to d.url
           .append('foreignObject')
           .attr('width', 160)
           .attr('height', 40)
@@ -151,7 +151,7 @@
             return `translate(${x},${y})`;
             })
             .select('circle')
-            .attr('r', d => (d.children ? 50 + d.children.length * 2 : 75));
+            .attr('r', d => (d.children ? pageWidth * .01 + d.children.length *2 : 75));
         });
       
 
@@ -221,5 +221,6 @@
           }
         });
     </script>
+    <h1 class="visually-hidden">Graph</h1>
   {% endblock %}
 {% endblock %}

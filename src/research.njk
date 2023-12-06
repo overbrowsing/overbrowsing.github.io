@@ -1,6 +1,8 @@
 {% extends 'layout.njk' %}
 {% block content %}
-  <div class="feed">
+  <h1 class="visually-hidden">Research</h1>
+  <div class="text-link view-all" onclick="resetFilter()">View All</div>
+  <div class="research">
     {% for item in data  %} 
       {% if item.date %}
         {% set formattedItemDate = item.date | string %}
@@ -8,9 +10,9 @@
         {% set formattedDateString = formattedItemDateObject.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric'}) %}
         {% set ageInDays = (currentDate - formattedItemDateObject) / (1000 * 60 * 60 * 24) %}
       {% endif %}    
-     <div class='feed__item' data-category="{{ item.category | default('') }}" id={{item.id}}>
+     <div class='research__item' data-category="{{ item.category | default('') }}" id={{item.id}}>
         {% if item.category %}
-          <b class="feed__title">{{ item.category }} 
+          <b class="research__title"><span class="text-link" onclick="filterByCategory('{{ item.category }}')">{{ item.category }}</span>
             {% if item.title %}
               · {{ item.title }}
             {% endif %} 
@@ -30,12 +32,12 @@
           {% endfor %}
         {% endif %}
         {% if item.image %}
-          <div class='feed__image'><img src='images/{{ item.id }}.png' loading='lazy' /></div>
+          <div class='research__image'><img src='images/{{ item.id }}.png' loading='lazy' /></div>
         {% endif %}
         {% if item.source or item.date %}
           {% set url = item.source.provider.url or item.source.url or '' %}
             <br></br>
-            <b class="feed__date">
+            <b class="research__date">
               {% if formattedDateString %}{{ formattedDateString }}{% endif %} {% if not item.image and url %}· {{ url }}{% endif %}
             </b>     
         {% endif %}
@@ -45,21 +47,23 @@
   <script>
     function filterByCategory(category) {
       // Show only items with the selected category
-      let feedItems = document.querySelectorAll('.feed__item');
-      feedItems.forEach(item => {
+      let researchItems = document.querySelectorAll('.research__item');
+      researchItems.forEach(item => {
         if (item.getAttribute('data-category') === category || category === 'all') {
           item.style.display = 'block';
         } else {
           item.style.display = 'none';
         }
+      document.querySelector('.view-all').style.display = "block";
       });
     }
     function resetFilter() {
       // Show all items
-      let feedItems = document.querySelectorAll('.feed__item');
-      feedItems.forEach(item => {
+      let researchItems = document.querySelectorAll('.research__item');
+      researchItems.forEach(item => {
         item.style.display = 'block';
       });
+      document.querySelector('.view-all').style.display = "none";
     }
   </script>
 {% endblock %}
