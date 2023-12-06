@@ -35,8 +35,8 @@
           <div class='research__image'><img src='images/{{ item.id }}.png' loading='lazy' /></div>
         {% endif %}
         {% if item.source or item.date %}
-          {% set url = item.source.provider.name or item.source.title %}
-          {% set url_link = item.source.url or item.source.provider.url %}
+          {% set url = item.source.provider.name or item.source.title or "Source" %}
+          {% set url_link = item.source.url or item.source.provider.url or "https://are.na/block/" + item.id %}
         {% endif %}
             <br></br>
             <b class="research__date">
