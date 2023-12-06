@@ -253,7 +253,14 @@ nav:focus .nav-container {
 }
 
 .view-all {
-  margin: 0 30px;
+  position: fixed;
+  bottom: 3%;
+  right: 3%;
+  background: rgba(var(--ob-color-laurel));
+  border-radius: 5px;
+  color: rgba(var(--ob-color-seaweed));
+  padding: 5px 10px;
+  z-index: 1000000000;
   display: none;
 }
 
