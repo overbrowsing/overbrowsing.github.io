@@ -13,6 +13,7 @@ const channelCategories = [
   { name: "development-2jvozc0jhuo", category: "Development" },
   { name: "how-to-help", category: "How to help" },
   { name: "what-to-know", category: "What to know" },
+  { name: "design-y5g0saengtu", category: "Design"},
   // Add more channel names and categories as needed
 ];
 

@@ -13,15 +13,11 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌎</text></svg>">
   <link rel="stylesheet" href="./style.css">
 </head>
-  <body style="background-color: #272a24">
+  <body style="background-color: #382a24">
     <nav>
         <div class="nav-container">
         <div class="nav-about">
-            <p><b>Overbrowsing</b> compiles sustainable web design resources, tools, strategies, principles, and other related media. The term Overbrowsing carries a <a href="https://en.wikipedia.org/wiki/Browsing_(herbivory)#:~:text=Overbrowsing%20occurs%20when%20overpopulated%20or%20densely-concentrated%20herbivores%20exert%20extreme%20pressure%20on%20plants,%20reducing%20the%20carrying%capacity%20and%20altering%20the%20ecological%20functions%20of%20their%20habitat." target="_blank">dual meaning</a> that aligns with the core mission of the initiative.</p>
-            <p>This is a low-consumption site that uses just 0.07g CO2e and runs on clean energy.</p>
-            <p>The website background changes color based on air quality. Today, the air quality is fair.</p>
-            <p>Overbrowsing is <a href="https://are.na/are-na/powered-by-are-na" target="_blank">Powered by Are.na</a> and employs techniques and principles to make it low-consumption. See our <a href="https://github.com/overbrowsing/overbrowsing.com" target="_blank">Github</a> to find out more about the construction of this website.</p>
-            <p>The project was created by <a href="https://headless.horse" target="_blank">Headless Horse</a> and <a href="https://printerscanner.net" target="_blank">printer_scanner</a>.</p>
+          <p><b>Overbrowsing</b> is an applied research think tank dedicated to fostering a deeper understanding of sustainable web design. This is a low-consumption site that uses just NaNg CO2e and runs on clean energy. The website background changes color based on air quality. Today, the air quality is moderate.</p>
         </div>
         <div class="nav-links">
             <a href="/">Graph</a>
@@ -67,7 +63,7 @@
               if (item.contents) {
                 const contentCategoryNode = {
                   id: item.title.replace(/\s+/g, '-'),
-                  title: item.title,
+                  title: truncateTitle(item.title, 10), // Limit title length to 20 characters
                   children: item.contents,
                   depth: depthCounter + 1,
                 };
@@ -75,6 +71,7 @@
               } else {
                 categoryNode.children.push({
                   ...item,
+                  title: truncateTitle(item.title, 20), // Limit title length to 20 characters
                   depth: depthCounter + 1,
                 });
               }
@@ -83,18 +80,24 @@
             depthCounter += 1;
           }
 
+          function truncateTitle(title, maxLength) {
+            return title.length > maxLength ? title.substring(0, maxLength - 3) + '...' : title;
+          }
+
           const pageWidth = document.documentElement.clientWidth;
           const pageHeight = document.documentElement.clientHeight;
 
           const svg = d3.select('body').append('svg');
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(d => 250 - (d.depth * 20)).strength(0.1))
+            .force('link', d3.forceLink().id(d => d.id).distance(d => 300 - (d.depth * 25)).strength(0.1))
             .force('charge', d3.forceManyBody().strength(-10))
             .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
-            .alphaDecay(0.02)
+            .force('collision', d3.forceCollide().radius(d => d.children ? 50 + d.children.length * 3 : 75).strength(0.02)) // Adjust the strength
+            .alphaDecay(0.5)
             .alphaTarget(0.1);
 
+            
           const flatten = (root) => {
             const nodes = [];
             const links = [];
@@ -144,23 +147,17 @@
           .style('stroke', '#ABB193');
 
         node.filter(d => d.children)
-          .append('foreignObject')
-          .attr('width', 100)
-          .attr('height', 40)
-          .attr('x', -50)
-          .attr('y', -5)
-          .append('xhtml:div')
-          .style('overflow', 'visible')
-          .style('white-space', 'pre-wrap')
-          .style('text-align', 'center')
-          .html(d => `${d.title} · ${d.children.filter(child => child.title).length}`);
+          .append('text')  // Use 'text' instead of 'foreignObject'
+          .attr('dy', 4)   // Adjust the vertical alignment
+          .style('text-anchor', 'middle')  // Center the text
+          .text(d => `${d.title} · ${d.children.filter(child => child.title).length}`);
 
         // Append a tag for items without children
         node.filter(d => !d.children)
           .append('a')
           .attr('href', d => 'feed#' + d.id)  // Set the href attribute to d.url
           .append('foreignObject')
-          .attr('width', 150)
+          .attr('width', 160)
           .attr('height', 40)
           .attr('x', -50)
           .attr('y', -5)
@@ -173,25 +170,17 @@
             .attr('data-id', d => d.target.id)
             .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`);
 
-          node
-            .attr('transform', d => `translate(${d.x},${d.y})`)
-            .select('circle')  // Select the circle within the node
-            .attr('r', d => (d.children ? 50 + d.children.length * 3 : 75))            
-            });
-          
-          // delete above below node and enable this if we want to set contraints based on page width
-          /*
-              .attr('transform', d => {
-                // Constrain x and y positions
-                const x = Math.max(0, Math.min(pageWidth, d.x));
-                const y = Math.max(0, Math.min(pageHeight, d.y));
-                return `translate(${x},${y})`;
-              })
-              .select('circle')
-              .attr('r', d => (d.children ? 50 + d.children.length * 3 : 75));
-          });
-        */
-
+          node          
+            .attr('transform', d => {
+              // Constrain x and y positions
+            const x = Math.max(0, Math.min(pageWidth, d.x));
+            const y = Math.max(0, Math.min(pageHeight, d.y));
+            return `translate(${x},${y})`;
+            })
+            .select('circle')
+            .attr('r', d => (d.children ? 50 + d.children.length * 2 : 75));
+        });
+      
 
           simulation.force('link').links(links);
 
@@ -264,5 +253,6 @@
     
       <script defer src="https://d3js.org/d3.v5.min.js"></script>
     
+    <script async defer src="https://scripts.withcabin.com/hello.js"></script>
     </body>
 </html>
