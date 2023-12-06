@@ -35,12 +35,20 @@
           <div class='research__image'><img src='images/{{ item.id }}.png' loading='lazy' /></div>
         {% endif %}
         {% if item.source or item.date %}
-          {% set url = item.source.provider.url or item.source.url or '' %}
+          {% set url = item.source.provider.name or item.source.title %}
+          {% set url_link = item.source.url or item.source.provider.url %}
+        {% endif %}
             <br></br>
             <b class="research__date">
-              {% if formattedDateString %}{{ formattedDateString }}{% endif %} {% if not item.image and url %}· {{ url }}{% endif %}
+              {% if formattedDateString %}
+                {{ formattedDateString }}
+              {% endif %} 
+              {% if url %}· 
+                <a class="text-link" href="{{ url_link }}">
+                  {{ url }}
+                  </a>
+              {% endif %}
             </b>     
-        {% endif %}
       </div>
     {% endfor %}
   </div>
