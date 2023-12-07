@@ -14,7 +14,7 @@
         {% if item.category %}
           <b class="research__title"><span class="text-link" onclick="filterByCategory('{{ item.category }}')">{{ item.category }}</span>
             {% if item.title %}
-              · {{ item.title }}
+              · {{ item.title | truncate(25) }}
             {% endif %} 
       
             {% if ageInDays <= 7 %}
@@ -58,7 +58,7 @@
       let researchItems = document.querySelectorAll('.research__item');
       researchItems.forEach(item => {
         if (item.getAttribute('data-category') === category || category === 'all') {
-          item.style.display = 'block';
+          item.style.display = 'flex';
         } else {
           item.style.display = 'none';
         }
@@ -69,7 +69,7 @@
       // Show all items
       let researchItems = document.querySelectorAll('.research__item');
       researchItems.forEach(item => {
-        item.style.display = 'block';
+        item.style.display = 'flex';
       });
       document.querySelector('.view-all').style.display = "none";
     }

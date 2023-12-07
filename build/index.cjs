@@ -59,6 +59,7 @@ function compileNunjucksTemplates() {
           case 'research.njk':
             routeData = {
               page: 'research',
+              layout: 'layout.njk',
               data: jsonData,
               carbonData: carbonData,
               aqiData: aqiData,

@@ -12,6 +12,7 @@
 html, body {
   width: 100%;
   height: 100%;
+  margin: 0;
 }
 
 body {
@@ -31,10 +32,15 @@ body {
 
 a {
   color: inherit;
+  transition: all .3s;
 }
 
 a[target=_blank] {
   cursor: alias;
+}
+
+a:hover {
+  opacity: .8;
 }
 
 nav {
@@ -60,9 +66,8 @@ nav {
   -webkit-backdrop-filter: blur(10px);
 }
 
-nav:active,
 nav:hover,
-nav:focus {
+nav.opened {
   max-height: 400px;
   width: 33.3%;
   border-radius: 10px;
@@ -77,9 +82,8 @@ nav:focus {
   padding: 40px;
 }
 
-nav:active .nav-container,
 nav:hover .nav-container,
-nav:focus .nav-container {
+nav.opened .nav-container {
   display: flex;
   animation: fadeIn .4s .6s ease both;
 }
@@ -191,12 +195,10 @@ nav:focus .nav-container {
 }
 
 .research__date {
-  display: -webkit-box;
+  display: block;
   margin-top: auto;
   padding-top: 10px;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
 }
 
 .new-indicator {
@@ -209,7 +211,7 @@ nav:focus .nav-container {
 }
 
 .section {
-  margin: 100px 0;
+  padding: 100px 0;
 }
 
 .container {
@@ -329,9 +331,17 @@ svg {
 }
 
 @media (max-width: 950px) {
+  .section {
+    padding: 0 0 50px 0;
+  }
+
   nav:hover {
     width: calc(100% - 20px);
     border-radius: 10px;
+  }
+
+  nav.opened {
+    width: calc(100% - 20px);
   }
 
   .nav-container {
@@ -344,5 +354,10 @@ svg {
 
   .research__item {
     min-height: 0;
+  }
+  .container--narrow {
+    width: auto;
+    padding: 10px;
+
   }
 }

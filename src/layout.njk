@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="./style.css">
 </head>
   <body style="background-color: {{ aqiData.backgroundColor }}">
-    <nav>
+    <nav class="nav">
         <div class="nav-container">
         <div class="nav-about">
           <p><b>Overbrowsing</b> is an applied research think tank dedicated to fostering a deeper understanding of sustainable web design. This is a low-consumption site that uses just {{ carbonData.statistics.co2.renewable.grams | round(2) }}g CO2e and runs on clean energy. The website background changes color based on air quality. Today, the air quality is {{ aqiData.airQualityDescription }}.</p>
@@ -30,5 +30,10 @@
       <script defer src="https://d3js.org/d3.v5.min.js"></script>
     {% endif %}
     <script async defer src="https://scripts.withcabin.com/hello.js"></script>
+    <script>
+        document.querySelector('nav').addEventListener('click', function() {
+          this.classList.toggle('opened');
+        });
+    </script>
     </body>
 </html>
