@@ -1,6 +1,6 @@
 ## Introduction
 
-Overbrowsing is an applied research think tank dedicated to advancing our understanding of sustainable web design and development practises.
+Overbrowsing is an applied research group dedicated to advancing our understanding of sustainable web design and development practises.
 
 
 Overbrowsing occurs when herbivores graze excessively, exerting pressure on the environment, and this word, which has a common origin with internet browsing, corresponds with the initiative's core mission.
