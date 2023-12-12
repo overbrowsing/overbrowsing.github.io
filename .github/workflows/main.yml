@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: '0 11 * * *'
+    - cron: '30 15 * * *'
 
 permissions: write-all
 jobs:
@@ -16,25 +16,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Check if workflow should stop
-        id: stop-check
-        run: node build/stop-workflow.js
-
-      - name: Set Stop Workflow Output
-        id: set-stop-output
-        run: echo "stopWorkflow=${{ steps.stop-check.outputs.stopWorkflow }}" > stopWorkflow.env
-
-      - name: Set Stop Workflow Environment Variable
-        run: echo "STOP_WORKFLOW=$(cat stopWorkflow.env)" >> $GITHUB_ENV
+      - name: Check AQI and stop if necessary
+        run: |
+          aqi=$(curl -s "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=ac6a8e4517ccb8b2c12e6713125a2d34" | jq -r '.list[0].main.aqi')
+          echo "AQI today is: $aqi"
+          if [ "$aqi" -lt 3 ]; then
+            echo "AQI today is $aqi. Stopping the workflow."
+            exit 78  # 78 is a special exit code indicating the workflow should be stopped
+          else
+            echo "AQI today is $aqi. Workflow can continue."
+          fi
 
       - name: Conditional workflow steps
-        if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
+        if: ${{ github.event_name == 'push' }}
         run: |
           yarn install
           yarn build
 
       - name: Deploy to gh-pages
-        if: ${{ github.event_name == 'push' || env.STOP_WORKFLOW != 'true' }}
+        if: ${{ github.event_name == 'push' }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
@@ -52,7 +52,7 @@ jobs:
 
           git merge main
 
-          # Delete all the files on the branch that aren't being served statically. 
+          # Delete all the files on the branch that aren't being served statically.
           git ls-files | grep -v '^_site/' | xargs rm -r
 
           # Move all contents of _site to the root
