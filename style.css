@@ -39,10 +39,6 @@ a[target=_blank] {
   cursor: alias;
 }
 
-a:hover {
-  opacity: .8;
-}
-
 nav {
   position: fixed;
   bottom: 10px;
@@ -68,7 +64,7 @@ nav {
 
 nav:hover,
 nav.opened {
-  max-height: 400px;
+  max-height: 300px;
   width: 33.3%;
   border-radius: 10px;
   transform: translateX(-50%);
@@ -284,7 +280,7 @@ g a {
 }
 
 .node circle:hover {
-  fill: rgba(var(--ob-color-seaweed));
+  fill: #4f5345;
   stroke: rgba(var(--ob-color-seaweed));
   stroke-width: 3px;
   stroke-dasharray: 3 3;

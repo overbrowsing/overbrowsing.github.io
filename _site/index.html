@@ -27,6 +27,7 @@
     </nav>
     
   
+    <script src="https://d3js.org/d3.v5.min.js"></script>
     <script defer>
 
       fetch('data/data.json')
@@ -89,10 +90,10 @@
           const svg = d3.select('body').append('svg');
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(d => pageWidth * .2 - (d.depth * 25)).strength(0.1))
+            .force('link', d3.forceLink().id(d => d.id).distance(d => pageWidth * .19).strength(0.1))
             .force('charge', d3.forceManyBody().strength(-10))
             .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
-            .force('collision', d3.forceCollide().radius(d => d.children ? 50 + d.children.length * 3 : 75).strength(0.02)) // Adjust the strength
+            .force('collision', d3.forceCollide().radius(100).strength(0.02)) // Adjust the strength
             .alphaDecay(0.5)
             .alphaTarget(0.1);
 
@@ -170,15 +171,10 @@
             .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`);
 
           node          
-            .attr('transform', d => {
-              // Constrain x and y positions
-            const x = Math.max(0, Math.min(pageWidth, d.x));
-            const y = Math.max(0, Math.min(pageHeight, d.y));
-            return `translate(${x},${y})`;
-            })
-            .select('circle')
-            .attr('r', d => (d.children ? pageWidth * .01 + d.children.length *2 : 75));
-        });
+            .attr('transform', d => `translate(${d.x},${d.y})`)
+            .select('circle')  // Select the circle within the node
+            .attr('r', d => (d.id === 'Overbrowsing' ? 55 : (d.children ? pageWidth * .04 + d.children.length * 1.5 : 75)))
+          });
       
 
           simulation.force('link').links(links);
@@ -249,9 +245,6 @@
     </script>
     <h1 class="visually-hidden">Graph</h1>
   
-    
-    
-      <script defer src="https://d3js.org/d3.v5.min.js"></script>
     
     <script async defer src="https://scripts.withcabin.com/hello.js"></script>
     <script>
