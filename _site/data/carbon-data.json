@@ -1,22 +1,22 @@
 {
   "url": "https://overbrowsing.com/",
   "green": true,
-  "bytes": 129836,
+  "bytes": 129847,
   "cleanerThan": 0.97,
   "rating": "A+",
   "statistics": {
-    "adjustedBytes": 98026.18,
-    "energy": 0.00007394813541322946,
+    "adjustedBytes": 98034.485,
+    "energy": 0.00007395440046675504,
     "co2": {
       "grid": {
-        "grams": 0.03268507585264742,
-        "litres": 0.018179439189242492
+        "grams": 0.03268784500630573,
+        "litres": 0.018180979392507242
       },
       "renewable": {
-        "grams": 0.02833692549034953,
-        "litres": 0.015760997957732406
+        "grams": 0.028339326258860535,
+        "litres": 0.015762333265178226
       }
     }
   },
-  "timestamp": 1702382543
+  "timestamp": 1702382476
 }
