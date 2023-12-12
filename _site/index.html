@@ -90,12 +90,12 @@
           const svg = d3.select('body').append('svg');
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(d => pageWidth * .19).strength(0.1))
+            .force('link', d3.forceLink().id(d => d.id).distance(d => pageWidth * .17 - (d.depth * 20)).strength(0.1))
             .force('charge', d3.forceManyBody().strength(-10))
             .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
-            .force('collision', d3.forceCollide().radius(100).strength(0.02)) // Adjust the strength
-            .alphaDecay(0.5)
-            .alphaTarget(0.1);
+            .force('collision', d3.forceCollide().radius(d => d.children ? pageWidth * .1 : 75).strength(0.02)) // Adjust the strength
+            .alphaDecay(0.9)
+            .alphaTarget(0.9);
 
             
           const flatten = (root) => {
