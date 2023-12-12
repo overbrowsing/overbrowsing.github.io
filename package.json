@@ -13,7 +13,8 @@
     "serve": "yarn build && echo 'Starting the server...' && node server.cjs",
     "serve-css": "cp -R style.css _site/style.css && node server.cjs"
   },
-  "author": "",
+  "homepage": "https://overbrowsing.github.io/overbrowsing.com",
+  "author": "HEADLESS HORSE and printer_scanner",
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",

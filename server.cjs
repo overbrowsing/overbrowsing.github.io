@@ -21,14 +21,9 @@ app.get('/:page', (req, res) => {
     // Send the requested .html file
     res.sendFile(filePath);
   } else {
-    // Continue to the next middleware for static files
-    res.status(404).send('Not Found');
+    // If the requested .html file does not exist, send the 404 page
+    res.status(404).sendFile(path.join(__dirname, '_site', '404.html'));
   }
-});
-
-// Catch-all route handler to handle unknown routes
-app.get('*', (req, res) => {
-  res.status(404).send('Not Found');
 });
 
 app.listen(port, () => {

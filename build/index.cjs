@@ -74,6 +74,12 @@ function compileNunjucksTemplates() {
               aqiData: aqiData
             };
             break;
+          case '404.njk':
+          routeData = {
+            page: '404',
+            layout: 'layout.njk',
+          };
+          break;
           default:
             routeData = {}; // Add default case or handle it as per your requirement
         }
