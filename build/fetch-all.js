@@ -28,13 +28,13 @@ async function downloadImage(url, filePath) {
 
 async function processAndOptimizeImage(inputFilePath, outputFilePath) {
   await sharp(inputFilePath)
-    .resize(350) // Adjust dimensions as needed
+    .resize(450) // Adjust dimensions as needed
     .toFormat('png')
     .png({
-      dither: 0.9,
+      dither: .9,
       palette: true,
       colors: 3,
-      quality: 5,
+      quality: 1,
     })
     .toFile(outputFilePath);
 }
