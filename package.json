@@ -4,7 +4,7 @@
   "description": "Overbrowsing dedicated to fostering a deeper understanding of sustainable web design",
   "type": "module",
   "scripts": {
-    "clean": "echo 'Cleaning _site directory...' && rm -rf _site && mkdir _site && mkdir _site/data",
+    "clean": "echo 'Cleaning _site directory...' && rm -rf _site && mkdir _site && mkdir _site/data && cp CNAME _site/",
     "fetch:data": "echo 'Fetching Carbon info...' && API_DATA=\"$(curl -s 'https://api.websitecarbon.com/site?url=https://overbrowsing.com')\" ; echo \"$API_DATA\" > _site/data/carbon-data.json",
     "minify:css": "echo 'Minifying CSS' && uglifycss style.css > _site/style.css",
     "build:data": "echo 'Building and minimizing API Data. This takes a few seconds...' && node build/fetch-all.js",
