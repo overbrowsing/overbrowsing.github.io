@@ -107,12 +107,11 @@ async function compressAndSave() {
   }
 }
 
-// FETCH AQI
 async function fetchAqiAndSave() {
   try {
-    const aqi = await getAirQualityData();
-    const aqiValue = aqi.list[0].main.aqi;
+    const [aqi, moonPhase] = await Promise.all([getAirQualityData(), getMoonPhase()]);
 
+    const aqiValue = aqi.list[0].main.aqi;
     const airQualityDescription = getAirQualityDescription(aqiValue);
     const backgroundColor = calculateBackgroundColor(aqiValue);
 
@@ -120,19 +119,31 @@ async function fetchAqiAndSave() {
       aqiValue,
       airQualityDescription,
       backgroundColor,
+      moonPhase, // Add moon phase to the data
     };
 
     // Save data to a JSON file
     saveToJson(data);
-
   } catch (error) {
-    console.error('Error fetching or processing air quality data:', error);
+    console.error('Error fetching or processing data:', error);
+  }
+}
+
+async function getMoonPhase() {
+  try {
+    const response = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat=51.5073219&lon=-0.1276474&exclude=minutely&appid=a767027338c3e647bc664f0b09493eb2');
+    const data = await response.json();
+    const moonPhaseEmoji = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'][Math.floor(data.daily[0].moon_phase * 8)] || '🌎';
+    return moonPhaseEmoji;
+  } catch (error) {
+    console.error('Error fetching moon phase:', error);
+    throw error;
   }
 }
 
 async function getAirQualityData() {
   const response = await fetch(
-    "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=ac6a8e4517ccb8b2c12e6713125a2d34"
+    "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=a767027338c3e647bc664f0b09493eb2"
   );
   return response.json();
 }
