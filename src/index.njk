@@ -11,7 +11,6 @@
             id: 'Overbrowsing',
             title: 'Overbrowsing',
             children: [],
-            depth: 0
           };
 
           const groupedByCategory = {};
@@ -22,15 +21,11 @@
             groupedByCategory[category].push(categoryNode);
           });
           
-          let depthCounter = 1; // Start depth from 1
-
-
           for (const [category, items] of Object.entries(groupedByCategory)) {
             const categoryNode = {
               id: category.replace(/\s+/g, '-'),
               title: category,
               children: [],
-              depth: depthCounter,
             };
 
             items.forEach(item => {
@@ -39,19 +34,17 @@
                   id: item.title.replace(/\s+/g, '-'),
                   title: truncateTitle(item.title, 10), // Limit title length to 20 characters
                   children: item.contents,
-                  depth: depthCounter + 1,
                 };
                 categoryNode.children.push(contentCategoryNode);
               } else {
                 categoryNode.children.push({
                   ...item,
                   title: truncateTitle(item.title, 20), // Limit title length to 20 characters
-                  depth: depthCounter + 1,
                 });
               }
             });
             restructuredData.children.push(categoryNode);
-            depthCounter += 1;
+            console.log(restructuredData)
           }
 
           function truncateTitle(title, maxLength) {
@@ -64,7 +57,7 @@
           const svg = d3.select('body').append('svg');
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(d => pageWidth * .17 - (d.depth * 20)).strength(0.1))
+            .force('link', d3.forceLink().id(d => d.id).distance(d => pageWidth * .17).strength(0.1))
             .force('charge', d3.forceManyBody().strength(-10))
             .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
             .force('collision', d3.forceCollide().radius(d => d.children ? pageWidth * .1 : 75).strength(0.02)) // Adjust the strength

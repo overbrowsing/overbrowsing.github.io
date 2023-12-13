@@ -52,7 +52,7 @@ async function processChannel(channel) {
       title: element.title,
       content: element.content,
       contents: element.contents,
-      id: element.id,
+      id: element.title,
       image: element.image,
       date: element.updated_at,
       category,
@@ -76,6 +76,15 @@ async function processChannel(channel) {
       await fsp.rename(tempOutputFilePath, inputFilePath);
     }
 
+    if (element.base_class === 'Channel') {
+      // Make a new API call for the child channel
+      const childChannelData = await fetch(`https://api.are.na/v2/channels/${element.slug}/contents?per=200`).then(resp => resp.json());
+      // If the parent element is found, add the contents to its "contents"
+
+      reducedData.contents = childChannelData.contents
+    }
+    
+    // Add the reduced data to the merged JSON
     mergedJson.push(reducedData);
   }));
 
