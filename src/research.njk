@@ -3,7 +3,8 @@
   <h1 class="visually-hidden">Research</h1>
   <div class="text-link view-all" onclick="resetFilter()">View All</div>
   <div class="research">
-    {% for item in data  %} 
+    {% for item in data  %}
+    {% if not item.contents %}
       {% if item.date %}
         {% set formattedItemDate = item.date | string %}
         {% set formattedItemDateObject = formattedItemDate | parseDate %}
@@ -25,12 +26,6 @@
         {% if item.content %}
           <p>{{ item.content | truncate(1500) }}</p>
         {% endif %}
-        {% if item.contents %}
-          {% set innerContent = item.contents %}
-          {% for innerItem in innerContent %}
-            <p>{{innerItem.title}}</p>
-          {% endfor %}
-        {% endif %}
         {% if item.image %}
           <div class='research__image'><img src='images/{{ item.id }}.png' loading='lazy' /></div>
         {% endif %}
@@ -50,6 +45,48 @@
               {% endif %}
             </b>     
       </div>
+      {% else %} 
+        {% for subitem in item.contents %}
+          {% if subitem.date %}
+            {% set formattedItemDate = subitem.date | string %}
+            {% set formattedItemDateObject = formattedItemDate | parseDate %}
+            {% set formattedDateString = formattedItemDateObject.toLocaleString('en-US', { year: 'numeric', month: 'long', day: 'numeric'}) %}
+            {% set ageInDays = (currentDate - formattedItemDateObject) / (1000 * 60 * 60 * 24) %}
+          {% endif %}    
+        <div class='research__item' data-category="{{ item.title | default('') }}" id={{subitem.id}}>
+              <b class="research__title"><span class="text-link" onclick="filterByCategory('{{ item.title }}')">{{ item.title }}</span>
+                {% if subitem.title %}
+                  · {{ subitem.title | truncate(25) }}
+                {% endif %} 
+          
+                {% if ageInDays <= 7 %}
+                  <div class="new-indicator"></div>
+                {% endif %}
+              </b>
+            {% if subitem.content %}
+              <p>{{ subitem.content | truncate(1500) }}</p>
+            {% endif %}
+            {% if subitem.image %}
+              <div class='research__image'><img src='images/{{ subitem.id }}.png' loading='lazy' /></div>
+            {% endif %}
+            {% if subitem.source or subitem.date %}
+              {% set url = subitem.source.provider.name or subitem.source.title or "Source" %}
+              {% set url_link = subitem.source.url or subitem.source.provider.url or "https://are.na/block/" + subitem.id %}
+            {% endif %}
+                <br></br>
+                <b class="research__date">
+                  {% if formattedDateString %}
+                    {{ formattedDateString }}
+                  {% endif %} 
+                  {% if url %}· 
+                    <a class="text-link" href="{{ url_link }}">
+                      {{ url }}
+                      </a>
+                  {% endif %}
+                </b>     
+          </div>
+        {% endfor %}
+       {% endif %} 
     {% endfor %}
   </div>
   <script>

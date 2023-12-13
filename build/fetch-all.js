@@ -52,7 +52,7 @@ async function processChannel(channel) {
       title: element.title,
       content: element.content,
       contents: element.contents,
-      id: element.title,
+      id: element.id,
       image: element.image,
       date: element.updated_at,
       category,
@@ -81,6 +81,18 @@ async function processChannel(channel) {
       const childChannelData = await fetch(`https://api.are.na/v2/channels/${element.slug}/contents?per=200`).then(resp => resp.json());
       // If the parent element is found, add the contents to its "contents"
 
+      // Handle images for child channel contents
+      await Promise.all(childChannelData.contents.map(async (content) => {
+        if (content.image) {
+          const contentInputFilePath = path.join(imagesDir, `${content.id}.png`);
+          const contentTempOutputFilePath = path.join('_site/temp', `${content.id}.png`);
+
+          await downloadImage(content.image.display.url, contentInputFilePath);
+          await processAndOptimizeImage(contentInputFilePath, contentTempOutputFilePath);
+
+          await fsp.rename(contentTempOutputFilePath, contentInputFilePath);
+        }
+      }));
       reducedData.contents = childChannelData.contents
     }
     
