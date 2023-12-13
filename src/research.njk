@@ -23,7 +23,7 @@
           </b>
         {% endif %}
         {% if item.content %}
-          <p>{{ item.content }}</p>
+          <p>{{ item.content | truncate(1500) }}</p>
         {% endif %}
         {% if item.contents %}
           {% set innerContent = item.contents %}

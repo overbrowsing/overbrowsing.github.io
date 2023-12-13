@@ -32,7 +32,7 @@ async function processAndOptimizeImage(inputFilePath, outputFilePath) {
     .toFormat('png')
     .png({
       dither: 0,
-      colors: 2, // change back to three for higher quality
+      colors: 3, // change back to three for higher quality
       quality: 1,
     })
     .toFile(outputFilePath);

@@ -152,7 +152,7 @@ nav.opened .nav-container {
   cursor: pointer;
   margin: 10px;
   padding: 20px;
-  min-height: calc(50vh - 40px);
+  max-height: calc(50vh - 40px);
   border: 1px solid rgba(var(--ob-color-laurel), 0.3);
   border-radius: 5px;
   transition: border 0.3s; /* Apply transition only to border */
@@ -180,11 +180,13 @@ nav.opened .nav-container {
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) all;
   background-blend-mode: screen;
   mix-blend-mode: soft-light;
+  object-fit: cover;
 }
 
 .research__item:hover .research__image img {
   background-color: transparent;
   mix-blend-mode: normal;
+  filter: grayscale();
 }
 
 
@@ -355,7 +357,7 @@ svg {
   }
 
   .research__item {
-    min-height: 0;
+    max-height: fit-content;
   }
   .container--narrow {
     width: auto;
