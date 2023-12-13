@@ -31,9 +31,8 @@ async function processAndOptimizeImage(inputFilePath, outputFilePath) {
     .resize(450) // Adjust dimensions as needed
     .toFormat('png')
     .png({
-      dither: .9,
-      palette: true,
-      colors: 3,
+      dither: 0,
+      colors: 2, // change back to three for higher quality
       quality: 1,
     })
     .toFile(outputFilePath);
