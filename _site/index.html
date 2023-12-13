@@ -83,7 +83,7 @@
           const svg = d3.select('body').append('svg');
 
           const simulation = d3.forceSimulation()
-            .force('link', d3.forceLink().id(d => d.id).distance(d => pageWidth * .17).strength(0.1))
+            .force('link', d3.forceLink().id(d => d.id).distance(250).strength(0.1))
             .force('charge', d3.forceManyBody().strength(-10))
             .force('center', d3.forceCenter(pageWidth / 2, pageHeight / 2))
             .force('collision', d3.forceCollide().radius(d => d.children ? pageWidth * .1 : 75).strength(0.02)) // Adjust the strength
@@ -158,24 +158,27 @@
           .attr('class', 'leaf')
           .html(d => d.title);
 
-        simulation.nodes(nodes).on('tick', () => {
-          link
-            .attr('data-id', d => d.target.id)
-            .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`);
 
-          node          
-            .attr('transform', d => `translate(${d.x},${d.y})`)
-            .select('circle')  // Select the circle within the node
-            .attr('r', d => (d.id === 'Overbrowsing' ? 55 : (d.children ? pageWidth * .04 + d.children.length * 1.5 : 75)))
+          // Start the simulation
+          simulation.nodes(nodes).on('tick', () => {
+            link
+              .attr('data-id', d => d.target.id)
+              .attr('d', d => `M${d.source.x},${d.source.y} L${d.target.x},${d.target.y}`);
+
+            node
+              .attr('transform', d => `translate(${d.x},${d.y})`)
+              .select('circle')  // Select the circle within the node
+              .attr('r', d => (d.id === 'Overbrowsing' ? 55 : (d.children ? pageWidth * .04 + d.children.length * 1.5 : 75)))
           });
-      
+
 
           simulation.force('link').links(links);
 
           function dragstarted(d) {
-            if (!d3.event.active) simulation.alphaTarget(0.1).restart();
+            if (!d3.event.active) simulation.alphaTarget(0.9).restart();
             d.fx = d.x;
             d.fy = d.y;
+
           }
 
           function dragged(d) {
@@ -184,7 +187,7 @@
           }
 
           function dragended(d) {
-            if (!d3.event.active) simulation.alphaTarget(1);
+            if (!d3.event.active) simulation.alphaTarget(1); // Set a lower alpha value for quicker stopping
             d.fx = null;
             d.fy = null;
           }
