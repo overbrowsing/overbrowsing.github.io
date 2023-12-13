@@ -44,7 +44,6 @@
               }
             });
             restructuredData.children.push(categoryNode);
-            console.log(restructuredData)
           }
 
           function truncateTitle(title, maxLength) {
@@ -130,7 +129,7 @@
           .attr('y', -5)
           .append('xhtml:div')
           .attr('class', 'leaf')
-          .html(d => d.title);
+          .html(d => d.title.substring(0, 20));
 
 
           // Start the simulation
