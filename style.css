@@ -244,6 +244,7 @@ nav.opened .nav-container {
   text-align: center;
   transition: background-color 0.3s;
   padding: 5px 10px;
+  font-size: 11px;
 
 }
 .leaf:hover {
@@ -313,7 +314,7 @@ g a {
 }
 
 .node text {
-  font-size: 12px;
+  font-size: 11px;
   fill: rgba(var(--ob-color-laurel)) !important;
   text-anchor: middle;
   pointer-events: none;

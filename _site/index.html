@@ -10,14 +10,14 @@
   <meta property="og:description" content="Overbrowsing: dedicated to fostering a deeper understanding of sustainable web design.">
   <meta property="og:image" content="https://overbrowsing.com/assets/share-card.webp">
   <meta property="og:url" content="https://overbrowsing.com">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌑</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌓</text></svg>">
   <link rel="stylesheet" href="./style.css">
 </head>
   <body style="background-color: #272a24">
     <nav class="nav">
         <div class="nav-container">
         <div class="nav-about">
-          <p><b>Overbrowsing</b> is an applied research group dedicated to fostering a deeper understanding of sustainable web design. This is a low-consumption site that uses just 0.03g CO2e and runs on clean energy. The website background changes color based on air quality. Today, the air quality is good.</p>
+          <p><b>Overbrowsing</b> is an applied research group dedicated to fostering a deeper understanding of sustainable web design. This is a low-consumption site that uses just 0.03g CO2e and runs on clean energy. The website background changes color based on air quality. Today, the air quality is fair.</p>
         </div>
         <div class="nav-links">
             <a href="/">Graph</a>
@@ -70,7 +70,6 @@
               }
             });
             restructuredData.children.push(categoryNode);
-            console.log(restructuredData)
           }
 
           function truncateTitle(title, maxLength) {
@@ -150,7 +149,7 @@
           .append('a')
           .attr('href', d => 'research#' + d.id)  // Set the href attribute to d.url
           .append('foreignObject')
-          .attr('width', 165)
+          .attr('width', 150)
           .attr('height', 40)
           .attr('x', -50)
           .attr('y', -5)
