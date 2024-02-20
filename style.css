@@ -65,7 +65,7 @@ nav {
 nav:hover,
 nav.opened {
   max-height: 300px;
-  width: 33.3%;
+  width: 40%;
   border-radius: 10px;
   transform: translateX(-50%);
 }

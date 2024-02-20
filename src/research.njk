@@ -24,7 +24,7 @@
           </b>
         {% endif %}
         {% if item.content %}
-          <p>{{ item.content | truncate(1500) }}</p>
+          <p>{{ item.content | truncate(500) }}</p>
         {% endif %}
         {% if item.image %}
           <div class='research__image'><img src='images/{{ item.id }}.png' loading='lazy' /></div>
