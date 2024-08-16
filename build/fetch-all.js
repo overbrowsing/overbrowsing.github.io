@@ -17,12 +17,26 @@ const channelCategories = [
   // Add more channel names and categories as needed
 ];
 
-async function downloadImage(url, filePath) {
-  const response = await fetch(url);
-  if (response.status === 200) {
-    const imageArrayBuffer = await response.arrayBuffer();
-    const imageBuffer = Buffer.from(imageArrayBuffer);
-    await fsp.writeFile(filePath, imageBuffer);
+async function downloadImage(url, filePath, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const response = await fetch(url);
+      if (response.status === 200) {
+        const imageArrayBuffer = await response.arrayBuffer();
+        const imageBuffer = Buffer.from(imageArrayBuffer);
+        await fsp.writeFile(filePath, imageBuffer);
+        return; // Exit the loop if successful
+      } else {
+        throw new Error(`Failed to fetch image: ${response.statusText}`);
+      }
+    } catch (error) {
+      if (i < retries - 1) {
+        console.log(`Retrying to download image (${i + 1}/${retries})...`);
+      } else {
+        console.error(`Failed to download image after ${retries} attempts:`, error);
+        throw error; // Re-throw the error after exhausting retries
+      }
+    }
   }
 }
 

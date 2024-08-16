@@ -16,25 +16,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Check AQI and stop if necessary
-        run: |
-          aqi=$(curl -s "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=ac6a8e4517ccb8b2c12e6713125a2d34" | jq -r '.list[0].main.aqi')
-          echo "AQI today is: $aqi"
-          if [ "$aqi" -lt 2 ] && [ "${{ github.event_name }}" == 'schedule' ]; then            
-            echo "AQI today is $aqi. Stopping the workflow."
-            exit 78  # 78 is a special exit code indicating the workflow should be stopped
-          else
-            echo "AQI today is $aqi. Workflow can continue."
-          fi
-
       - name: Conditional workflow steps
-        if: ${{ github.event_name == 'push' }}
         run: |
           yarn install
           yarn build
 
       - name: Deploy to gh-pages
-        if: ${{ github.event_name == 'push' }}
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@users.noreply.github.com"
