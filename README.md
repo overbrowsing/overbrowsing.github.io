@@ -84,5 +84,5 @@ git push origin feature/your-feature-name
 Create a pull request to the main repository, explaining your changes.
 
 ## License
-This project is licensed under the This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 
