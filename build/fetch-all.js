@@ -7,6 +7,9 @@ import { promises as fsp, existsSync } from 'fs';
 import fetch from 'node-fetch';
 import sharp from 'sharp';
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const channelCategories = [
   { name: "principles-sfqb0jsjmws", category: "Principals" },
@@ -165,8 +168,9 @@ async function fetchAqiAndSave() {
 
 async function getMoonPhase() {
   try {
-    const response = await fetch('https://api.openweathermap.org/data/2.5/onecall?lat=51.5073219&lon=-0.1276474&exclude=minutely&appid=a767027338c3e647bc664f0b09493eb2');
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=51.5073219&lon=-0.1276474&exclude=minutely&appid=${process.env.API_KEY_OPENWEATHER}`);
     const data = await response.json();
+    console.log(data)
     const moonPhaseEmoji = ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'][Math.floor(data.daily[0].moon_phase * 8)] || '🌎';
     return moonPhaseEmoji;
   } catch (error) {
@@ -177,7 +181,7 @@ async function getMoonPhase() {
 
 async function getAirQualityData() {
   const response = await fetch(
-    "https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=a767027338c3e647bc664f0b09493eb2"
+    `https://api.openweathermap.org/data/2.5/air_pollution?lat=51.5073219&lon=-0.1276474&appid=${process.env.API_KEY_OPENWEATHER}`
   );
   return response.json();
 }
