@@ -103,6 +103,7 @@ function createControlDiv() {
 createControlDiv();
 setupImgs();
 
+// Menu
 const header = document.querySelector('header');
 let lastScrollY = 0, activeParent = null;
 
