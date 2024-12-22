@@ -394,9 +394,14 @@ details[open] summary::before {
 }
 
 @media screen and (max-width: calc(650px + 2em)) {
-  #data-aq,
-  #data-grid {
-    display: none
+  h1 {
+    font-size: 2.8em;
+    line-height: 1.2
+  }
+  
+  h2 {
+    font-size: 1.8em;
+    line-height: 1
   }
 
   header>div,
@@ -411,5 +416,10 @@ details[open] summary::before {
 
   .image-container:has(.background) {
     opacity: .1;
+  }
+
+  #data-aq,
+  #data-grid {
+    display: none
   }
 }
