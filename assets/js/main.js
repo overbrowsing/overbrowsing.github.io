@@ -70,10 +70,10 @@ async function setupImgs() {
 
   document.getElementById('show-all').onclick = () => {
     imgs.forEach(img => showImg(img, img.closest('.image-container')));
-    document.getElementById('demand-shifter').style.bottom = '-20em';
+    document.getElementById('demand-shifter').style.bottom = '-18em';
   };
 
-  document.getElementById('hide-notice').onclick = () => document.getElementById('demand-shifter').style.bottom = '-20em';
+  document.getElementById('hide-notice').onclick = () => document.getElementById('demand-shifter').style.bottom = '-18em';
 }
 
 function createPlace(c, i, t) {
