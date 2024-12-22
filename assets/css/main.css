@@ -247,11 +247,6 @@ td {
   border: 1px solid var(--color-accent)
 }
 
-th,
-tr:nth-child(even) {
-  background-color: var(--color-accent-3)
-}
-
 caption {
   margin: .5em 0;
   caption-side: top
@@ -278,10 +273,6 @@ button:hover,
   color: var(--color-primary)
 }
 
-form {
-  display: flex
-}
-
 button+button {
   display: inline-block;
   width: calc(50% - .5em)
@@ -290,11 +281,6 @@ button+button {
 button:first-of-type:not(:last-of-type) {
   display: inline-block;
   width: calc(50% - .5em);
-  background: var(--color-accent);
-  color: var(--color-primary)
-}
-
-button:first-of-type:not(:last-of-type) {
   margin-right: 1em;
   background: var(--color-accent);
   color: var(--color-primary)

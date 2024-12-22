@@ -103,23 +103,23 @@ function createControlDiv() {
 createControlDiv();
 setupImgs();
 
-// Menu
 const header = document.querySelector('header');
 let lastScrollY = 0, activeParent = null;
 
 const updateHeader = () => {
-  const rect = document.querySelector('section')?.getBoundingClientRect();
-  header.style.background = rect?.top <= 500 && rect.bottom > 500 ? '0' : (window.scrollY >= 100 ? 'var(--color-primary)' : '');
-  header.style.top = window.scrollY < 100 || window.scrollY < lastScrollY ? '0' : '-7em';
+  const scrollY = window.scrollY;
+  header.style.background = scrollY >= 300 ? 'var(--color-primary)' : '';
+  header.style.top = scrollY < lastScrollY || scrollY < 250 ? '0' : '-7em';
 
-  if (window.scrollY > lastScrollY && activeParent) {
-    activeParent.nextElementSibling.style.display = 'none';
+  if (scrollY > lastScrollY && activeParent) {
+    const nextSibling = activeParent?.nextElementSibling;
+    if (nextSibling) nextSibling.style.display = 'none';
     items.forEach(p => p.style.display = 'block');
     back.style.display = 'none';
     activeParent = null;
   }
 
-  lastScrollY = window.scrollY;
+  lastScrollY = scrollY;
 };
 
 window.addEventListener('scroll', updateHeader);
