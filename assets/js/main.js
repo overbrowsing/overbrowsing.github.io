@@ -234,7 +234,7 @@ document.querySelectorAll('img').forEach(img => {
 // Beacon
 (async () => {
   const { rating, co2 } = await (await fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`)).json();
-  document.getElementById('data-co2').innerHTML = `${rating.toUpperCase()} ${parseFloat(co2).toFixed(2)}g CO₂`;
+  document.getElementById('data-co2').innerHTML = `${rating.toUpperCase()} ${parseFloat(co2).toFixed(3)}g CO₂`;
 })();
 
 // References
