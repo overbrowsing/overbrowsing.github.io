@@ -146,8 +146,6 @@ section {
   padding: 1em 0
 }
 
-section:first-of-type {}
-
 section:has(.background) {
   display: flex;
   flex-direction: column;
@@ -412,6 +410,11 @@ details[open] summary::before {
   header>div div:last-child,
   footer div:last-child {
     grid-column: span 1
+  }
+
+  footer img {
+    width: 180px;
+    height: 43px
   }
 
   .image-container:has(.background) {
