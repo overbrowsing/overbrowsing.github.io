@@ -167,248 +167,248 @@ hr {
   border: 0;
   background: var(--color-accent);
   transform: translateX(-1em)
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-accent);
+  text-align: center
+}
+
+.image-container img {
+  display: block;
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover
+}
+
+*~.image-container {
+  margin: 2em 0
+}
+
+.image-container:has(.background) {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: -1em;
+  border: 0;
+  opacity: .25;
+  mix-blend-mode: lighten
+}
+
+.image-container:has(.background) img {
+  width: 100vw;
+  height: 100%
+}
+
+.image-container:has(.background) .alt-text,
+.image-container:has(.background) .show-image {
+  display: none
+}
+
+.image-container .alt-text {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.image-container .show-image {
+  cursor: pointer;
+  margin-bottom: 1em;
+  transition: color .3s ease;
+  text-align: center;
+}
+
+.image-container .show-image:hover {
+  color: var(--color-accent-2)
+}
+
+figure figcaption {
+  margin: .5em 0;
+  text-align: center
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed
+}
+
+th,
+td {
+  padding: .5em;
+  border: 1px solid var(--color-accent)
+}
+
+th,
+tr:nth-child(even) {
+  background-color: var(--color-accent-3)
+}
+
+caption {
+  margin: .5em 0;
+  caption-side: top
+}
+
+button,
+.button {
+  display: block;
+  width: 100%;
+  padding: .5em;
+  border: 1px solid var(--color-accent);
+  margin-top: 1em;
+  background: none;
+  color: var(--color-accent);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease
+}
+
+button:hover,
+.button:hover {
+  background: var(--color-accent);
+  color: var(--color-primary)
+}
+
+form {
+  display: flex
+}
+
+button+button {
+  display: inline-block;
+  width: calc(50% - .5em)
+}
+
+button:first-of-type:not(:last-of-type) {
+  display: inline-block;
+  width: calc(50% - .5em);
+  background: var(--color-accent);
+  color: var(--color-primary)
+}
+
+button:first-of-type:not(:last-of-type) {
+  margin-right: 1em;
+  background: var(--color-accent);
+  color: var(--color-primary)
+}
+
+button:first-of-type:not(:last-of-type):hover {
+  background: var(--color-primary);
+  color: var(--color-accent)
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0 0 .5em 0;
+  border: none;
+  border-bottom: 1px solid var(--color-accent);
+  margin-top: 1em;
+  background: 0;
+  appearance: none;
+  outline: none
+}
+
+input:focus,
+input:active {
+  border-bottom: 1px solid var(--color-accent)
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-accent-2)
+}
+
+form:has(> input:only-of-type + button) {
+  display: flex
+}
+
+form:has(> input:only-of-type + button)>input:only-of-type {
+  width: 70%;
+  padding: .5em .7em;
+  border: 1px solid;
+  margin-top: 0
+}
+
+form:has(> input:only-of-type + button)>button {
+  width: 30%;
+  border-left: 0;
+  margin-top: 0
+}
+
+summary {
+  margin-bottom: 1em;
+  cursor: pointer
+}
+
+summary::-webkit-details-marker {
+  display: none
+}
+
+summary::before {
+  content: "+"
+}
+
+details[open] summary::before {
+  content: "-"
+}
+
+#references {
+  padding: 1em;
+  border-top: 1px solid var(--color-accent)
+}
+
+#references * {
+  color: var(--color-accent-2);
+  font-size: 11px
+}
+
+#references a:hover {
+  color: var(--color-accent)
+}
+
+#demand-shifter {
+  position: fixed;
+  z-index: 1;
+  bottom: -17em;
+  width: 100%;
+  padding: 1em;
+  border-top: 1px solid var(--color-accent);
+  background: var(--color-primary);
+  transition: bottom .5s ease
+}
+
+#demand-shifter-body {
+  max-width: 650px
+}
+
+#demand-shifter-body h2 {
+  margin-top: 0
+}
+
+@media screen and (max-width: calc(650px + 2em)) {
+
+  #data-aq,
+  #data-grid {
+    display: none
   }
 
-  .image-container {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--color-accent);
-    text-align: center
+  header>div,
+  footer {
+    grid: auto / repeat(2, 1fr)
   }
 
-  .image-container img {
-    display: block;
-    display: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover
-  }
-
-  *~.image-container {
-    margin: 2em 0
+  header>div div:last-child,
+  footer div:last-child {
+    grid-column: span 1
   }
 
   .image-container:has(.background) {
-    position: absolute;
-    z-index: -1;
-    top: 0;
-    left: -1em;
-    border: 0;
-    opacity: .25;
-    mix-blend-mode: lighten
+    opacity: .1;
   }
-
-  .image-container:has(.background) img {
-    width: 100vw;
-    height: 100%
-  }
-
-  .image-container:has(.background) .alt-text,
-  .image-container:has(.background) .show-image {
-    display: none
-  }
-
-  .image-container .alt-text {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .image-container .show-image {
-    cursor: pointer;
-    margin-bottom: 1em;
-    transition: color .3s ease;
-    text-align: center;
-  }
-
-  .image-container .show-image:hover {
-    color: var(--color-accent-2)
-  }
-
-  figure figcaption {
-    margin: .5em 0;
-    text-align: center
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed
-  }
-
-  th,
-  td {
-    padding: .5em;
-    border: 1px solid var(--color-accent)
-  }
-
-  th,
-  tr:nth-child(even) {
-    background-color: var(--color-accent-3)
-  }
-
-  caption {
-    margin: .5em 0;
-    caption-side: top
-  }
-
-  button,
-  .button {
-    display: block;
-    width: 100%;
-    padding: .5em;
-    border: 1px solid var(--color-accent);
-    margin-top: 1em;
-    background: none;
-    color: var(--color-accent);
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color .2s ease, color .2s ease
-  }
-
-  button:hover,
-  .button:hover {
-    background: var(--color-accent);
-    color: var(--color-primary)
-  }
-
-  form {
-    display: flex
-  }
-
-  button+button {
-    display: inline-block;
-    width: calc(50% - .5em)
-  }
-
-  button:first-of-type:not(:last-of-type) {
-    display: inline-block;
-    width: calc(50% - .5em);
-    background: var(--color-accent);
-    color: var(--color-primary)
-  }
-
-  button:first-of-type:not(:last-of-type) {
-    margin-right: 1em;
-    background: var(--color-accent);
-    color: var(--color-primary)
-  }
-
-  button:first-of-type:not(:last-of-type):hover {
-    background: var(--color-primary);
-    color: var(--color-accent)
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    padding: 0 0 .5em 0;
-    border: none;
-    border-bottom: 1px solid var(--color-accent);
-    margin-top: 1em;
-    background: 0;
-    appearance: none;
-    outline: none
-  }
-
-  input:focus,
-  input:active {
-    border-bottom: 1px solid var(--color-accent)
-  }
-
-  input::placeholder,
-  textarea::placeholder {
-    color: var(--color-accent-2)
-  }
-
-  form:has(> input:only-of-type + button) {
-    display: flex
-  }
-
-  form:has(> input:only-of-type + button)>input:only-of-type {
-    width: 70%;
-    padding: .5em .7em;
-    border: 1px solid;
-    margin-top: 0
-  }
-
-  form:has(> input:only-of-type + button)>button {
-    width: 30%;
-    border-left: 0;
-    margin-top: 0
-  }
-
-  summary {
-    margin-bottom: 1em;
-    cursor: pointer
-  }
-
-  summary::-webkit-details-marker {
-    display: none
-  }
-
-  summary::before {
-    content: "+"
-  }
-
-  details[open] summary::before {
-    content: "-"
-  }
-
-  #references {
-    padding: 1em;
-    border-top: 1px solid var(--color-accent)
-  }
-
-  #references * {
-    color: var(--color-accent-2);
-    font-size: 11px
-  }
-
-  #references a:hover {
-    color: var(--color-accent)
-  }
-
-  #demand-shifter {
-    position: fixed;
-    z-index: 1;
-    bottom: -17em;
-    width: 100%;
-    padding: 1em;
-    border-top: 1px solid var(--color-accent);
-    background: var(--color-primary);
-    transition: bottom .5s ease
-  }
-
-  #demand-shifter-body {
-    max-width: 650px
-  }
-
-  #demand-shifter-body h2 {
-    margin-top: 0
-  }
-
-  @media screen and (max-width: calc(650px + 2em)) {
-
-    #data-aq,
-    #data-grid {
-      display: none
-    }
-
-    header>div,
-    footer {
-      grid: auto / repeat(2, 1fr)
-    }
-
-    header>div div:last-child,
-    footer div:last-child {
-      grid-column: span 1
-    }
-
-    .image-container:has(.background) {
-      opacity: .1;
-    }
-  }
+}
