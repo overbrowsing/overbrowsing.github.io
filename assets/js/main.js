@@ -221,6 +221,7 @@ updateAirQuality();
 
 // Image Size
 const imageSize = document.getElementById('data-image');
+imageSize.style.display = 'none';
 document.querySelectorAll('img').forEach(img => {
   img.addEventListener('mouseover', async () => {
     const size = (await fetch(img.src).then(res => res.blob())).size / 1024;
