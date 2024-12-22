@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>CO₂ Shield Generator • Overbrowsing</title>
+  <meta name="description" content="Overbrowsing is an applied research group focused on advancing sustainable web practices.">
+  <meta property="og:title" content="Overbrowsing">
+  <meta property="og:description" content="Overbrowsing is an applied research group focused on advancing sustainable web practices.">
+  <meta property="og:image" content="https://overbrowsing.com/assets/media/card.webp">
+  <meta property="og:url" content="https://overbrowsing.com">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+  <header>
+    <div>
+      <menu>
+        <li><a href="/research">Research</a></li>
+        <li><a href="/mission">Mission</a></li>
+        <li><a href="/projects">Projects</a></li>
+      </menu>
+    </div>
+    <div>
+      <nav>
+        <ul>
+          <li><a href="/">Overbrowsing</a></li>
+        </ul>
+      </nav>
+      <div>
+        <ul>
+          <li id="data-image"></li>
+          <li id="data-grid"></li>
+          <li id="data-aq"></li>
+          <li id="data-co2"></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h1 data-heading="CO₂ Shield Generator">Generate a CO₂ Shield for Your Github Projects.</h1>
+      <p>The CO₂ Shield lets you calculate the environmental impact of your project's web page and display it in your GitHub project as a <a href="https://shields.io" target="_blank">shields.io</a> badge, powered by <a href="https://digitalbeacon.co" target="_blank">Beacon</a>, which uses the <a href="https://theshiftproject.org/en/lean-ict-2/" target="_blank">OneByte model</a> for calculating emissions created by The Shift Project. Simply enter the URL, press 'Enter' or click 'Submit', then copy and paste the markdown snippet into your documentation.</p>
+      <div id="app-container"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <p>© 2024 Overbrowsing</p>
+      <img src="assets/media/uoe.png" alt="The University of Edinburgh" width="250px" height="60px">
+    </div>
+    <div>
+      <a href="https://withcabin.com/privacy/overbrowsing.com" target="_blank">We don't use cookies</a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/co2-shield/dist/index.js"></script>
+  <script>
+    window.onload = () => {
+      const co2Shield = new CO2Shield("app-container");
+      co2Shield.initialize();
+    };
+  </script>
+  <script src="/assets/js/main.js"></script>
+  <script async defer src="https://scripts.withcabin.com/hello.js"></script>
+
+</body>
+
+</html>
