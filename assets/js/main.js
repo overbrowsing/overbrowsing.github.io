@@ -36,7 +36,6 @@ function getLevel(i) {
   }
 
   if (i === null || (i >= 100 && i < 200)) return "Moderate";
-  if (i < 80) return "Very Low";
   if (i < 100) return "Low";
   if (i < 300) return "High";
   return "Very High";
