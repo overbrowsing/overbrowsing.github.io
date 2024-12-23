@@ -4,25 +4,24 @@ let ipDataCache = null;
 async function getIpData() {
   if (ipDataCache) return ipDataCache;
   const response = await fetch('https://ipinfo.io/json');
-  ipDataCache = await response.json();
-  return ipDataCache;
+  return ipDataCache = await response.json();
 }
 
 async function fetchGrid() {
   try {
-    const ipData = await getIpData();
+    const { country, region, ip } = await getIpData();
     let intensity = null;
-    
-    if (ipData.country === "GB") {
+
+    if (country === "GB") {
       const { data } = await (await fetch('https://api.carbonintensity.org.uk/regional')).json();
-      const regionData = data[0].regions.find(r => r.shortname === (ipData.region || 'GB')) || data[0].regions[0];
+      const regionData = data[0].regions.find(r => r.shortname === (region || 'GB')) || data[0].regions[0];
       intensity = regionData.intensity.forecast;
     } else {
-      const { carbon_intensity } = await (await fetch(`https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/${ipData.ip}`)).json();
+      const { carbon_intensity } = await (await fetch(`https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/${ip}`)).json();
       intensity = carbon_intensity;
     }
 
-    return { intensity, region: ipData.country === "GB" ? "GB" : "N/A" };
+    return { intensity, region: country === "GB" ? "GB" : "N/A" };
   } catch {
     return { intensity: null, region: "N/A" };
   }
@@ -58,7 +57,7 @@ async function setupImgs() {
     cont.style.height = img.getAttribute('height') || '100%';
     cont.style.width = img.getAttribute('width') || '100%';
     img.parentElement.insertBefore(cont, img);
-    
+
     if (intensity === null || intensity >= 100) {
       createPlace(cont, img, img.alt);
     } else {
