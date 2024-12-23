@@ -56,8 +56,8 @@
       <a href="https://withcabin.com/privacy/overbrowsing.com" target="_blank">We don't use cookies</a>
     </div>
   </footer>
-
-  <script defer>
+  
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
       const appContainer = document.getElementById('app-container');
       const ratingDetails = {
@@ -71,18 +71,22 @@
       };
   
       const createForm = () => {
-        appContainer.innerHTML = `<form id="co2-shield"><input required placeholder="Enter URL"><button>Submit</button></form>`;
-        const form = document.querySelector('#co2-shield');
+        appContainer.innerHTML = `
+          <form>
+            <input required placeholder="Enter URL">
+            <button>Submit</button>
+          </form>`;
+        const form = document.querySelector('form');
         form.onsubmit = e => { e.preventDefault(); generate(); };
         form.querySelector('input').onkeypress = e => { if (e.key === 'Enter') { e.preventDefault(); generate(); } };
       };
   
       const generate = async () => {
-        const input = document.querySelector('#co2-shield input');
+        const input = document.querySelector('form input');
         let url = input.value.trim();
         if (!url) return alert('Please enter a valid URL');
         url = /^https?:\/\//i.test(url) ? url : `https://${url}`;
-        const button = document.querySelector('#co2-shield button');
+        const button = document.querySelector('form button');
         button.disabled = true;
         button.textContent = 'Loading...';
         const loadingInterval = setInterval(() => button.textContent = `Loading${'.'.repeat((parseInt(button.textContent.split('.').length, 10) % 4))}`, 350);
@@ -106,15 +110,10 @@
       const fetchCO2 = (url) => fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(url)}`).then(res => res.json());
   
       const updateUI = ({ shieldUrl, markdown, details }, targetUrl) => {
-        const ratingsTable = Object.keys(ratingDetails).map(rating => {
-          const [color, details] = ratingDetails[rating];
-          return `<tr><td style="text-align:center;">${rating.toUpperCase()}</td><td style="text-align:center;color:${color}">●</td><td>${details}</td></tr>`;
-        }).join('');
-  
         appContainer.innerHTML = `
-          <div id="result">
+          <div>
             <h2>Results</h2>
-            <p>${targetUrl} • ${details} • Scroll down to learn about the ratings.</p>
+            <p>${targetUrl} • ${details} • Scroll down to see the ratings.</p>
             <img src="${shieldUrl}" alt="CO₂ Shield" style="height:20px">
             <pre>${markdown}</pre>
             <button id="copy">Copy</button>
@@ -124,7 +123,10 @@
             <p>These measurements are for new visitors. Returning visitors have a lower footprint due to caching.</p>
             <table>
               <thead><tr><th>Rating</th><th>Colour</th><th>CO₂e</th></tr></thead>
-              <tbody>${ratingsTable}</tbody>
+              <tbody>${Object.keys(ratingDetails).map(rating => {
+                const [color, details] = ratingDetails[rating];
+                return `<tr><td style="text-align:center;">${rating.toUpperCase()}</td><td style="text-align:center;color:${color}">●</td><td>${details}</td></tr>`;
+              }).join('')}</tbody>
             </table>
             <button id="reset">Reset</button>
           </div>`;
