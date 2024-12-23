@@ -10,8 +10,8 @@ A low-impact static website for the Overbrowsing Research Group that prioritises
 ## Features
 
 - **Low-Impact Mode**: Reacts to local energy grid's intensity data, hiding image resources until users opt to load them.
-- **Sustainable Web Designn**: Maintains all pages under an A+ Digital Beacon score of 0.095g CO₂e per page view.
-- **Nature Reactive**: The background and favicon changes color based on real-time air pollution and the time of day.
+- **Sustainable Web Design**: Maintains all pages under an A+ Digital Beacon score of 0.095g CO₂e per page view.
+- **Nature Reactive**: The background and favicon change colour based on real-time air pollution and the time of day.
 - **Dithered Images**: Optimised visuals for faster loading and smaller page weight.
 
 ## APIs Used
@@ -19,7 +19,7 @@ A low-impact static website for the Overbrowsing Research Group that prioritises
 - **[IPinfo](https://ipinfo.io)**: Determines the user's location to assess energy grid intensity.
 - **[NESO's Carbon Intensity API](https://carbonintensity.org.uk)**: Fetches UK-specific real-time regional energy grid intensity data.
 - **[Green Web Foundation's Carbon Intensity API](https://developers.thegreenwebfoundation.org/api/ip-to-co2/overview)**: Provides global energy grid intensity data.
-- **[OpenWeatherMap's Air Pollution API](https://openweathermap.org/api/air-pollution)**: Retrieves real-time air polution metrics.
+- **[OpenWeatherMap's Air Pollution API](https://openweathermap.org/api/air-pollution)**: Retrieves real-time air pollution metrics.
 - **[Beacon](https://digitalbeacon.co)**: Fetches the CO₂e emissions per page view for transparency.
 
 ## Contributing
