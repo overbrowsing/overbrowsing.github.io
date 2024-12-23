@@ -59,7 +59,7 @@ async function setupImgs() {
     cont.style.width = img.getAttribute('width') || '100%';
     img.parentElement.insertBefore(cont, img);
     
-    if (intensity > 200 || intensity === null) {
+    if (intensity === null || intensity >= 100) {
       createPlace(cont, img, img.alt);
     } else {
       showImg(img, cont);
