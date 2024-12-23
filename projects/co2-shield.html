@@ -73,20 +73,21 @@
       const createForm = () => {
         appContainer.innerHTML = `<form id="co2-shield"><input required placeholder="Enter URL"><button>Submit</button></form>`;
         const form = document.querySelector('#co2-shield');
-        form.onsubmit = e => { e.preventDefault(); generate(); };
-        form.querySelector('input').onkeypress = e => { if (e.key === 'Enter') { e.preventDefault(); generate(); } };
+        const input = form.querySelector('input');
+        const button = form.querySelector('button');
+        
+        form.onsubmit = e => { e.preventDefault(); generate(input.value.trim(), button); };
+        input.onkeypress = e => { if (e.key === 'Enter') { e.preventDefault(); generate(input.value.trim(), button); } };
       };
   
-      const generate = async () => {
-        const input = document.querySelector('#co2-shield input');
-        let url = input.value.trim();
+      const generate = async (url, button) => {
         if (!url) return alert('Please enter a valid URL');
         url = /^https?:\/\//i.test(url) ? url : `https://${url}`;
-        const button = document.querySelector('#co2-shield button');
+        
         button.disabled = true;
         button.textContent = 'Loading...';
-        const loadingInterval = setInterval(() => button.textContent = `Loading${'.'.repeat((parseInt(button.textContent.split('.').length, 10) % 4))}`, 350);
-  
+        const loadingInterval = setInterval(() => button.textContent = `Loading${'.'.repeat((button.textContent.split('.').length % 4))}`, 350);
+    
         try {
           const { co2, rating } = await fetchCO2(url);
           const [color, details] = ratingDetails[rating.toLowerCase()];
@@ -99,7 +100,6 @@
           clearInterval(loadingInterval);
           button.textContent = 'Submit';
           button.disabled = false;
-          input.value = '';
         }
       };
   
