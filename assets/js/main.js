@@ -1,4 +1,4 @@
-// Grid Intensity
+// Demand Shifter
 let ipDataCache = null;
 
 async function getIpData() {
