@@ -9,7 +9,7 @@ This low-impact static website for the Overbrowsing Research Group prioritises s
 
 ## Features
 
-- **Low-Impact Mode**: Automatically adapts to the user's local energy grid's intensity, hiding image resources until users opt to load them.
+- **Low-Impact Mode**: Reacts to local energy grid's intensity data, hiding image resources until users opt to load them.
 - **Sustainable Web Designn**: Maintains all pages under an A+ Digital Beacon score of 0.095g CO₂e per page view.
 - **Nature Reactive**: The background and favicon changes color based on real-time air pollution and the time of day.
 - **Dithered Images**: Optimised visuals for faster loading and smaller page weight.
