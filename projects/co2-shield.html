@@ -71,22 +71,18 @@
       };
   
       const createForm = () => {
-        appContainer.innerHTML = `
-          <form>
-            <input required placeholder="Enter URL">
-            <button>Submit</button>
-          </form>`;
-        const form = document.querySelector('form');
+        appContainer.innerHTML = `<form id="co2-shield"><input required placeholder="Enter URL"><button>Submit</button></form>`;
+        const form = document.querySelector('#co2-shield');
         form.onsubmit = e => { e.preventDefault(); generate(); };
         form.querySelector('input').onkeypress = e => { if (e.key === 'Enter') { e.preventDefault(); generate(); } };
       };
   
       const generate = async () => {
-        const input = document.querySelector('form input');
+        const input = document.querySelector('#co2-shield input');
         let url = input.value.trim();
         if (!url) return alert('Please enter a valid URL');
         url = /^https?:\/\//i.test(url) ? url : `https://${url}`;
-        const button = document.querySelector('form button');
+        const button = document.querySelector('#co2-shield button');
         button.disabled = true;
         button.textContent = 'Loading...';
         const loadingInterval = setInterval(() => button.textContent = `Loading${'.'.repeat((parseInt(button.textContent.split('.').length, 10) % 4))}`, 350);
@@ -111,7 +107,7 @@
   
       const updateUI = ({ shieldUrl, markdown, details }, targetUrl) => {
         appContainer.innerHTML = `
-          <div>
+          <div id="result">
             <h2>Results</h2>
             <p>${targetUrl} • ${details} • Scroll down to see the ratings.</p>
             <img src="${shieldUrl}" alt="CO₂ Shield" style="height:20px">
@@ -122,7 +118,7 @@
             <h2>Ratings</h2>
             <p>These measurements are for new visitors. Returning visitors have a lower footprint due to caching.</p>
             <table>
-              <thead><tr><th>Rating</th><th>Colour</th><th>CO₂e Emissions per View</th></tr></thead>
+              <thead><tr><th>Rating</th><th>Color</th><th>CO₂e Emissions per View</th></tr></thead>
               <tbody>${Object.keys(ratingDetails).map(rating => {
                 const [color, details] = ratingDetails[rating];
                 return `<tr><td style="text-align:center;">${rating.toUpperCase()}</td><td style="text-align:center;color:${color}">●</td><td>${details}</td></tr>`;
