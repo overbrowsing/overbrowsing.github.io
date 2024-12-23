@@ -18,8 +18,8 @@ This low-impact static website for the Overbrowsing Research Group prioritises s
 
 - **[IPinfo](https://ipinfo.io)**: Determines the user's location to assess energy grid intensity.
 - **[NESO's Carbon Intensity API](https://carbonintensity.org.uk)**: Fetches UK-specific real-time regional energy grid intensity data.
-- **[Green Web Foundation: Carbon Intensity API](https://developers.thegreenwebfoundation.org/api/ip-to-co2/overview)**: Provides global energy grid intensity data.
-- **[OpenWeather Air Pollution API](https://openweathermap.org/api/air-pollution)**: Retrieves real-time air polution metrics.
+- **[Green Web Foundation's Carbon Intensity API](https://developers.thegreenwebfoundation.org/api/ip-to-co2/overview)**: Provides global energy grid intensity data.
+- **[OpenWeatherMap's Air Pollution API](https://openweathermap.org/api/air-pollution)**: Retrieves real-time air polution metrics.
 - **[Beacon](https://digitalbeacon.co)**: Fetches the CO₂e emissions per page view for transparency.
 
 ## Contributing
