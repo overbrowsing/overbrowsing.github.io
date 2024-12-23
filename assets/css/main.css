@@ -142,20 +142,17 @@ main {
 
 section {
   position: relative;
-  padding: 1em 0
-}
-
-section:has(.background) {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  padding: 1em 0
+}
+
+section:has(.image-container img[src]) {
   min-height: 100svh
 }
 
 section:first-of-type:not(:has(.background)) {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   min-height: 20em;
   margin-top: 10em
 }
@@ -216,14 +213,14 @@ hr {
   flex: 1;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align: center
 }
 
 .image-container .show-image {
   cursor: pointer;
   margin-bottom: 1em;
   transition: color .3s ease;
-  text-align: center;
+  text-align: center
 }
 
 .image-container .show-image:hover {
@@ -273,14 +270,13 @@ button:hover,
   color: var(--color-primary)
 }
 
-button+button {
+button + button,
+button:first-of-type:not(:last-of-type) {
   display: inline-block;
   width: calc(50% - .5em)
 }
 
 button:first-of-type:not(:last-of-type) {
-  display: inline-block;
-  width: calc(50% - .5em);
   margin-right: 1em;
   background: var(--color-accent);
   color: var(--color-primary)
@@ -294,17 +290,16 @@ button:first-of-type:not(:last-of-type):hover {
 input,
 textarea {
   width: 100%;
-  padding: 0 0 .5em 0;
+  padding: 0 0 .5em;
   border: none;
   border-bottom: 1px solid var(--color-accent);
   margin-top: 1em;
-  background: 0;
-  appearance: none;
+  background: none;
   outline: none
 }
 
 input:focus,
-input:active {
+textarea:focus {
   border-bottom: 1px solid var(--color-accent)
 }
 
@@ -317,14 +312,14 @@ form:has(> input:only-of-type + button) {
   display: flex
 }
 
-form:has(> input:only-of-type + button)>input:only-of-type {
+form:has(> input:only-of-type + button) > input:only-of-type {
   width: 70%;
   padding: .5em .7em;
   border: 1px solid;
   margin-top: 0
 }
 
-form:has(> input:only-of-type + button)>button {
+form:has(> input:only-of-type + button) > button {
   width: 30%;
   border-left: 0;
   margin-top: 0
@@ -348,7 +343,7 @@ details[open] summary::before {
 }
 
 #references {
-  padding: 1em;
+  padding: .7em 1em;
   border-top: 1px solid var(--color-accent)
 }
 
@@ -407,7 +402,7 @@ details[open] summary::before {
   }
 
   .image-container:has(.background) {
-    opacity: .1;
+    opacity: .1
   }
 
   #data-aq,
