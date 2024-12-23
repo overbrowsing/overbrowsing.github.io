@@ -5,7 +5,7 @@
 
 ## Overview
 
-This low-impact static website for the Overbrowsing Research Group prioritises sustainability by avoiding unnecessary frameworks and bloat. The HTML is structured for semantic clarity, with lightweight CSS and vanilla JavaScript to enhance the user experience. Minimal IDs and classes are used, relying on semantic tags and element selectors for simplicity and maintainability. Designed with progressive enhancement, core features like low-impact mode remain functional without JavaScript.
+A low-impact static website for the Overbrowsing Research Group that prioritises sustainability by avoiding unnecessary frameworks and bloat. The HTML is structured for semantic clarity, with lightweight CSS and vanilla JavaScript enhancing the user experience. Minimal use of IDs and classes is made, relying on semantic tags and element selectors for simplicity and maintainability. Designed with progressive enhancement, core features like low-impact mode remain functional even without JavaScript.
 
 ## Features
 
