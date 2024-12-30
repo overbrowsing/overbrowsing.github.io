@@ -34,7 +34,7 @@ h1 {
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin-bottom: .5rem;
+  margin-bottom: .6rem;
   font-size: 14.5px
 }
 
@@ -46,11 +46,11 @@ h2 {
 
 h1:not(:last-child),
 h2:not(:last-child) {
-  margin-bottom: .5rem
+  margin-bottom: .6rem
 }
 
 p~* {
-  margin-top: 1em
+  margin-top: .7em
 }
 
 a {
