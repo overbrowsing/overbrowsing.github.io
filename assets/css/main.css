@@ -241,7 +241,9 @@ table {
 th,
 td {
   padding: .5em;
-  border: 1px solid var(--color-accent)
+  border: 1px solid var(--color-accent);
+  border-right: none;
+  border-left: none
 }
 
 caption {
