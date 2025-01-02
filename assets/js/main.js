@@ -240,8 +240,8 @@ document.addEventListener('mouseout', () => imageSize.style.display = 'none');
 
 // Beacon
 (async () => {
-  const { rating, co2 } = await (await fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`)).json();
-  document.getElementById('data-co2').innerHTML = `${rating.toUpperCase()} ${parseFloat(co2).toFixed(3)}g CO₂`;
+  const { url, rating, co2 } = await (await fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`)).json();
+  document.getElementById('data-co2').innerHTML = `<a href="${url}" target="_blank">${rating.toUpperCase()} ${parseFloat(co2).toFixed(3)}g CO₂</a>`;
 })();
 
 // References
