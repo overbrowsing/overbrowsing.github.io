@@ -246,7 +246,7 @@ document.addEventListener('mouseout', () => imageSize.style.display = 'none');
 
 // References
 document.addEventListener("DOMContentLoaded", () => {
-  const links = [...document.querySelectorAll('main a[target="_blank"]:not(.button)')];
+  const links = [...document.querySelectorAll('main a[target="_blank"]:not(.button):not([exclude])')];
   if (links.length) {
     let refs = '';
     links.forEach((link, i) => {
