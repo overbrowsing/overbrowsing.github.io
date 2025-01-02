@@ -221,14 +221,22 @@ updateAirQuality();
 // Image Size
 const imageSize = document.getElementById('data-image');
 imageSize.style.display = 'none';
-document.querySelectorAll('img').forEach(img => {
-  img.addEventListener('mouseover', async () => {
-    const size = (await fetch(img.src).then(res => res.blob())).size / 1024;
-    imageSize.textContent = `${size.toFixed(2)} KB`;
-    imageSize.style.display = 'inline-flex';
-  });
-  img.addEventListener('mouseout', () => (imageSize.style.display = 'none'));
+
+const fetchSize = async url => {
+  const size = (await fetch(url).then(r => r.blob())).size / 1024;
+  imageSize.textContent = `${size.toFixed(2)} KB`;
+  imageSize.style.display = 'inline-flex';
+};
+
+document.addEventListener('mousemove', e => {
+  const target = [...document.querySelectorAll('img, .background')].find(el =>
+    e.clientX >= el.getBoundingClientRect().left && e.clientX <= el.getBoundingClientRect().right &&
+    e.clientY >= el.getBoundingClientRect().top && e.clientY <= el.getBoundingClientRect().bottom
+  );
+  target ? fetchSize(target.src || window.getComputedStyle(target).backgroundImage.slice(5, -2).replace(/"/g, '')) : imageSize.style.display = 'none';
 });
+
+document.addEventListener('mouseout', () => imageSize.style.display = 'none');
 
 // Beacon
 (async () => {
