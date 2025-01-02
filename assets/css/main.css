@@ -317,7 +317,7 @@ form:has(> input:only-of-type + button) {
 
 form:has(> input:only-of-type + button) > input:only-of-type {
   width: 70%;
-  padding: .5em .7em;
+  padding: .5em .9em;
   border: 1px solid;
   margin-top: 0
 }
