@@ -28,4 +28,4 @@ Contributions are welcome. Please feel free to [submit an issue](https://github.
 
 ## License
 
-CO₂ Shield Generator is released under the [MIT](/LICENSE) license. Feel free to use and modify it as needed.
+Overbrowsing.com is released under the [MIT](/LICENSE) license. Feel free to use and modify it as needed.
