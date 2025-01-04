@@ -136,7 +136,8 @@ footer {
 }
 
 footer img {
-  margin-top: 5em
+  display: block;
+  margin-top: 6em
 }
 
 main {
