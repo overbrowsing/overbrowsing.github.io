@@ -351,7 +351,7 @@ details[open] summary::before {
 }
 
 #references {
-  padding: .5em 1em;
+  padding: .8em 1em;
   border-top: 1px solid var(--color-accent)
 }
 
@@ -367,9 +367,9 @@ details[open] summary::before {
 #demand-shifter {
   position: fixed;
   z-index: 1;
-  bottom: -18em;
+  bottom: 0em;
   width: 100%;
-  padding: .5em 1em;
+  padding: 1em;
   border-top: 1px solid var(--color-accent);
   background: var(--color-primary);
   transition: bottom .5s ease
