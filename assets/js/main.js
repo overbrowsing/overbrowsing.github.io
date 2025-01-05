@@ -291,7 +291,7 @@ document.querySelectorAll('section').forEach(s => s.insertAdjacentHTML('afterend
 
 // Close Tab
 const originalTitle = document.title;
-const message = 'Please close me to conserve energy.';
+const message = 'Close this tab to save energy.';
 let interval;
 
 document.addEventListener('visibilitychange', () => {
