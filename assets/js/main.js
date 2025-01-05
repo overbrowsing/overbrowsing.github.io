@@ -291,7 +291,16 @@ document.querySelectorAll('section').forEach(s => s.insertAdjacentHTML('afterend
 
 // Close Tab
 const originalTitle = document.title;
+const message = 'Please close me to conserve energy.';
+let interval;
 
 document.addEventListener('visibilitychange', () => {
-  document.title = document.hidden ? 'Please close me to conserve energy.' : originalTitle;
+  if (document.hidden) {
+    interval = setInterval(() => {
+      document.title = document.title === originalTitle ? message : originalTitle;
+    }, 3000);
+  } else {
+    clearInterval(interval);
+    document.title = originalTitle;
+  }
 });
