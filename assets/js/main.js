@@ -288,3 +288,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Sections
 document.querySelectorAll('section').forEach(s => s.insertAdjacentHTML('afterend', '<hr>'));
+
+// Close Tab
+const originalTitle = document.title;
+
+document.addEventListener('visibilitychange', () => {
+  document.title = document.hidden ? 'Please close me to conserve energy.' : originalTitle;
+});
