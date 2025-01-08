@@ -157,9 +157,14 @@ section:first-of-type {
   margin-top: 141px /* header height */
 }
 
-section:has(.image-container img[src]) {
+section:has(.image-container img[src]),
+section:only-of-type {
   min-height: 100svh;
   margin-top: 0
+}
+
+section:only-of-type h1 {
+  margin-top: calc(2em + 141px) /* header height */
 }
 
 hr {
@@ -412,9 +417,9 @@ details[open] summary::before {
     height: 43px
   }
 
-  section:first-of-type {
+  section:first-of-type:not(:only-of-type) {
     height: 100vh;
-    margin-top: 0
+    margin-top: 0;
   }
 
   .image-container:has(.background) {
