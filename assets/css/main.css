@@ -413,8 +413,9 @@ details[open] summary::before {
     opacity: .1
   }
 
-  #data-aq,
-  #data-grid {
+  #data-image,
+  #data-grid,
+  #data-aq{
     display: none
   }
 }
