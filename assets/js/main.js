@@ -255,9 +255,7 @@ document.addEventListener('mouseout', () => imageSize.style.display = 'none');
 document.addEventListener("DOMContentLoaded", () => {
   const links = [...document.querySelectorAll('main a[target="_blank"]:not(.button):not([exclude])')];
   if (links.length) {
-    let refs = '';
-    links.forEach((link, i) => {
-      link.id = `ref-${i + 1}`;
+    const refs = links.map((link, i) => {
       const sup = document.createElement('sup');
       sup.textContent = `${i + 1}`;
       link.appendChild(sup);
@@ -265,24 +263,14 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         document.querySelector('#references').scrollIntoView({ behavior: 'smooth' });
       });
-      const linkText = link.cloneNode(true);
-      linkText.querySelector('sup')?.remove();
-      refs += `<li><a href="#ref-${i + 1}" class="ref-link">${linkText.textContent.trim()}</a> • <a href="${link.href}" target="_blank">${link.href}</a></li>`;
-    });
+      const url = link.href.replace(/^https?:\/\//, '');
+      return `<li><a href="${link.href}" target="_blank">${url}</a></li>`;
+    }).join('');
     
     const referencesSection = document.createElement('div');
     referencesSection.id = 'references';
     referencesSection.innerHTML = `<ol>${refs}</ol>`;
-    
-    const footer = document.querySelector('footer');
-    footer.parentNode.insertBefore(referencesSection, footer.nextSibling);
-    
-    document.querySelectorAll('.ref-link').forEach((refLink, i) => {
-      refLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector(`#ref-${i + 1}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
-      });
-    });
+    document.querySelector('footer').insertAdjacentElement('afterend', referencesSection);
   }
 });
 
