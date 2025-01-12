@@ -62,7 +62,11 @@ h3 {
 }
 
 p:not(:last-child) {
-  margin-bottom: .7em
+  margin-bottom: .8em
+}
+
+p:last-of-type:not(:last-child) {
+  margin-bottom: 1em
 }
 
 a {
