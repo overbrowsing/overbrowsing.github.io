@@ -64,7 +64,7 @@ p:not(:first-of-type)+p:not(:first-of-type) {
   margin-top: 1em
 }
 
-p {
+p:not(:last-child) {
   margin-bottom: 1em
 }
 
