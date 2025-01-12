@@ -25,7 +25,7 @@
 
 body {
   background: var(--color-primary);
-  transition: background-color .5s cubic-bezier(.645,.045,.355,1)
+  transition: background-color .5s cubic-bezier(.645, .045, .355, 1)
 }
 
 /* Typography */
@@ -57,7 +57,7 @@ h3 {
   font-size: 1.4em
 }
 
-p:not(:first-of-type) + p:not(:first-of-type) {
+p:not(:first-of-type)+p:not(:first-of-type) {
   margin-top: 1em
 }
 
@@ -66,7 +66,7 @@ p {
 }
 
 a {
-  transition: color .3s cubic-bezier(.645,.045,.355,1)
+  transition: color .3s cubic-bezier(.645, .045, .355, 1)
 }
 
 a:hover {
@@ -111,7 +111,7 @@ header {
   width: 100%;
   padding: .6em 1em;
   border-bottom: 1px solid var(--color-accent);
-  transition: all .5s cubic-bezier(.645,.045,.355,1)
+  transition: all .5s cubic-bezier(.645, .045, .355, 1)
 }
 
 header>div {
@@ -130,14 +130,18 @@ header menu {
 }
 
 header nav ul,
-header div ul {
+header div ul,
+footer ul {
   display: inline-flex
 }
 
 header nav:last-of-type ul li:not(:last-of-type)::after,
-header div:last-of-type ul li:not(:last-of-type)::after {
-  content: '•';
-  margin: 0 .4em
+header div:last-of-type ul li:not(:last-of-type)::after,
+footer li:not(:last-of-type)::after {
+  content: "•";
+  margin: 0 .3em;
+  font-size: 19px;
+  line-height: 1
 }
 
 footer {
@@ -239,7 +243,7 @@ hr {
 .image-container .show-image {
   cursor: pointer;
   margin-bottom: 1em;
-  transition: color .3s cubic-bezier(.645,.045,.355,1);
+  transition: color .3s cubic-bezier(.645, .045, .355, 1);
   text-align: center
 }
 
@@ -285,7 +289,7 @@ button,
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color .2s cubic-bezier(.645,.045,.355,1), color .2s cubic-bezier(.645,.045,.355,1)
+  transition: background-color .2s cubic-bezier(.645, .045, .355, 1), color .2s cubic-bezier(.645, .045, .355, 1)
 }
 
 button:hover,
@@ -349,14 +353,14 @@ input[type="radio"] {
   display: none
 }
 
-input[type="radio"] + label {
+input[type="radio"]+label {
   position: relative;
   padding-left: 1.6em;
   cursor: pointer;
   margin-right: 1em
 }
 
-input[type="radio"] + label::before {
+input[type="radio"]+label::before {
   content: '';
   position: absolute;
   top: 0;
@@ -367,7 +371,7 @@ input[type="radio"] + label::before {
   border-radius: 50%
 }
 
-input[type="radio"]:checked + label::after {
+input[type="radio"]:checked+label::after {
   content: '';
   position: absolute;
   top: 4px;
@@ -378,7 +382,7 @@ input[type="radio"]:checked + label::after {
   border-radius: 50%
 }
 
-input[type="range"] + label {
+input[type="range"]+label {
   padding-left: .3em;
 }
 
@@ -388,12 +392,12 @@ input[type="range"] {
   padding: 0;
   border: 0;
   margin: 6px 0 6px 0;
+  margin-bottom: 1.6em;
   background: var(--color-accent);
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  transform: translateY(-4px);
-  margin-bottom: 1.6em
+  transform: translateY(-4px)
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -416,9 +420,9 @@ input[type="range"]:hover::-webkit-slider-thumb {
 
 summary {
   padding-top: 1em;
+  border-top: 1px solid var(--color-accent-2);
   margin: 1em 0;
-  cursor: pointer;
-  border-top: 1px solid var(--color-accent-2)
+  cursor: pointer
 }
 
 summary::-webkit-details-marker {
@@ -465,7 +469,7 @@ details[open] summary::before {
   padding: 1em;
   border-top: 1px solid var(--color-accent);
   background: var(--color-primary);
-  transition: bottom .5s cubic-bezier(.645,.045,.355,1)
+  transition: bottom .5s cubic-bezier(.645, .045, .355, 1)
 }
 
 #demand-shifter-body {
@@ -490,7 +494,7 @@ details[open] summary::before {
   color: var(--color-accent)
 }
 
-#demand-shifter button + button {
+#demand-shifter button+button {
   margin-left: 1em
 }
 
