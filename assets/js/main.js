@@ -172,8 +172,8 @@ const updateBackground = (aqi, pm25, pm10) => {
   const seaweedRGB = getCSSVariable('--seaweed');
   let [r, g, b] = seaweedRGB.split(',').map(Number);
 
-  r += (pm25 + pm10) * 0.3;
-  if (aqi > 3) r = Math.min(255, r + 90);
+  r += (pm25 + pm10) * 0.4;
+  if (aqi > 3) r = Math.min(255, r + 10);
 
   const currentHour = new Date().getHours();
   const isNight = currentHour >= 20 || currentHour < 5;
