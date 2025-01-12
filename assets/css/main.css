@@ -1,10 +1,13 @@
+/* Global Styles */
+
 :root {
   --seaweed: 66, 68, 57;
   --laurel: 214, 225, 213;
   --color-primary: rgb(var(--seaweed));
   --color-accent: rgb(var(--laurel));
   --color-accent-2: rgb(var(--laurel), .6);
-  --color-accent-3: rgb(var(--laurel), .1)
+  --color-accent-3: rgb(var(--laurel), .1);
+  --header-height: 141px
 }
 
 * {
@@ -22,43 +25,48 @@
 
 body {
   background: var(--color-primary);
-  transition: background-color .5s ease
+  transition: background-color .5s cubic-bezier(.645,.045,.355,1)
 }
+
+/* Typography */
 
 h1 {
   margin-top: 2em;
-  font-size: 3.2em;
+  margin-bottom: .2em;
+  font-size: 3.3em;
   line-height: 1.2
 }
 
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin-bottom: .6rem;
+  margin-bottom: .7em;
   font-size: 14.5px
 }
 
 h2 {
-  margin-top: 1em;
-  font-size: 2em;
+  margin-top: 1.6em;
+  margin-bottom: .4em;
+  font-size: 2.2em;
   line-height: 1
 }
 
-h1:not(:last-child),
-h2:not(:last-child) {
-  margin-bottom: .6rem
+h3 {
+  padding: .3em 0;
+  margin-top: 1em;
+  font-size: 1.4em
 }
 
-p~* {
+p:not(:first-of-type) + p:not(:first-of-type) {
   margin-top: 1em
 }
 
-p~p {
-  margin-top: .6em
+p {
+  margin-bottom: .7em
 }
 
 a {
-  transition: color .3s ease
+  transition: color .3s cubic-bezier(.645,.045,.355,1)
 }
 
 a:hover {
@@ -79,12 +87,13 @@ ol li::before {
 
 code,
 pre {
+  margin-bottom: 1.2em;
   font-family: "Lucida Console", Monaco, monospace;
   font-size: .9em
 }
 
 pre {
-  padding: 1em;
+  padding: .9em 1.2em;
   background: var(--color-accent-3);
   text-wrap: wrap
 }
@@ -94,13 +103,15 @@ sup {
   font-size: 11px
 }
 
+/* Headers and Footers */
+
 header {
   position: fixed;
   z-index: 3;
   width: 100%;
   padding: .6em 1em;
   border-bottom: 1px solid var(--color-accent);
-  transition: all .5s ease
+  transition: all .5s cubic-bezier(.645,.045,.355,1)
 }
 
 header>div {
@@ -140,6 +151,8 @@ footer img {
   margin: 6em 0 .4em 0
 }
 
+/* Sections */
+
 main {
   max-width: 650px;
   margin: 0 1em
@@ -154,8 +167,7 @@ section {
 }
 
 section:first-of-type {
-  margin-top: 141px
-    /* header height */
+  margin-top: var(--header-height)
 }
 
 section:has(.image-container img[src]),
@@ -165,8 +177,7 @@ section:only-of-type {
 }
 
 section:only-of-type h1 {
-  margin-top: calc(2em + 141px)
-    /* header height */
+  margin-top: calc(2em + var(--header-height))
 }
 
 hr {
@@ -177,11 +188,13 @@ hr {
   transform: translateX(-1em)
 }
 
+/* Images */
+
 .image-container {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-accent);
-  text-align: center;
+  text-align: center
 }
 
 .image-container img {
@@ -226,7 +239,7 @@ hr {
 .image-container .show-image {
   cursor: pointer;
   margin-bottom: 1em;
-  transition: color .3s ease;
+  transition: color .3s cubic-bezier(.645,.045,.355,1);
   text-align: center
 }
 
@@ -239,6 +252,8 @@ figure figcaption {
   text-align: center
 }
 
+/* Tables */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -248,7 +263,7 @@ table {
 th,
 td {
   padding: .5em;
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-accent-2);
   border-right: none;
   border-left: none
 }
@@ -258,19 +273,19 @@ caption {
   caption-side: top
 }
 
+/* Buttons */
+
 button,
 .button {
-  display: block;
   width: 100%;
   padding: .5em .9em;
   border: 1px solid var(--color-accent);
-  margin-top: 1em;
   background: none;
   color: var(--color-accent);
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color .2s ease, color .2s ease
+  transition: background-color .2s cubic-bezier(.645,.045,.355,1), color .2s cubic-bezier(.645,.045,.355,1)
 }
 
 button:hover,
@@ -279,32 +294,18 @@ button:hover,
   color: var(--color-primary)
 }
 
-button+button,
-button:first-of-type:not(:last-of-type) {
-  display: inline-block;
-  width: calc(50% - .5em)
-}
-
-button:first-of-type:not(:last-of-type) {
-  margin-right: 1em;
-  background: var(--color-accent);
-  color: var(--color-primary)
-}
-
-button:first-of-type:not(:last-of-type):hover {
-  background: var(--color-primary);
-  color: var(--color-accent)
-}
+/* Inputs */
 
 input,
 textarea {
   width: 100%;
-  padding: 0 0 .5em;
+  padding: .5em .9em;
   border: none;
   border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
-  border-bottom: 1px solid var(--color-accent);
-  margin-top: 1em;
+  border: 1px solid var(--color-accent);
   background: none;
   outline: none
 }
@@ -320,7 +321,8 @@ textarea::placeholder {
 }
 
 form:has(> input:only-of-type + button) {
-  display: flex
+  display: flex;
+  margin-top: 1em
 }
 
 form:has(> input:only-of-type + button)>input:only-of-type {
@@ -343,22 +345,97 @@ form:has(> input:only-of-type + button)>button:hover {
   color: var(--color-accent-2)
 }
 
-summary {
-  margin-bottom: 1em;
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  padding-left: 1.6em;
+  cursor: pointer;
+  margin-right: 1em;
+}
+
+input[type="radio"] + label::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%
+}
+
+input[type="radio"]:checked + label::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%
+}
+
+input[type="range"] + label {
+  padding-left: .3em;
+}
+
+input[type="range"] {
+  width: 73%;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  margin: 6px 0 6px 0;
+  background: var(--color-accent);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  transform: translateY(-4px);
+  margin-bottom: 1.6em
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-primary);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 50%;
   cursor: pointer
 }
 
+input[type="range"]:hover::-webkit-slider-thumb {
+  background: var(--color-accent)
+}
+
+/* Summary */
+
+summary {
+  padding-top: 1em;
+  margin: 1em 0;
+  cursor: pointer;
+  border-top: 1px solid var(--color-accent-2)
+}
+
 summary::-webkit-details-marker {
-  display: none
+  display: none;
 }
 
 summary::before {
-  content: "+"
+  content: "+";
+  position: absolute;
+  right: 0px
 }
 
 details[open] summary::before {
   content: "-"
 }
+
+/* References */
 
 #references {
   padding: .8em 1em;
@@ -378,6 +455,8 @@ details[open] summary::before {
   color: var(--color-accent)
 }
 
+/* Demand Shifter */
+
 #demand-shifter {
   position: fixed;
   z-index: 1;
@@ -386,7 +465,7 @@ details[open] summary::before {
   padding: 1em;
   border-top: 1px solid var(--color-accent);
   background: var(--color-primary);
-  transition: bottom .5s ease
+  transition: bottom .5s cubic-bezier(.645,.045,.355,1)
 }
 
 #demand-shifter-body {
@@ -397,15 +476,33 @@ details[open] summary::before {
   margin-top: 0
 }
 
+#demand-shifter button {
+  width: calc(50% - .5em)
+}
+
+#demand-shifter button:first-of-type {
+  background: var(--color-accent);
+  color: var(--color-primary)
+}
+
+#demand-shifter button:first-of-type:hover {
+  background: none;
+  color: var(--color-accent)
+}
+
+#demand-shifter button + button {
+  margin-left: 1em
+}
+
+/* Mobile */
+
 @media screen and (max-width: calc(650px + 2em)) {
   h1 {
-    font-size: 2.8em;
-    line-height: 1.2
+    font-size: 2.6em
   }
 
   h2 {
-    font-size: 1.8em;
-    line-height: 1
+    font-size: 1.8em
   }
 
   header>div,
@@ -424,8 +521,14 @@ details[open] summary::before {
   }
 
   section:first-of-type:not(:only-of-type) {
-    height: 100vh;
-    margin-top: 0;
+    min-height: 100svh;
+    margin-top: 0
+  }
+
+  @media (min-height: 100svh) {
+    section:first-of-type {
+      margin-top: 141px
+    }
   }
 
   .image-container:has(.background) {
