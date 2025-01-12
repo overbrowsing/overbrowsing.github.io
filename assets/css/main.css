@@ -62,7 +62,7 @@ p:not(:first-of-type) + p:not(:first-of-type) {
 }
 
 p {
-  margin-bottom: .7em
+  margin-bottom: 1em
 }
 
 a {
