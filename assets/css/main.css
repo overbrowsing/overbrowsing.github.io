@@ -57,11 +57,8 @@ h3 {
   padding: .3em 0;
   margin-top: 1em;
   font-size: 1.4em;
-  font-weight: 350
-}
-
-p:not(:first-of-type)+p:not(:first-of-type) {
-  margin-top: 1em
+  font-weight: 350;
+  line-height: 1
 }
 
 p:not(:last-child) {
