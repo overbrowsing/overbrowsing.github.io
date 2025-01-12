@@ -237,7 +237,7 @@ document.addEventListener('mousemove', e => {
     const imageUrl = target.src || window.getComputedStyle(target).backgroundImage.slice(5, -2).replace(/"/g, '');
     if (!fetchedImages.has(imageUrl)) fetchSize(imageUrl);
     imageSize.textContent = fetchedImages.get(imageUrl);
-    imageSize.style.display = 'inline-flex';
+    imageSize.style.display = 'inline-block';
   } else {
     imageSize.style.display = 'none';
   }
