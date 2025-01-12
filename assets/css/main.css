@@ -45,7 +45,7 @@ h1::before {
 }
 
 h2 {
-  margin-top: .8em;
+  margin-top: 1em;
   margin-bottom: .4em;
   font-size: 2.2em;
   line-height: 1
@@ -346,14 +346,14 @@ form:has(> input:only-of-type + button)>button:hover {
 }
 
 input[type="radio"] {
-  display: none;
+  display: none
 }
 
 input[type="radio"] + label {
   position: relative;
   padding-left: 1.6em;
   cursor: pointer;
-  margin-right: 1em;
+  margin-right: 1em
 }
 
 input[type="radio"] + label::before {
@@ -422,7 +422,7 @@ summary {
 }
 
 summary::-webkit-details-marker {
-  display: none;
+  display: none
 }
 
 summary::before {
