@@ -470,7 +470,7 @@ details[open] summary::before {
   position: fixed;
   right: 1em;
   bottom: calc(-41px + -1em);
-  padding: .6em 1em;
+  padding: .6em .9em;
   background: var(--color-accent);
   transition: bottom .5s cubic-bezier(.645, .045, .355, 1)
 }
