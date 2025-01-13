@@ -17,7 +17,7 @@
   margin: 0;
   color: var(--color-accent);
   font-family: -apple-system, Helvetica, sans-serif;
-  font-size: 14.5px;
+  font-size: 14px;
   font-weight: 300;
   line-height: 1.7;
   list-style: none;
@@ -104,8 +104,8 @@ pre {
 }
 
 sup {
-  margin: .1em .3em;
-  font-size: 11px
+  margin: 0 .2em;
+  font-size: 10px
 }
 
 /* Headers and Footers */
@@ -453,7 +453,7 @@ details[open] summary::before {
   overflow: hidden;
   max-width: 100%;
   color: var(--color-accent-2);
-  font-size: 11px;
+  font-size: 10px;
   text-overflow: ellipsis;
   white-space: nowrap
 }
