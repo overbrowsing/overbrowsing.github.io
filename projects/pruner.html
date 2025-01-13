@@ -41,14 +41,15 @@
 
   <main>
     <section>
-      <h1 data-heading="Pruner.js">Generate Responsive Images A Responsive Image Javascript Utility</h1>
-      <p>Inspired by the practice in horticulture—the targeted removal of unhealthy or unwanted</p>
+      <h1 data-heading="Tile Maker">Install Pruner.js in Your Project</h1>
+      <p>Start by uploading a base image and following the instructions to generate the tiles, HTML snippet, and script element for installing Pruner.js.</p>
       <div id="tile-maker"></div>
     </section>
     <section>
       <img class="background" data-src="/assets/media/pruner.png">
-      <h1 data-heading="Pruner.js">GitHub</h1>
-      <p>dwadwadwa</p>
+      <h1 data-heading="Pruner.js">Reducing Pixel Waste in Responsive Images</h1>
+      <p>Inspired by the practice in horticulture—the targeted removal of unhealthy or unwanted parts of a plant to promote healthier growth—pruning addresses the challenges of HTML5.1 responsive images, which rely on multiple versions for specific viewports but often result in errors, complex markup, and what we term pixel waste—image data extending beyond the visible aperture—by adapting to different viewport sizes.</p>
+      <p>Pruning uses a tile-based approach, where a base image is divided into smaller sections (tiles) that are dynamically assembled, like a jigsaw puzzle, based on the viewport size. This responsive image delivery method leverages viewport-based rendering (VBR) to load only the portions of image data to cover the visible aperture, ensuring efficient resource use. By calculating and serving tiled images optimised for a range of common viewport sizes, pruning eliminates the reliance on predefined breakpoints, offering a more adaptable solution for responsive image delivery.</p>
       <a class="button" href="https://github.com/overbrowsing/pruner" target="_blank">View on GitHub</a>
     </section>
   </main>
@@ -60,10 +61,9 @@
     </div>
     <div>
       <a href="https://withcabin.com/privacy/overbrowsing.com" target="_blank">We don't use cookies</a>
-    </div>
   </footer>
   
-  <script src="https://unpkg.com/pruner/dist/pruner-maker.js" type="module"></script>
+  <script src="https://unpkg.com/prunerjs/dist/tile-maker.js" type="module"></script>
   <script src="/assets/js/main.js"></script>
   <script async defer src="https://scripts.withcabin.com/hello.js"></script>
 </body>
