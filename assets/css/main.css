@@ -499,6 +499,9 @@ details[open] summary::before {
 /* Mobile */
 
 @media screen and (max-width: calc(650px + 2em)) {
+
+  /* Typography */
+
   h1 {
     font-size: 2.6em
   }
@@ -506,6 +509,12 @@ details[open] summary::before {
   h2 {
     font-size: 1.8em
   }
+
+  h3 {
+    font-size: 1em
+  }
+
+  /* Headers and Footers */
 
   header>div,
   footer {
@@ -522,6 +531,14 @@ details[open] summary::before {
     height: 43px
   }
 
+  #data-image,
+  #data-grid,
+  #data-aq {
+    display: none
+  }
+
+  /* Sections */
+
   section:first-of-type:not(:only-of-type) {
     min-height: 100svh;
     margin-top: 0
@@ -533,19 +550,17 @@ details[open] summary::before {
     }
   }
 
+  /* Images */
+
   .image-container:has(.background) {
     opacity: .1
   }
+
+  /* Demand Shifter */
 
   #demand-shifter {
     right: 0em;
     bottom: -42px;
     width: 100%
-  }
-
-  #data-image,
-  #data-grid,
-  #data-aq {
-    display: none
   }
 }
