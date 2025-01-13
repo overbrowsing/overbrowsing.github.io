@@ -67,10 +67,10 @@ async function setupImgs() {
 
   document.getElementById('show-all').onclick = () => {
     imgs.forEach(img => showImg(img, img.closest('.image-container')));
-    document.getElementById('demand-shifter').style.bottom = 'calc(-41px + -1em)';
+    document.getElementById('demand-shifter').style.bottom = 'calc(-42px + -1em)';
   };
 
-  document.getElementById('hide-notice').onclick = () => document.getElementById('demand-shifter').style.bottom = 'calc(-41px + -1em)';
+  document.getElementById('hide-notice').onclick = () => document.getElementById('demand-shifter').style.bottom = 'calc(-42px + -1em)';
 }
 
 function createPlace(c, i, t) {
