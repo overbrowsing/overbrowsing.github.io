@@ -469,7 +469,7 @@ details[open] summary::before {
 #demand-shifter {
   position: fixed;
   right: 1em;
-  bottom: calc(-41px + -1em);
+  bottom: calc(-42px + -1em);
   padding: .6em .9em;
   background: var(--color-accent);
   transition: bottom .5s cubic-bezier(.645, .045, .355, 1)
@@ -481,7 +481,8 @@ details[open] summary::before {
 }
 
 #demand-shifter-controls {
-  padding-left: 3em
+  padding-left: 2em;
+  float: right
 }
 
 #demand-shifter-controls button {
@@ -534,6 +535,12 @@ details[open] summary::before {
 
   .image-container:has(.background) {
     opacity: .1
+  }
+
+  #demand-shifter {
+    right: 0em;
+    bottom: -41px;
+    width: 100%
   }
 
   #data-image,
