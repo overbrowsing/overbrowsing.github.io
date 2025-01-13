@@ -388,7 +388,7 @@ input[type="radio"]:checked+label::after {
 }
 
 input[type="range"]+label {
-  padding-left: .3em;
+  padding-left: .3em
 }
 
 input[type="range"] {
