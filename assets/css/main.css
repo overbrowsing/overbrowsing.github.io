@@ -4,8 +4,9 @@
   --seaweed: 66, 68, 57;
   --laurel: 214, 225, 213;
   --color-primary: rgb(var(--seaweed));
+  --color-primary-2: rgb(var(--seaweed), .5);
   --color-accent: rgb(var(--laurel));
-  --color-accent-2: rgb(var(--laurel), .6);
+  --color-accent-2: rgb(var(--laurel), .5);
   --color-accent-3: rgb(var(--laurel), .1);
   --header-height: 141px
 }
@@ -467,39 +468,31 @@ details[open] summary::before {
 
 #demand-shifter {
   position: fixed;
-  z-index: 1;
-  bottom: -18em;
-  width: 100%;
-  padding: 1em;
-  border-top: 1px solid var(--color-accent);
-  background: var(--color-primary);
+  right: 1em;
+  bottom: calc(-41px + -1em);
+  padding: .6em 1em;
+  background: var(--color-accent);
   transition: bottom .5s cubic-bezier(.645, .045, .355, 1)
 }
 
-#demand-shifter-body {
-  max-width: 650px
-}
-
-#demand-shifter-body h2 {
-  margin-top: 0
-}
-
-#demand-shifter button {
-  width: calc(50% - .5em)
-}
-
-#demand-shifter button:first-of-type {
-  background: var(--color-accent);
+#demand-shifter * {
+  all: unset;
   color: var(--color-primary)
 }
 
-#demand-shifter button:first-of-type:hover {
-  background: none;
-  color: var(--color-accent)
+#demand-shifter-controls {
+  padding-left: 3em
 }
 
-#demand-shifter button+button {
-  margin-left: 1em
+#demand-shifter-controls button {
+  cursor: pointer;
+  margin-left: .7em
+}
+
+#demand-shifter a:hover,
+#demand-shifter button:hover {
+  color: var(--color-primary-2);
+  transition: color .2s cubic-bezier(.645, .045, .355, 1)
 }
 
 /* Mobile */

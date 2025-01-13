@@ -31,7 +31,7 @@ function getLevel(i) {
   const demandShifter = document.getElementById('demand-shifter');
 
   if (i === null || i >= 100) {
-    if (demandShifter) demandShifter.style.bottom = '0';
+    if (demandShifter) demandShifter.style.bottom = '1em';
   }
 
   if (i === null || (i >= 100 && i < 200)) return "Moderate";
@@ -42,7 +42,6 @@ function getLevel(i) {
 
 function updateDisplay(i) {
   const strainLevel = getLevel(i);
-  document.getElementById('data-strain').innerHTML = strainLevel.toLowerCase();
   document.getElementById('data-grid').innerHTML = `${strainLevel} grid intensity`;
 }
 
@@ -68,10 +67,10 @@ async function setupImgs() {
 
   document.getElementById('show-all').onclick = () => {
     imgs.forEach(img => showImg(img, img.closest('.image-container')));
-    document.getElementById('demand-shifter').style.bottom = '-18em';
+    document.getElementById('demand-shifter').style.bottom = 'calc(-41px + -1em)';
   };
 
-  document.getElementById('hide-notice').onclick = () => document.getElementById('demand-shifter').style.bottom = '-18em';
+  document.getElementById('hide-notice').onclick = () => document.getElementById('demand-shifter').style.bottom = 'calc(-41px + -1em)';
 }
 
 function createPlace(c, i, t) {
@@ -90,10 +89,10 @@ function showImg(i, c) {
 function createControlDiv() {
   document.body.innerHTML += `
     <div id="demand-shifter">
-      <div id="demand-shifter-body">
-        <h2>Low-Impact Mode Activated.</h2>
-        <p>The energy grid where you are is under <span id="data-strain"></span> strain. To help, images have been prevented from loading until you choose to view them. You can continue in low-impact mode or revert to the original appearance.</p>
-        <button id="hide-notice">Continue</button><button id="show-all">Revert</button>
+      <p>● Low-impact mode activated.</p>
+      <div id="demand-shifter-controls">
+        <button id="hide-notice">Continue</button>
+        <button id="show-all">Revert</button>
       </div>
     </div>
   `;
