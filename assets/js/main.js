@@ -89,7 +89,7 @@ function showImg(i, c) {
 function createControlDiv() {
   document.body.innerHTML += `
     <div id="demand-shifter">
-      <p>● Low-impact mode activated.</p>
+      <p>● Low-impact mode active.</p>
       <div id="demand-shifter-controls">
         <button id="hide-notice">Continue</button>
         <button id="show-all">Revert</button>
@@ -226,23 +226,25 @@ const fetchSize = async url => {
   fetchedImages.set(url, size ? `${(size / 1024).toFixed(2)} KB` : 'N/A');
 };
 
-document.addEventListener('mousemove', e => {
-  const target = [...document.querySelectorAll('img')].find(el =>
-    e.clientX >= el.getBoundingClientRect().left && e.clientX <= el.getBoundingClientRect().right &&
-    e.clientY >= el.getBoundingClientRect().top && e.clientY <= el.getBoundingClientRect().bottom
-  );
+if (!('ontouchstart' in window)) {
+  document.addEventListener('mousemove', e => {
+    const target = [...document.querySelectorAll('img')].find(el =>
+      e.clientX >= el.getBoundingClientRect().left && e.clientX <= el.getBoundingClientRect().right &&
+      e.clientY >= el.getBoundingClientRect().top && e.clientY <= el.getBoundingClientRect().bottom
+    );
 
-  if (target) {
-    const imageUrl = target.src || window.getComputedStyle(target).backgroundImage.slice(5, -2).replace(/"/g, '');
-    if (!fetchedImages.has(imageUrl)) fetchSize(imageUrl);
-    imageSize.textContent = fetchedImages.get(imageUrl);
-    imageSize.style.display = 'inline-block';
-  } else {
-    imageSize.style.display = 'none';
-  }
-});
+    if (target) {
+      const imageUrl = target.src || window.getComputedStyle(target).backgroundImage.slice(5, -2).replace(/"/g, '');
+      if (!fetchedImages.has(imageUrl)) fetchSize(imageUrl);
+      imageSize.textContent = fetchedImages.get(imageUrl);
+      imageSize.style.display = 'inline-block';
+    } else {
+      imageSize.style.display = 'none';
+    }
+  });
 
-document.addEventListener('mouseout', () => imageSize.style.display = 'none');
+  document.addEventListener('mouseout', () => imageSize.style.display = 'none');
+}
 
 // Beacon
 (async () => {
