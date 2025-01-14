@@ -19,7 +19,7 @@
   margin: 0;
   color: var(--color-accent);
   font-family: -apple-system, Helvetica, sans-serif;
-  font-size: 13.5px;
+  font-size: 14px;
   font-weight: 300;
   line-height: 1.7;
   list-style: none;
@@ -84,11 +84,14 @@ ol {
 }
 
 ol li {
-  counter-increment: list-counter
+  counter-increment: list-counter;
+
 }
 
 ol li::before {
-  content: counter(list-counter)". "
+  content: counter(list-counter)". ";
+  color: inherit;
+  font-size: inherit
 }
 
 code,
