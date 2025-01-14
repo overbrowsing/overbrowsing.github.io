@@ -31,7 +31,9 @@ function getLevel(i) {
   const demandShifter = document.getElementById('demand-shifter');
 
   if (i === null || i >= 100) {
-    if (demandShifter) demandShifter.style.bottom = '1em';
+    if (demandShifter) {
+      demandShifter.style.bottom = window.innerWidth <= 650 ? '0' : '1em';
+    }
   }
 
   if (i === null || (i >= 100 && i < 200)) return "Moderate";
