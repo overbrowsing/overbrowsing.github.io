@@ -8,16 +8,18 @@
   --color-accent: rgb(var(--laurel));
   --color-accent-2: rgb(var(--laurel), .5);
   --color-accent-3: rgb(var(--laurel), .1);
-  --header-height: 141px
+  --header-height: 120px
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   color: var(--color-accent);
   font-family: -apple-system, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 300;
   line-height: 1.7;
   list-style: none;
@@ -42,8 +44,7 @@ h1 {
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin-bottom: .7em;
-  font-size: 14px
+  margin-bottom: .7em
 }
 
 h2 {
@@ -537,7 +538,7 @@ details[open] summary::before {
 
   @media (min-height: 100svh) {
     section:first-of-type {
-      margin-top: 141px
+      margin-top: var(--header-height)
     }
   }
 
