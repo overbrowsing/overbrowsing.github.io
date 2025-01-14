@@ -250,8 +250,8 @@ if (!('ontouchstart' in window)) {
 
 // Beacon
 (async () => {
-  const { url, rating, co2 } = await (await fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`)).json();
-  document.getElementById('data-co2').innerHTML = `<a href="${url}" target="_blank">${rating.toUpperCase()} ${parseFloat(co2).toFixed(3)}g CO₂e</a>`;
+  const { url, co2 } = await (await fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`)).json();
+  document.getElementById('data-co2').innerHTML = `<a href="${url}" target="_blank">${parseFloat(co2).toFixed(3)}g CO₂e</a>`;
 })();
 
 // References
