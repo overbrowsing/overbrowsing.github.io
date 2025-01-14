@@ -43,7 +43,7 @@ h1::before {
   content: attr(data-heading);
   display: block;
   margin-bottom: .7em;
-  font-size: 14.5px
+  font-size: 14px
 }
 
 h2 {
