@@ -317,38 +317,27 @@ textarea {
   outline: none
 }
 
-input:focus,
-textarea:focus {
-  border-bottom: 1px solid var(--color-accent)
-}
-
 input::placeholder,
 textarea::placeholder {
   color: var(--color-accent-2)
 }
 
 form:has(> input:only-of-type + button) {
-  display: flex;
-  margin-top: 1em
+  display: flex
 }
 
 form:has(> input:only-of-type + button)>input:only-of-type {
-  width: 80%;
-  padding: .5em .9em;
-  border: 1px solid;
-  border-right: 0;
-  margin-top: 0
+  border-right: 0
 }
 
 form:has(> input:only-of-type + button)>button {
   width: auto;
   border-left: 0;
-  margin-top: 0;
   text-align: right
 }
 
 form:has(> input:only-of-type + button)>button:hover {
-  background: var(--color-primary);
+  background: none;
   color: var(--color-accent-2)
 }
 
