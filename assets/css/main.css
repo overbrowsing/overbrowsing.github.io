@@ -8,18 +8,16 @@
   --color-accent: rgb(var(--laurel));
   --color-accent-2: rgb(var(--laurel), .5);
   --color-accent-3: rgb(var(--laurel), .1);
-  --header-height: 120px
+  --header-height: 141px
 }
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   color: var(--color-accent);
   font-family: -apple-system, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 300;
   line-height: 1.7;
   list-style: none;
@@ -44,7 +42,8 @@ h1 {
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin-bottom: .6em
+  margin-bottom: .7em;
+  font-size: 14.5px
 }
 
 h2 {
@@ -84,14 +83,11 @@ ol {
 }
 
 ol li {
-  counter-increment: list-counter;
-
+  counter-increment: list-counter
 }
 
 ol li::before {
-  content: counter(list-counter)". ";
-  color: inherit;
-  font-size: inherit
+  content: counter(list-counter)". "
 }
 
 code,
@@ -108,8 +104,8 @@ pre {
 }
 
 sup {
-  margin: 0 .2em;
-  font-size: 10px
+  margin: .1em .3em;
+  font-size: 11px
 }
 
 /* Headers and Footers */
@@ -332,20 +328,27 @@ textarea::placeholder {
 }
 
 form:has(> input:only-of-type + button) {
-  display: flex
+  display: flex;
+  margin-top: 1em
 }
 
 form:has(> input:only-of-type + button)>input:only-of-type {
-  border-right: 0
+  width: 80%;
+  padding: .5em .9em;
+  border: 1px solid;
+  border-right: 0;
+  margin-top: 0
 }
 
 form:has(> input:only-of-type + button)>button {
+  width: auto;
   border-left: 0;
+  margin-top: 0;
   text-align: right
 }
 
 form:has(> input:only-of-type + button)>button:hover {
-  background: none;
+  background: var(--color-primary);
   color: var(--color-accent-2)
 }
 
@@ -450,7 +453,7 @@ details[open] summary::before {
   overflow: hidden;
   max-width: 100%;
   color: var(--color-accent-2);
-  font-size: 10px;
+  font-size: 11px;
   text-overflow: ellipsis;
   white-space: nowrap
 }
@@ -541,7 +544,7 @@ details[open] summary::before {
 
   @media (min-height: 100svh) {
     section:first-of-type {
-      margin-top: var(--header-height)
+      margin-top: 141px
     }
   }
 
@@ -549,6 +552,20 @@ details[open] summary::before {
 
   .image-container:has(.background) {
     opacity: .1
+  }
+
+  /* Buttons */
+
+  .button,
+  button {
+    text-align: left
+  }
+
+  button::after,
+  .button::after {
+    content: "→";
+    margin-left: .5em;
+    float: right
   }
 
   /* Demand Shifter */
