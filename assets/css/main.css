@@ -328,11 +328,11 @@ textarea::placeholder {
 }
 
 form:has(> input:only-of-type + button) {
-  display: flex;
+  display: flex
 }
 
 form:has(> input:only-of-type + button)>input:only-of-type {
-  border-right: 0;
+  border-right: 0
 }
 
 form:has(> input:only-of-type + button)>button {
