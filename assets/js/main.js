@@ -110,7 +110,7 @@ let lastScrollY = 0, activeParent = null;
 const updateHeader = () => {
   const scrollY = window.scrollY;
   header.style.background = scrollY >= 80 ? 'var(--color-primary)' : '';
-  header.style.top = scrollY < lastScrollY || scrollY < 50 ? '0' : '-6em';
+  header.style.top = scrollY < lastScrollY || scrollY < 50 ? '0' : '-80px';
 
   if (scrollY > lastScrollY && activeParent) {
     const nextSibling = activeParent?.nextElementSibling;
