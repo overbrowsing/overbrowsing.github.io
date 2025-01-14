@@ -556,8 +556,8 @@ details[open] summary::before {
 
   /* Buttons */
 
-  .button,
-  button {
+  button,
+  .button {
     text-align: left
   }
 
