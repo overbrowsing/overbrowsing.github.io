@@ -44,7 +44,7 @@ h1 {
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin-bottom: .7em
+  margin-bottom: .6em
 }
 
 h2 {
