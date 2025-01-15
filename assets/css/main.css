@@ -284,12 +284,12 @@ caption {
 
 button,
 .button {
-  width: 100%;
+  width: calc(50% - 1em);
   padding: .5em .9em;
   border: 1px solid var(--color-accent);
   background: none;
   color: var(--color-accent);
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   cursor: pointer;
   transition: background-color .2s cubic-bezier(.645, .045, .355, 1), color .2s cubic-bezier(.645, .045, .355, 1)
@@ -299,6 +299,18 @@ button:hover,
 .button:hover {
   background: var(--color-accent);
   color: var(--color-primary)
+}
+
+main button::after,
+main .button::after {
+  content: "→";
+  float: right;
+  transition: padding .2s cubic-bezier(.645, .045, .355, 1)
+}
+
+main button:hover::after,
+main .button:hover::after {
+  padding-right: .5em
 }
 
 /* Inputs */
@@ -331,9 +343,8 @@ form:has(> input:only-of-type + button)>input:only-of-type {
 }
 
 form:has(> input:only-of-type + button)>button {
-  width: auto;
-  border-left: 0;
-  text-align: right
+  width: 20%;
+  border-left: 0
 }
 
 form:has(> input:only-of-type + button)>button:hover {
@@ -541,20 +552,6 @@ details[open] summary::before {
 
   .image-container:has(.background) {
     opacity: .1
-  }
-
-  /* Buttons */
-
-  main button,
-  main .button {
-    text-align: left
-  }
-
-  main button::after,
-  main .button::after {
-    content: "→";
-    margin-left: .5em;
-    float: right
   }
 
   /* Demand Shifter */
