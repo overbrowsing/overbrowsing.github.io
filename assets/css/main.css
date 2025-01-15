@@ -554,6 +554,13 @@ details[open] summary::before {
     opacity: .1
   }
 
+  /* Buttons */
+
+  button,
+  .button {
+    width: 100%
+  }
+
   /* Demand Shifter */
 
   #demand-shifter {
