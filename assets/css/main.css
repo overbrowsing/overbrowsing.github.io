@@ -545,13 +545,13 @@ details[open] summary::before {
 
   /* Buttons */
 
-  button,
-  .button {
+  main button,
+  main .button {
     text-align: left
   }
 
-  button::after,
-  .button::after {
+  main button::after,
+  main .button::after {
     content: "→";
     margin-left: .5em;
     float: right
