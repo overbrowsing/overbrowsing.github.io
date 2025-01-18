@@ -121,12 +121,11 @@ header {
 
 header>div {
   display: grid;
-  grid: auto / repeat(3, 1fr)
+  grid: auto / repeat(2, 1fr)
 }
 
 header>div div:last-child,
 footer div:last-child {
-  grid-column: span 2;
   text-align: right
 }
 
@@ -149,7 +148,7 @@ header div:last-of-type ul li:not(:last-of-type)::after {
 
 footer {
   display: grid;
-  grid: auto / repeat(3, 1fr);
+  grid: auto / repeat(2, 1fr);
   padding: .6em 1em
 }
 
@@ -343,7 +342,7 @@ form:has(> input:only-of-type + button)>input:only-of-type {
 }
 
 form:has(> input:only-of-type + button)>button {
-  width: 20%;
+  width: 25%;
   border-left: 0
 }
 
@@ -435,7 +434,7 @@ summary::-webkit-details-marker {
 summary::before {
   content: "+";
   position: absolute;
-  right: 0px
+  right: 0
 }
 
 details[open] summary::before {
@@ -513,16 +512,6 @@ details[open] summary::before {
   }
 
   /* Headers and Footers */
-
-  header>div,
-  footer {
-    grid: auto / repeat(2, 1fr)
-  }
-
-  header>div div:last-child,
-  footer div:last-child {
-    grid-column: span 1
-  }
 
   footer img {
     width: 180px;
