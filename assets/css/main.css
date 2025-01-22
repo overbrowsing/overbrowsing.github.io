@@ -300,7 +300,6 @@ button:hover,
   color: var(--color-primary)
 }
 
-main button::after,
 main .button::after {
   content: "→";
   float: right;
@@ -342,7 +341,7 @@ form:has(> input:only-of-type + button)>input:only-of-type {
 }
 
 form:has(> input:only-of-type + button)>button {
-  width: 25%;
+  width: auto;
   border-left: 0
 }
 
@@ -496,6 +495,12 @@ details[open] summary::before {
 /* Mobile */
 
 @media screen and (max-width: calc(650px + 2em)) {
+
+  /* Global Styles */
+
+  * {
+    font-size: 12px
+  }
 
   /* Typography */
 
