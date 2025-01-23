@@ -13,11 +13,11 @@ async function fetchGrid() {
     let intensity = null;
 
     if (country === "GB") {
-      const { data } = await (await fetch('https://api.carbonintensity.org.uk/regional')).json();
+      const { data } = await fetch('https://api.carbonintensity.org.uk/regional').then(res => res.json());
       const regionData = data[0].regions.find(r => r.shortname === (region || 'GB')) || data[0].regions[0];
       intensity = regionData.intensity.forecast;
     } else {
-      const { carbon_intensity } = await (await fetch(`https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/${ip}`)).json();
+      const { carbon_intensity } = await fetch(`https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/${ip}`).then(res => res.json());
       intensity = carbon_intensity;
     }
 
@@ -29,13 +29,8 @@ async function fetchGrid() {
 
 function getLevel(i) {
   const demandShifter = document.getElementById('demand-shifter');
-
-  if (i === null || i >= 100) {
-    if (demandShifter) {
-      demandShifter.style.bottom = window.innerWidth <= 650 ? '0' : '1em';
-    }
-  }
-
+  if (i === null || i >= 100) demandShifter?.style.setProperty('bottom', window.innerWidth <= 650 ? '0' : '1em');
+  
   if (i === null || (i >= 100 && i < 200)) return "Moderate";
   if (i < 100) return "Low";
   if (i < 300) return "High";
@@ -43,55 +38,42 @@ function getLevel(i) {
 }
 
 function updateDisplay(i) {
-  const strainLevel = getLevel(i);
-  document.getElementById('data-grid').innerHTML = `${strainLevel} grid intensity`;
+  document.getElementById('data-grid').innerHTML = `${getLevel(i)} grid intensity`;
 }
 
 async function setupImgs() {
   const { intensity } = await fetchGrid();
   updateDisplay(intensity);
 
-  const imgs = document.querySelectorAll('img[data-src]');
-  imgs.forEach(img => {
+  document.querySelectorAll('img[data-src]').forEach(img => {
     const cont = document.createElement('div');
     cont.className = 'image-container';
-    cont.style.height = img.getAttribute('height') || '100%';
-    cont.style.width = img.getAttribute('width') || '100%';
+    cont.style.cssText = `height:${img.getAttribute('height') || '100%'}; width:${img.getAttribute('width') || '100%'}`;
     img.parentElement.insertBefore(cont, img);
 
-    if (intensity === null || intensity >= 100) {
-      createPlace(cont, img, img.alt);
-    } else {
-      showImg(img, cont);
-    }
+    if (intensity < 100) showImg(img, cont);
     cont.appendChild(img);
   });
 
   document.getElementById('show-all').onclick = () => {
-    imgs.forEach(img => showImg(img, img.closest('.image-container')));
+    document.querySelectorAll('img[data-src]').forEach(img => showImg(img, img.closest('.image-container')));
     document.getElementById('demand-shifter').style.bottom = 'calc(-42px + -1em)';
   };
 
-  document.getElementById('hide-notice').onclick = () => document.getElementById('demand-shifter').style.bottom = 'calc(-42px + -1em)';
-}
-
-function createPlace(c, i, t) {
-  c.innerHTML = `<h2 class="alt-text">${t}</h2><div class="show-image">Show Image</div>`;
-  c.querySelector('.show-image').onclick = () => showImg(i, c);
+  document.getElementById('hide-notice').onclick = () => {
+    document.getElementById('demand-shifter').style.bottom = 'calc(-42px + -1em)';
+  };
 }
 
 function showImg(i, c) {
   if (!i.src) i.src = i.getAttribute('data-src');
   i.style.display = 'block';
-  c.querySelector('.alt-text')?.remove();
-  c.querySelector('.show-image')?.remove();
-  c.style.border = 'none';
 }
 
 function createControlDiv() {
   document.body.innerHTML += `
     <div id="demand-shifter">
-      <p>● Low-impact mode active.</p>
+      <a href="/projects/website"><span>●</span> Low-impact mode active.</a>
       <div id="demand-shifter-controls">
         <button id="hide-notice">Continue</button>
         <button id="show-all">Revert</button>
@@ -139,61 +121,86 @@ document.addEventListener("DOMContentLoaded", () => {
 // Air Quality
 const apiKey = '767a7cce68ed2b3098d41e24364ec56c';
 
-const getCSSVariable = (variableName) => {
-  const style = getComputedStyle(document.documentElement);
-  return style.getPropertyValue(variableName).trim();
-};
-
-const capitalise = (str) => str.charAt(0).toUpperCase() + str.slice(1);
+const getCSSVariable = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
 const updateFavicon = (color) => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
-  const size = 32;
-  canvas.width = size;
-  canvas.height = size;
-  
+  canvas.width = canvas.height = 32;
   ctx.beginPath();
-  ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2, false);
+  ctx.arc(16, 16, 16, 0, Math.PI * 2);
   ctx.fillStyle = color;
   ctx.fill();
-  
-  const favicon = document.querySelector('link[rel="icon"]');
-  if (favicon) {
-    favicon.href = canvas.toDataURL();
-  } else {
-    const newFavicon = document.createElement('link');
-    newFavicon.rel = 'icon';
-    newFavicon.href = canvas.toDataURL();
-    document.head.appendChild(newFavicon);
-  }
+
+  const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.href = canvas.toDataURL();
+  document.head.appendChild(favicon);
 };
 
 const updateBackground = (aqi, pm25, pm10) => {
-  const seaweedRGB = getCSSVariable('--seaweed');
-  let [r, g, b] = seaweedRGB.split(',').map(Number);
-
-  r += (pm25 + pm10) * 0.4;
+  let [r, g, b] = getCSSVariable('--seaweed').split(',').map(Number);
+  r += (pm25 + pm10) * 0.7;
   if (aqi > 3) r = Math.min(255, r + 10);
 
-  const currentHour = new Date().getHours();
-  const isNight = currentHour >= 20 || currentHour < 5;
-
-  if (isNight) {
-    r = Math.max(0, r - 30);
-    g = Math.max(0, g - 30);
-    b = Math.max(0, b - 25);
-  }
+  const isNight = new Date().getHours() >= 19 || new Date().getHours() < 5;
+  if (isNight) [r, g, b] = [r - 30, g - 30, b - 25].map(val => Math.max(0, val));
 
   const rgb = `rgb(${Math.min(255, r)}, ${Math.min(255, g)}, ${Math.min(255, b)})`;
-
-  document.documentElement.style.setProperty('--color-primary', rgb);  
+  document.documentElement.style.setProperty('--color-primary', rgb);
   updateFavicon(rgb);
 };
 
 const getAirQualityLabel = (aqi) => {
   const labels = ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'];
   return labels[aqi - 1] || 'Unknown';
+};
+
+const createParticles = (pm25, pm10) => {
+  const canvas = document.createElement('canvas');
+  canvas.id = 'particle-canvas';
+  Object.assign(canvas.style, {
+    position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', pointerEvents: 'none', zIndex: '999'
+  });
+  document.body.appendChild(canvas);
+  
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  const totalParticles = Math.round(pm25 * 5 + pm10 * 5);
+
+  for (let i = 0; i < totalParticles; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: 1,
+      speedX: Math.random() * 0.5 - 0.25,
+      speedY: Math.random() * 0.5 - 0.25
+    });
+  }
+
+  const animateParticles = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+
+      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animateParticles);
+  };
+
+  animateParticles();
 };
 
 const updateAirQuality = async () => {
@@ -209,6 +216,7 @@ const updateAirQuality = async () => {
     const pm10 = airData.list[0].components['pm10'];
 
     updateBackground(aqi, pm25, pm10);
+    createParticles(pm25, pm10);
 
     const airQualityDiv = document.getElementById('data-aq');
     airQualityDiv.innerHTML = `${getAirQualityLabel(aqi)} air quality`;
@@ -281,17 +289,10 @@ document.addEventListener("DOMContentLoaded", () => {
 document.querySelectorAll('section').forEach(s => s.insertAdjacentHTML('afterend', '<hr>'));
 
 // Close Tab
-const originalTitle = document.title;
-const message = 'Close this tab to save energy.';
-let interval;
-
+let originalTitle = document.title, message = 'Close this tab to save energy.';
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
-    interval = setInterval(() => {
-      document.title = document.title === originalTitle ? message : originalTitle;
-    }, 3000);
-  } else {
-    clearInterval(interval);
-    document.title = originalTitle;
+    let i = setInterval(() => { document.title = document.title === originalTitle ? message : originalTitle; }, 3000);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) clearInterval(i); });
   }
 });
