@@ -32,9 +32,9 @@ body {
 /* Typography */
 
 h1 {
-  margin-top: 2em;
-  margin-bottom: .2em;
-  font-size: 3.3em;
+  margin-top: 1.2em;
+  margin-bottom: .3em;
+  font-size: 3em;
   font-weight: 350;
   line-height: 1.2
 }
@@ -47,17 +47,18 @@ h1::before {
 }
 
 h2 {
-  margin-top: 1em;
+  margin-top: 1.5em;
   margin-bottom: .4em;
-  font-size: 2.2em;
+  font-size: 2em;
   font-weight: 350;
   line-height: 1
 }
 
 h3 {
-  padding: .3em 0;
-  margin-top: 1em;
-  font-size: 1.4em;
+  padding: 1em 0 .7em 0;
+  border-top: 1px solid var(--color-accent-2);
+  margin-top: 1.4em;
+  font-size: 1.3em;
   font-weight: 350;
   line-height: 1
 }
@@ -141,8 +142,8 @@ header div ul {
 header nav:last-of-type ul li:not(:last-of-type)::after,
 header div:last-of-type ul li:not(:last-of-type)::after {
   content: "•";
-  margin: 0 .3em;
-  font-size: 19px;
+  margin: 0 .4em;
+  font-size: 18px;
   line-height: 1
 }
 
@@ -152,8 +153,7 @@ footer {
   padding: .6em 1em
 }
 
-footer img {
-  display: block;
+footer .image-container {
   margin: 6em 0 .4em 0
 }
 
@@ -182,6 +182,10 @@ section:only-of-type {
   margin-top: 0
 }
 
+section:has(.image-container .half) {
+  justify-content: flex-start
+}
+
 section:only-of-type h1 {
   margin-top: calc(2em + var(--header-height))
 }
@@ -196,22 +200,9 @@ hr {
 
 /* Images */
 
-.image-container {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--color-accent);
-  text-align: center
-}
-
 .image-container img {
   display: none;
-  width: 100%;
-  height: 100%;
   object-fit: cover
-}
-
-*~.image-container {
-  margin: 2em 0
 }
 
 .image-container:has(.background) {
@@ -220,7 +211,7 @@ hr {
   top: 0;
   left: -1em;
   border: 0;
-  opacity: .25;
+  opacity: .3;
   mix-blend-mode: lighten
 }
 
@@ -229,54 +220,28 @@ hr {
   height: 100%
 }
 
-.image-container:has(.background) .alt-text,
-.image-container:has(.background) .show-image {
-  display: none
+.image-container:has(.half) {
+  left: calc(50vw - 1em)
 }
 
-.image-container .alt-text {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  text-align: center
-}
-
-.image-container .show-image {
-  cursor: pointer;
-  margin-bottom: 1em;
-  transition: color .3s cubic-bezier(.645, .045, .355, 1);
-  text-align: center
-}
-
-.image-container .show-image:hover {
-  color: var(--color-accent-2)
-}
-
-figure figcaption {
-  margin: .5em 0;
-  text-align: center
+.image-container:has(.half) img {
+  width: 50vw
 }
 
 /* Tables */
 
 table {
   width: 100%;
+  border-bottom: 1px solid var(--color-accent-2);
+  margin-bottom: 1em;
   border-collapse: collapse;
   table-layout: fixed
 }
 
 th,
 td {
-  padding: .5em;
-  border: 1px solid var(--color-accent-2);
-  border-right: none;
-  border-left: none
-}
-
-caption {
-  margin: .5em 0;
-  caption-side: top
+  padding: .7em;
+  border-top: 1px solid var(--color-accent-2)
 }
 
 /* Buttons */
@@ -300,6 +265,7 @@ button:hover,
   color: var(--color-primary)
 }
 
+main button::after,
 main .button::after {
   content: "→";
   float: right;
@@ -340,9 +306,13 @@ form:has(> input:only-of-type + button)>input:only-of-type {
   border-right: 0
 }
 
-form:has(> input:only-of-type + button)>button {
+form:has(> input:only-of-type + button) button {
   width: auto;
   border-left: 0
+}
+
+form:has(> input:only-of-type + button) button::after {
+  content: ""
 }
 
 form:has(> input:only-of-type + button)>button:hover {
@@ -492,14 +462,18 @@ details[open] summary::before {
   transition: color .2s cubic-bezier(.645, .045, .355, 1)
 }
 
-/* Mobile */
+@media screen and (max-width: calc(1350px)) {
+  .image-container:has(.half) {
+    display: none
+  }
+}
 
 @media screen and (max-width: calc(650px + 2em)) {
 
   /* Global Styles */
 
   * {
-    font-size: 12px
+    font-size: 12.5px
   }
 
   /* Typography */
@@ -508,12 +482,12 @@ details[open] summary::before {
     font-size: 2.6em
   }
 
-  h2 {
-    font-size: 1.8em
+  h1::before {
+    font-size: 12.5px
   }
 
-  h3 {
-    font-size: 1em
+  h2 {
+    font-size: 1.8em
   }
 
   /* Headers and Footers */
@@ -531,21 +505,29 @@ details[open] summary::before {
 
   /* Sections */
 
+  section:has(.image-container .background:not(:first-of-type)) {
+    justify-content: flex-start;
+    min-height: none;
+  }
+
   section:first-of-type:not(:only-of-type) {
     min-height: 100svh;
     margin-top: 0
   }
 
-  @media (min-height: 100svh) {
-    section:first-of-type {
-      margin-top: var(--header-height)
-    }
-  }
-
   /* Images */
 
-  .image-container:has(.background) {
-    opacity: .1
+  section:not(:first-of-type) .image-container:has(img[src]) {
+    position: relative;
+    top: -1em;
+    left: -1em;
+    display: flex;
+    width: 100vw !important;
+    height: 100vw !important
+  }
+
+  .image-container:has(.half) img {
+    width: 100vw
   }
 
   /* Buttons */
