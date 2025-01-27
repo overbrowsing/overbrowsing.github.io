@@ -142,9 +142,7 @@ header div ul {
 header nav:last-of-type ul li:not(:last-of-type)::after,
 header div:last-of-type ul li:not(:last-of-type)::after {
   content: "•";
-  margin: 0 .4em;
-  font-size: 18px;
-  line-height: 1
+  margin: 0 .4em
 }
 
 footer {
