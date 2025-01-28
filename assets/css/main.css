@@ -505,7 +505,7 @@ details[open] summary::before {
 
   section:has(.image-container .background:not(:first-of-type)) {
     justify-content: flex-start;
-    min-height: none;
+    min-height: none
   }
 
   section:first-of-type:not(:only-of-type) {
