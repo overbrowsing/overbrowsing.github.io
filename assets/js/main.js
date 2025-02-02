@@ -169,7 +169,7 @@ const createParticles = (pm25, pm10) => {
   canvas.height = window.innerHeight;
 
   const particles = [];
-  const totalParticles = Math.round(pm25 * 5 + pm10 * 5);
+  const totalParticles = Math.round(pm25 * 2 + pm10 * 2);
 
   for (let i = 0; i < totalParticles; i++) {
     particles.push({
@@ -192,8 +192,8 @@ const createParticles = (pm25, pm10) => {
       if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
 
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI);
+      ctx.fillStyle = 'rgba(255, 255, 255)';
       ctx.fill();
     });
 
