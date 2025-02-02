@@ -1,4 +1,5 @@
 // Demand Shifter
+
 let ipDataCache = null;
 
 async function getIpData() {
@@ -86,6 +87,7 @@ createControlDiv();
 setupImgs();
 
 // Menu
+
 const header = document.querySelector('header');
 let lastScrollY = 0, activeParent = null;
 
@@ -109,6 +111,7 @@ window.addEventListener('scroll', updateHeader);
 updateHeader();
 
 // Nav
+
 document.addEventListener("DOMContentLoaded", () => {
   const title = document.title.replace(/• Overbrowsing/i, '').trim();
   if (title && title !== 'Overbrowsing') {
@@ -119,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Air Quality
+
 const apiKey = '767a7cce68ed2b3098d41e24364ec56c';
 
 const getCSSVariable = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -228,6 +232,7 @@ const updateAirQuality = async () => {
 updateAirQuality();
 
 // Image Size
+
 const imageSize = document.getElementById('data-image');
 const fetchedImages = new Map();
 
@@ -257,12 +262,14 @@ if (!('ontouchstart' in window)) {
 }
 
 // Beacon
+
 (async () => {
   const { url, co2 } = await (await fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`)).json();
   document.getElementById('data-co2').innerHTML = `<a href="${url}" target="_blank">${parseFloat(co2).toFixed(3)}g CO₂e</a>`;
 })();
 
 // References
+
 document.addEventListener("DOMContentLoaded", () => {
   const links = [...document.querySelectorAll('main a[target="_blank"]:not(.button):not([exclude])')];
   if (links.length) {
@@ -286,9 +293,11 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Sections
+
 document.querySelectorAll('section').forEach(s => s.insertAdjacentHTML('afterend', '<hr>'));
 
 // Close Tab
+
 let originalTitle = document.title, message = 'Close this tab to save energy.';
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {
