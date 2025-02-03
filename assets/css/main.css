@@ -112,8 +112,7 @@ sup {
 /* Headers and Footers */
 
 header {
-  position: fixed;
-  z-index: 3;
+  z-index: 1;
   width: 100%;
   padding: .6em 1em;
   border-bottom: 1px solid var(--color-accent);
@@ -206,7 +205,6 @@ img {
 
 .image-container:has(.background) {
   position: absolute;
-  z-index: -1;
   top: 0;
   left: -1em;
   border: 0;
