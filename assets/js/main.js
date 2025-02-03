@@ -89,6 +89,7 @@ setupImgs();
 // Menu
 
 const header = document.querySelector('header');
+header.style.position = 'fixed';
 let lastScrollY = 0, activeParent = null;
 
 const updateHeader = () => {
