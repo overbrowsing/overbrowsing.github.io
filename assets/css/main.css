@@ -198,9 +198,8 @@ hr {
 
 /* Images */
 
-.image-container img {
-  display: none;
-  object-fit: cover
+img {
+  display: none
 }
 
 .image-container:has(.background) {
@@ -215,7 +214,8 @@ hr {
 
 .image-container:has(.background) img {
   width: 100vw;
-  height: 100%
+  height: 100%;
+  object-fit: cover
 }
 
 .image-container:has(.half) {
