@@ -94,11 +94,11 @@ let lastScrollY = 0, activeParent = null;
 const updateHeader = () => {
   const scrollY = window.scrollY;
   header.style.background = scrollY >= 80 ? 'var(--color-primary)' : '';
-  header.style.top = scrollY < lastScrollY || scrollY < 50 ? '0' : '-85px';
+  header.style.top = (scrollY < lastScrollY || scrollY < 50) ? '0' : '-85px';
 
   if (scrollY > lastScrollY && activeParent) {
-    const nextSibling = activeParent?.nextElementSibling;
-    if (nextSibling) nextSibling.style.display = 'none';
+    const next = activeParent?.nextElementSibling;
+    if (next) next.style.display = 'none';
     items.forEach(p => p.style.display = 'block');
     back.style.display = 'none';
     activeParent = null;
@@ -115,9 +115,9 @@ updateHeader();
 document.addEventListener("DOMContentLoaded", () => {
   const title = document.title.replace(/• Overbrowsing/i, '').trim();
   if (title && title !== 'Overbrowsing') {
-    document.querySelector('header nav ul')?.append(Object.assign(document.createElement('li'), {
-      innerHTML: `<a href="${window.location.href}">${title}</a>`
-    }));
+    const li = document.createElement('li');
+    li.innerHTML = `<a href="${location.href}">${title}</a>`;
+    document.querySelector('header nav ul')?.append(li);
   }
 });
 
@@ -125,17 +125,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const apiKey = '767a7cce68ed2b3098d41e24364ec56c';
 
-const getCSSVariable = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const getVar = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 
 const updateFavicon = (color) => {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   canvas.width = canvas.height = 32;
-  ctx.beginPath();
   ctx.arc(16, 16, 16, 0, Math.PI * 2);
   ctx.fillStyle = color;
   ctx.fill();
-
+  
   const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
   favicon.rel = 'icon';
   favicon.href = canvas.toDataURL();
@@ -143,89 +142,69 @@ const updateFavicon = (color) => {
 };
 
 const updateBackground = (aqi, pm25, pm10) => {
-  let [r, g, b] = getCSSVariable('--seaweed').split(',').map(Number);
+  let [r, g, b] = getVar('--seaweed').split(',').map(Number);
   r += (pm25 + pm10) * 0.7;
   if (aqi > 3) r = Math.min(255, r + 10);
 
-  const isNight = new Date().getHours() >= 19 || new Date().getHours() < 5;
-  if (isNight) [r, g, b] = [r - 30, g - 30, b - 25].map(val => Math.max(0, val));
-
+  if (new Date().getHours() >= 19 || new Date().getHours() < 5) [r, g, b] = [r - 30, g - 30, b - 25].map(val => Math.max(0, val));
+  
   const rgb = `rgb(${Math.min(255, r)}, ${Math.min(255, g)}, ${Math.min(255, b)})`;
   document.documentElement.style.setProperty('--color-primary', rgb);
   updateFavicon(rgb);
 };
 
-const getAirQualityLabel = (aqi) => {
-  const labels = ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'];
-  return labels[aqi - 1] || 'Unknown';
-};
+const getAirQualityLabel = (aqi) => ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'][aqi - 1] || 'Unknown';
 
 const createParticles = (pm25, pm10) => {
   const canvas = document.createElement('canvas');
   canvas.id = 'particle-canvas';
-  Object.assign(canvas.style, {
-    position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', pointerEvents: 'none', zIndex: '999'
-  });
+  Object.assign(canvas.style, { position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', pointerEvents: 'none', zIndex: '999' });
   document.body.appendChild(canvas);
   
   const ctx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  const particles = [];
-  const totalParticles = Math.round(pm25 * 2 + pm10 * 2);
-
-  for (let i = 0; i < totalParticles; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: 1,
-      speedX: Math.random() * 0.5 - 0.25,
-      speedY: Math.random() * 0.5 - 0.25
-    });
-  }
+  const particles = Array.from({ length: Math.round(pm25 * 2 + pm10 * 2) }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: 1,
+    speedX: Math.random() * 0.5 - 0.25,
+    speedY: Math.random() * 0.5 - 0.25
+  }));
 
   const animateParticles = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     particles.forEach(p => {
       p.x += p.speedX;
       p.y += p.speedY;
-
       if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
       if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI);
       ctx.fillStyle = 'rgba(255, 255, 255)';
       ctx.fill();
     });
-
     requestAnimationFrame(animateParticles);
   };
-
   animateParticles();
 };
 
 const updateAirQuality = async () => {
   try {
-    const ipData = await getIpData();
-    const [lat, lon] = ipData.loc.split(',');
+    const { loc } = await getIpData();
+    const [lat, lon] = loc.split(',');
+    const airData = await (await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`)).json();
 
-    const airResponse = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`);
-    const airData = await airResponse.json();
+    const { aqi } = airData.list[0].main;
+    const { pm2_5, pm10 } = airData.list[0].components;
 
-    const aqi = airData.list[0].main.aqi;
-    const pm25 = airData.list[0].components['pm2_5'];
-    const pm10 = airData.list[0].components['pm10'];
+    updateBackground(aqi, pm2_5, pm10);
+    createParticles(pm2_5, pm10);
 
-    updateBackground(aqi, pm25, pm10);
-    createParticles(pm25, pm10);
-
-    const airQualityDiv = document.getElementById('data-aq');
-    airQualityDiv.innerHTML = `${getAirQualityLabel(aqi)} air quality`;
+    document.getElementById('data-aq').innerHTML = `${getAirQualityLabel(aqi)} air quality`;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error:', error);
   }
 };
 
@@ -275,26 +254,17 @@ document.addEventListener("DOMContentLoaded", () => {
   if (links.length) {
     const refs = links.map((link, i) => {
       const sup = document.createElement('sup');
-      sup.textContent = `${i + 1}`;
+      sup.textContent = i + 1;
       link.appendChild(sup);
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector('#references').scrollIntoView({ behavior: 'smooth' });
-      });
-      const url = link.href.replace(/^https?:\/\//, '');
-      return `<li><a href="${link.href}" target="_blank">${url}</a></li>`;
+      link.addEventListener('click', e => { e.preventDefault(); document.querySelector('#references').scrollIntoView({ behavior: 'smooth' }); });
+      return `<li><a href="${link.href}" target="_blank">${link.href.replace(/^https?:\/\//, '')}</a></li>`;
     }).join('');
-    
-    const referencesSection = document.createElement('div');
-    referencesSection.id = 'references';
-    referencesSection.innerHTML = `<ol>${refs}</ol>`;
-    document.querySelector('footer').insertAdjacentElement('afterend', referencesSection);
+    const refSection = document.createElement('div');
+    refSection.id = 'references';
+    refSection.innerHTML = `<ol>${refs}</ol>`;
+    document.querySelector('footer').insertAdjacentElement('afterend', refSection);
   }
 });
-
-// Sections
-
-document.querySelectorAll('section').forEach(s => s.insertAdjacentHTML('afterend', '<hr>'));
 
 // Close Tab
 
