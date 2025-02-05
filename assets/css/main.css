@@ -205,6 +205,7 @@ img {
 
 .image-container:has(.background) {
   position: absolute;
+  z-index: -1;
   top: 0;
   left: -1em;
   border: 0;
