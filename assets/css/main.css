@@ -314,6 +314,10 @@ form:has(> input:only-of-type + button) button::after {
   content: ""
 }
 
+form:has(> input:only-of-type + button) button:hover::after {
+  padding-right: 0
+}
+
 form:has(> input:only-of-type + button)>button:hover {
   background: none;
   color: var(--color-accent-2)
