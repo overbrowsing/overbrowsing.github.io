@@ -156,41 +156,6 @@ const updateBackground = (aqi, pm25, pm10) => {
 
 const getAirQualityLabel = (aqi) => ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'][aqi - 1] || 'Unknown';
 
-const createParticles = (pm25, pm10) => {
-  const canvas = document.createElement('canvas');
-  canvas.id = 'particle-canvas';
-  Object.assign(canvas.style, { position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', pointerEvents: 'none', zIndex: '999' });
-  document.body.appendChild(canvas);
-  
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  const particles = Array.from({ length: Math.round(pm25 * 2 + pm10 * 2) }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    size: 1,
-    speedX: Math.random() * 0.5 - 0.25,
-    speedY: Math.random() * 0.5 - 0.25
-  }));
-
-  const animateParticles = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => {
-      p.x += p.speedX;
-      p.y += p.speedY;
-      if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-      if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI);
-      ctx.fillStyle = 'rgba(255, 255, 255)';
-      ctx.fill();
-    });
-    requestAnimationFrame(animateParticles);
-  };
-  animateParticles();
-};
-
 const updateAirQuality = async () => {
   try {
     const { loc } = await getIpData();
@@ -201,7 +166,6 @@ const updateAirQuality = async () => {
     const { pm2_5, pm10 } = airData.list[0].components;
 
     updateBackground(aqi, pm2_5, pm10);
-    createParticles(pm2_5, pm10);
 
     document.getElementById('data-aq').innerHTML = `${getAirQualityLabel(aqi)} air quality`;
   } catch (error) {
