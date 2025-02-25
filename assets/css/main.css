@@ -24,6 +24,12 @@
   text-decoration: none
 }
 
+::selection,
+::-moz-selection {
+  background: var(--color-accent);
+  color: var(--color-primary)
+}
+
 body {
   background: var(--color-primary);
   transition: background-color .5s cubic-bezier(.645, .045, .355, 1)
