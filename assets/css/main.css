@@ -288,29 +288,29 @@ textarea {
   color: var(--color-accent-2)
 }
 
-form:has(> input:only-of-type + button) {
+form:has(input:only-of-type + button) {
   display: flex
 }
 
-form:has(> input:only-of-type + button) > input {
+form:has(input:only-of-type + button) input {
   border-right: 0
 }
 
-form:has(> input:only-of-type + button) button {
+form:has(input:only-of-type + button) button {
   width: auto;
   border-left: 0
 }
 
-form:has(> input:only-of-type + button) button:hover {
+form:has(input:only-of-type + button) button:hover {
   background: none;
   color: var(--color-accent-2)
 }
 
-form:has(> input:only-of-type + button) button::after {
+form:has(input:only-of-type + button) button::after {
   content: ""
 }
 
-form:has(> input:only-of-type + button) button:hover::after {
+form:has(input:only-of-type + button) button:hover::after {
   padding-right: 0
 }
 
