@@ -6,9 +6,7 @@
   --color-primary: rgb(var(--seaweed));
   --color-primary-2: rgb(var(--seaweed), .5);
   --color-accent: rgb(var(--laurel));
-  --color-accent-2: rgb(var(--laurel), .5);
-  --color-accent-3: rgb(var(--laurel), .1);
-  --header-height: 120px
+  --color-accent-2: rgb(var(--laurel), .5)
 }
 
 * {
@@ -22,12 +20,6 @@
   line-height: 1.7;
   list-style: none;
   text-decoration: none
-}
-
-::selection,
-::-moz-selection {
-  background: var(--color-accent);
-  color: var(--color-primary)
 }
 
 body {
@@ -106,7 +98,7 @@ pre {
 
 pre {
   padding: .9em 1.2em;
-  background: var(--color-accent-3);
+  background: rgb(var(--laurel), .1);
   text-wrap: wrap
 }
 
@@ -178,7 +170,7 @@ section {
 }
 
 section:first-of-type {
-  margin-top: var(--header-height)
+  margin-top: 120px
 }
 
 section:has(.image-container img[src]),
@@ -192,7 +184,7 @@ section:has(.image-container .half) {
 }
 
 section:only-of-type h1 {
-  margin-top: calc(2em + var(--header-height))
+  margin-top: calc(120px + 2em)
 }
 
 hr {
@@ -283,23 +275,16 @@ main .button:hover::after {
 }
 
 /* Inputs */
-
 input,
 textarea {
   width: 100%;
   padding: .5em .9em;
-  border: none;
-  border-radius: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   border: 1px solid var(--color-accent);
   background: none;
   outline: none
 }
 
-input::placeholder,
-textarea::placeholder {
+::placeholder {
   color: var(--color-accent-2)
 }
 
@@ -307,13 +292,18 @@ form:has(> input:only-of-type + button) {
   display: flex
 }
 
-form:has(> input:only-of-type + button)>input:only-of-type {
+form:has(> input:only-of-type + button) > input {
   border-right: 0
 }
 
 form:has(> input:only-of-type + button) button {
   width: auto;
   border-left: 0
+}
+
+form:has(> input:only-of-type + button) button:hover {
+  background: none;
+  color: var(--color-accent-2)
 }
 
 form:has(> input:only-of-type + button) button::after {
@@ -324,46 +314,38 @@ form:has(> input:only-of-type + button) button:hover::after {
   padding-right: 0
 }
 
-form:has(> input:only-of-type + button)>button:hover {
-  background: none;
-  color: var(--color-accent-2)
-}
-
 input[type="radio"] {
   display: none
 }
 
-input[type="radio"]+label {
+input[type="radio"] + label {
   position: relative;
   padding-left: 1.6em;
   cursor: pointer;
   margin-right: 1em
 }
 
-input[type="radio"]+label::before {
+input[type="radio"] + label::before,
+input[type="radio"]:checked + label::after {
   content: '';
   position: absolute;
+  border-radius: 50%
+}
+
+input[type="radio"] + label::before {
   top: 0;
   left: 0;
   width: 14px;
   height: 14px;
-  border: 1px solid var(--color-accent);
-  border-radius: 50%
+  border: 1px solid var(--color-accent)
 }
 
-input[type="radio"]:checked+label::after {
-  content: '';
-  position: absolute;
+input[type="radio"]:checked + label::after {
   top: 4px;
   left: 4px;
   width: 8px;
   height: 8px;
-  background: var(--color-accent);
-  border-radius: 50%
-}
-
-input[type="range"]+label {
-  padding-left: .3em
+  background: var(--color-accent)
 }
 
 input[type="range"] {
@@ -371,13 +353,14 @@ input[type="range"] {
   height: 1px;
   padding: 0;
   border: 0;
-  margin: 6px 0 6px 0;
-  margin-bottom: 1.6em;
+  margin: 6px 0 1.6em;
   background: var(--color-accent);
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   transform: translateY(-4px)
+}
+
+input[type="range"] + label {
+  padding-left: .3em
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -385,11 +368,9 @@ input[type="range"]::-webkit-slider-thumb {
   height: 16px;
   border: 1px solid var(--color-accent);
   background: var(--color-primary);
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   border-radius: 50%;
-  cursor: pointer
+  cursor: pointer;
+  appearance: none
 }
 
 input[type="range"]:hover::-webkit-slider-thumb {
