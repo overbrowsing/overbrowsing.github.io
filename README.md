@@ -5,7 +5,7 @@
 
 ## Overview
 
-A low-impact static website that prioritises sustainability by avoiding unnecessary frameworks and bloat.
+A static website that prioritises sustainability by avoiding unnecessary frameworks and bloat.
 
 ## Contributing
 
