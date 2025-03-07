@@ -47,7 +47,7 @@ const setupImgs = async () => {
 
 document.body.innerHTML += `
   <div id="demand-shifter">
-    <a href="/projects/website"><span>●</span> Low-impact mode active.</a>
+    <a href="/projects/website">Low-impact mode active.</a>
     <div id="demand-shifter-controls">
       <button id="hide-notice">Continue</button>
       <button id="show-all">Revert</button>
