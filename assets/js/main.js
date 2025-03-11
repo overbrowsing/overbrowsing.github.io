@@ -27,13 +27,15 @@ const updateDisplay = i => document.getElementById('data-grid').textContent = `$
 
 const showImg = (i, c) => (!i.src && (i.src = i.dataset.src), i.style.display = 'block');
 
+const prefersReducedData = window.matchMedia('(prefers-reduced-data: reduce)').matches;
+
 const setupImgs = async () => {
   let { intensity } = await fetchGrid();
   updateDisplay(intensity);
   document.querySelectorAll('img[data-src]').forEach(img => {
     let cont = Object.assign(document.createElement('div'), { className: 'image-container', style: `height:${img.height || '100%'}; width:${img.width || '100%'}` });
     img.parentElement.insertBefore(cont, img);
-    if (intensity < 100) showImg(img, cont);
+    if (intensity < 100 && !prefersReducedData) showImg(img, cont);
     cont.append(img);
   });
 
