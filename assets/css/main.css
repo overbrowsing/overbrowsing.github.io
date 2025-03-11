@@ -508,7 +508,7 @@ details[open] summary::before {
   /* Images */
 
   .image-container:has(.background) {
-    opacity: .2
+    opacity: .1
   }
 
   section:not(:first-of-type) .image-container:has(img[src]) {
@@ -516,12 +516,13 @@ details[open] summary::before {
     top: -1em;
     left: -1em;
     display: flex;
+    width: 100vw !important;
     aspect-ratio: 1;
     opacity: .5
   }
 
   .image-container:has(.half) img {
-    width: 100vw
+    width: 100%
   }
 
   /* Buttons */
