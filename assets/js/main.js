@@ -126,6 +126,13 @@ const updateAirQuality = async () => {
 
 updateAirQuality();
 
+// Website Carbon
+
+(async () => {
+  const { url, statistics: { co2: { renewable: { grams } } } } = await (await fetch(`https://api.websitecarbon.com/site?url=${encodeURIComponent(window.location.href)}`)).json();
+  document.getElementById('data-co2').innerHTML = `${grams.toFixed(3)}g CO₂e`;
+})();
+
 // Image Size
 
 const imageSizeDisplay = document.getElementById('data-image'), cachedImageSizes = new Map();
@@ -152,13 +159,6 @@ if (!('ontouchstart' in window)) {
 
   document.addEventListener('mouseout', () => imageSizeDisplay.style.display = 'none');
 }
-
-// Beacon
-
-(async () => {
-  const { url, co2 } = await (await fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`)).json();
-  document.getElementById('data-co2').innerHTML = `<a href="${url}" target="_blank">${parseFloat(co2).toFixed(3)}g CO₂e</a>`;
-})();
 
 // References
 
