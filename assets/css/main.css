@@ -4,9 +4,9 @@
   --seaweed: 66, 68, 57;
   --laurel: 214, 225, 213;
   --color-primary: rgb(var(--seaweed));
-  --color-primary-2: rgb(var(--seaweed), 0.5);
+  --color-primary-2: rgb(var(--seaweed), .5);
   --color-accent: rgb(var(--laurel));
-  --color-accent-2: rgb(var(--laurel), 0.5);
+  --color-accent-2: rgb(var(--laurel), .5)
 }
 
 * {
@@ -19,93 +19,93 @@
   font-weight: 300;
   line-height: 1.7;
   list-style: none;
-  text-decoration: none;
+  text-decoration: none
 }
 
 body {
-  background: var(--color-primary);
-  transition: background-color 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
   overflow-x: hidden;
+  background: var(--color-primary);
+  transition: background-color .5s cubic-bezier(.645, .045, .355, 1)
 }
 
 /* Typography */
 
 h1 {
   margin-top: 1.2em;
-  margin-bottom: 0.3em;
+  margin-bottom: .3em;
   font-size: 3em;
   font-weight: 350;
-  line-height: 1.2;
+  line-height: 1.2
 }
 
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin-bottom: 0.6em;
-  font-size: 14px;
+  margin-bottom: .6em;
+  font-size: 14px
 }
 
 h2 {
   margin-top: 1.5em;
-  margin-bottom: 0.4em;
+  margin-bottom: .4em;
   font-size: 2em;
   font-weight: 350;
-  line-height: 1;
+  line-height: 1
 }
 
 h3 {
-  padding: 1em 0 0.7em 0;
+  padding: 1em 0 .7em 0;
   border-top: 1px solid var(--color-accent-2);
   margin-top: 1.4em;
   font-size: 1.3em;
   font-weight: 350;
-  line-height: 1;
+  line-height: 1
 }
 
 p:not(:last-child) {
-  margin-bottom: 0.8em;
+  margin-bottom: .8em
 }
 
 p:last-of-type:not(:last-child) {
-  margin-bottom: 1em;
+  margin-bottom: 1em
 }
 
 a {
-  transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: color .3s cubic-bezier(.645, .045, .355, 1)
 }
 
 a:hover {
-  color: var(--color-accent-2);
+  color: var(--color-accent-2)
 }
 
 ol {
-  counter-reset: list-counter;
+  counter-reset: list-counter
 }
 
 ol li {
-  counter-increment: list-counter;
+  counter-increment: list-counter
 }
 
 ol li::before {
-  content: counter(list-counter) ". ";
+  content: counter(list-counter)". "
 }
 
 code,
 pre {
   margin-bottom: 1.2em;
   font-family: "Lucida Console", Monaco, monospace;
-  font-size: 0.9em;
+  font-size: .9em
 }
 
 pre {
-  padding: 0.9em 1.2em;
-  background: rgb(var(--laurel), 0.1);
-  text-wrap: wrap;
+  padding: .9em 1.2em;
+  background: rgb(var(--laurel), .1);
+  text-wrap: wrap
 }
 
 sup {
-  margin: 0.2em;
-  font-size: 70%;
+  margin: .2em;
+  font-size: 70%
 }
 
 /* Headers and Footers */
@@ -113,52 +113,53 @@ sup {
 header {
   z-index: 1;
   width: 100%;
-  padding: 0.6em 1em;
+  padding: .6em 1em;
   border-bottom: 1px solid var(--color-accent);
-  transition: all 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: all .5s cubic-bezier(.645, .045, .355, 1)
 }
 
-header > div {
+header>div {
   display: grid;
-  grid: auto / repeat(2, 1fr);
+  grid: auto / repeat(2, 1fr)
 }
 
-header > div div:last-child,
+header>div div:last-child,
 footer div:last-child {
-  text-align: right;
+  text-align: right
 }
 
 header menu {
-  margin-bottom: 1em;
+  margin-bottom: 1em
 }
 
 header nav ul,
 header div ul {
-  display: inline-flex;
+  display: inline-flex
 }
 
 header nav:last-of-type ul li:not(:last-of-type)::after,
 header div:last-of-type ul li:not(:last-of-type)::after {
   content: "•";
-  margin: 0 0.4em;
+  margin: 0 .4em
 }
 
 footer {
   display: grid;
   grid: auto / repeat(2, 1fr);
-  padding: 0.6em 1em;
-  border-top: 1px solid var(--color-accent);
+  padding: .6em 1em;
+  border-top: 1px solid var(--color-accent)
+
 }
 
 footer .image-container {
-  margin: 6em 0 0.4em 0;
+  margin: 6em 0 .4em 0
 }
 
 /* Sections */
 
 main {
   max-width: 650px;
-  margin: 0 1em;
+  margin: 0 1em
 }
 
 section {
@@ -166,25 +167,25 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1em 0;
+  padding: 1em 0
 }
 
 section:first-of-type {
-  margin-top: 120px;
+  margin-top: 120px
 }
 
 section:has(.image-container img[src]),
 section:only-of-type {
   min-height: 100svh;
-  margin-top: 0;
+  margin-top: 0
 }
 
 section:has(.image-container .half) {
-  justify-content: flex-start;
+  justify-content: flex-start
 }
 
 section:only-of-type h1 {
-  margin-top: calc(120px + 2em);
+  margin-top: calc(120px + 2em)
 }
 
 hr {
@@ -192,13 +193,13 @@ hr {
   height: 1px;
   border: 0;
   background: var(--color-accent);
-  transform: translateX(-1em);
+  transform: translateX(-1em)
 }
 
 /* Images */
 
 img {
-  display: none;
+  display: none
 }
 
 .image-container:has(.background) {
@@ -207,22 +208,22 @@ img {
   top: 0;
   left: -1em;
   border: 0;
-  opacity: 0.3;
-  mix-blend-mode: lighten;
+  opacity: .3;
+  mix-blend-mode: lighten
 }
 
 .image-container:has(.background) img {
   width: 100vw;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover
 }
 
 .image-container:has(.half) {
-  left: calc(50vw - 1em);
+  left: calc(50vw - 1em)
 }
 
 .image-container:has(.half) img {
-  width: 50vw;
+  width: 50vw
 }
 
 /* Tables */
@@ -232,13 +233,13 @@ table {
   border-bottom: 1px solid var(--color-accent-2);
   margin-bottom: 1em;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: fixed
 }
 
 th,
 td {
-  padding: 0.7em;
-  border-top: 1px solid var(--color-accent-2);
+  padding: .7em;
+  border-top: 1px solid var(--color-accent-2)
 }
 
 /* Buttons */
@@ -246,91 +247,90 @@ td {
 button,
 .button {
   width: calc(50% - 1em);
-  padding: 0.5em 0.9em;
+  padding: .5em .9em;
   border: 1px solid var(--color-accent);
   background: none;
   color: var(--color-accent);
   text-align: left;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
-    color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: background-color .2s cubic-bezier(.645, .045, .355, 1), color .2s cubic-bezier(.645, .045, .355, 1)
 }
 
 button:hover,
 .button:hover {
   background: var(--color-accent);
-  color: var(--color-primary);
+  color: var(--color-primary)
 }
 
 main button::after,
 main .button::after {
   content: "→";
   float: right;
-  transition: padding 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: padding .2s cubic-bezier(.645, .045, .355, 1)
 }
 
 main button:hover::after,
 main .button:hover::after {
-  padding-right: 0.5em;
+  padding-right: .5em
 }
 
 /* Inputs */
 input,
 textarea {
   width: 100%;
-  padding: 0.5em 0.9em;
+  padding: .5em .9em;
   border: 1px solid var(--color-accent);
   background: none;
-  outline: none;
+  outline: none
 }
 
 ::placeholder {
-  color: var(--color-accent-2);
+  color: var(--color-accent-2)
 }
 
 form:has(input:only-of-type + button) {
-  display: flex;
+  display: flex
 }
 
 form:has(input:only-of-type + button) input {
-  border-right: 0;
+  border-right: 0
 }
 
 form:has(input:only-of-type + button) button {
   width: auto;
-  border-left: 0;
+  border-left: 0
 }
 
 form:has(input:only-of-type + button) button:hover {
   background: none;
-  color: var(--color-accent-2);
+  color: var(--color-accent-2)
 }
 
 form:has(input:only-of-type + button) button::after {
-  content: "";
+  content: ""
 }
 
 form:has(input:only-of-type + button) button:hover::after {
-  padding-right: 0;
+  padding-right: 0
 }
 
 input[type="radio"] {
-  display: none;
+  display: none
 }
 
 input[type="radio"] + label {
   position: relative;
   padding-left: 1.6em;
   cursor: pointer;
-  margin-right: 1em;
+  margin-right: 1em
 }
 
 input[type="radio"] + label::before,
 input[type="radio"]:checked + label::after {
-  content: "";
+  content: '';
   position: absolute;
-  border-radius: 50%;
+  border-radius: 50%
 }
 
 input[type="radio"] + label::before {
@@ -338,7 +338,7 @@ input[type="radio"] + label::before {
   left: 0;
   width: 14px;
   height: 14px;
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-accent)
 }
 
 input[type="radio"]:checked + label::after {
@@ -346,7 +346,7 @@ input[type="radio"]:checked + label::after {
   left: 4px;
   width: 8px;
   height: 8px;
-  background: var(--color-accent);
+  background: var(--color-accent)
 }
 
 input[type="range"] {
@@ -357,11 +357,11 @@ input[type="range"] {
   margin: 6px 0 1.6em;
   background: var(--color-accent);
   appearance: none;
-  transform: translateY(-4px);
+  transform: translateY(-4px)
 }
 
 input[type="range"] + label {
-  padding-left: 0.3em;
+  padding-left: .3em
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -371,11 +371,11 @@ input[type="range"]::-webkit-slider-thumb {
   background: var(--color-primary);
   border-radius: 50%;
   cursor: pointer;
-  appearance: none;
+  appearance: none
 }
 
 input[type="range"]:hover::-webkit-slider-thumb {
-  background: var(--color-accent);
+  background: var(--color-accent)
 }
 
 /* Summary */
@@ -384,28 +384,28 @@ summary {
   padding-top: 1em;
   border-top: 1px solid var(--color-accent-2);
   margin: 1em 0;
-  cursor: pointer;
+  cursor: pointer
 }
 
 summary::-webkit-details-marker {
-  display: none;
+  display: none
 }
 
 summary::before {
   content: "+";
   position: absolute;
-  right: 0;
+  right: 0
 }
 
 details[open] summary::before {
-  content: "-";
+  content: "-"
 }
 
 /* References */
 
 #references {
-  padding: 0.8em 1em;
-  border-top: 1px solid var(--color-accent);
+  padding: .8em 1em;
+  border-top: 1px solid var(--color-accent)
 }
 
 #references * {
@@ -414,11 +414,11 @@ details[open] summary::before {
   color: var(--color-accent-2);
   font-size: 10px;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: nowrap
 }
 
 #references a:hover {
-  color: var(--color-accent);
+  color: var(--color-accent)
 }
 
 /* Demand Shifter */
@@ -427,88 +427,89 @@ details[open] summary::before {
   position: fixed;
   right: 1em;
   bottom: calc(-42px + -1em);
-  padding: 0.6em 0.9em;
+  padding: .6em .9em;
   background: var(--color-accent);
-  transition: bottom 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: bottom .5s cubic-bezier(.645, .045, .355, 1)
 }
 
 #demand-shifter * {
   all: unset;
-  color: var(--color-primary);
+  color: var(--color-primary)
 }
 
 #demand-shifter-controls {
   padding-left: 4em;
-  float: right;
+  float: right
 }
 
 #demand-shifter-controls button {
   cursor: pointer;
-  margin-left: 0.7em;
+  margin-left: .7em
 }
 
 #demand-shifter a:hover,
 #demand-shifter button:hover {
   color: var(--color-primary-2);
-  transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: color .2s cubic-bezier(.645, .045, .355, 1)
 }
 
 @media screen and (max-width: calc(1350px)) {
   .image-container:has(.half) {
-    display: none;
+    display: none
   }
 }
 
 @media screen and (max-width: calc(650px + 2em)) {
+
   /* Global Styles */
 
   * {
-    font-size: 12.5px;
+    font-size: 12.5px
   }
 
   /* Typography */
 
   h1 {
-    font-size: 2.6em;
+    font-size: 2.6em
   }
 
   h1::before {
-    font-size: 12.5px;
+    font-size: 12.5px
   }
 
   h2 {
-    font-size: 1.8em;
+    font-size: 1.8em
   }
 
   /* Headers and Footers */
 
   footer img {
     width: 180px;
-    height: 43px;
+    height: 43px
   }
 
   #data-image,
   #data-grid,
   #data-aq {
-    display: none;
+    display: none
   }
 
   /* Sections */
 
   section:has(.image-container .background:not(:first-of-type)) {
     justify-content: flex-start;
-    min-height: none;
+    min-height: none
   }
 
   section:first-of-type:not(:only-of-type) {
     min-height: 100svh;
-    margin-top: 0;
+    margin-top: 0
   }
 
   /* Images */
 
   .image-container:has(.background) {
-    opacity: 0.1;
+    opacity: .1
   }
 
   section:not(:first-of-type) .image-container:has(img[src]) {
@@ -518,18 +519,18 @@ details[open] summary::before {
     display: flex;
     width: 100vw !important;
     aspect-ratio: 1;
-    opacity: 0.5;
+    opacity: .5
   }
 
   .image-container:has(.half) img {
-    width: 100%;
+    width: 100%
   }
 
   /* Buttons */
 
   button,
   .button {
-    width: 100%;
+    width: 100%
   }
 
   /* Demand Shifter */
@@ -537,6 +538,6 @@ details[open] summary::before {
   #demand-shifter {
     right: 0em;
     bottom: -42px;
-    width: 100%;
+    width: 100%
   }
 }
