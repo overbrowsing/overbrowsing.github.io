@@ -96,37 +96,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const apiKey = '767a7cce68ed2b3098d41e24364ec56c'
 
-const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim()
 
 const updateFavicon = color => {
-  let canvas = Object.assign(document.createElement('canvas'), { width: 32, height: 32 }), ctx = canvas.getContext('2d');
-  ctx.arc(16, 16, 16, 0, Math.PI * 2); ctx.fillStyle = color; ctx.fill();
-  let favicon = document.querySelector('link[rel="icon"]') || Object.assign(document.createElement('link'), { rel: 'icon' });
-  favicon.href = canvas.toDataURL(); document.head.appendChild(favicon);
-};
+  let c = Object.assign(document.createElement('canvas'), { width: 32, height: 32 }), x = c.getContext('2d')
+  x.arc(16, 16, 16, 0, 7); x.fillStyle = color; x.fill()
+  let f = document.querySelector('link[rel="icon"]') || Object.assign(document.createElement('link'), { rel: 'icon' })
+  f.href = c.toDataURL(); document.head.appendChild(f)
+}
 
 const updateBackground = (aqi, pm25, pm10) => {
-  let [r, g, b] = getVar('--seaweed').split(',').map(Number);
-  r = Math.min(255, r + (pm25 + pm10) * 0.7 + (aqi > 3 ? 10 : 0));
-  if (new Date().getHours() >= 19 || new Date().getHours() < 5) [r, g, b] = [r - 30, g - 30, b - 25].map(v => Math.max(0, v));
-  document.documentElement.style.setProperty('--color-primary', `rgb(${r}, ${g}, ${b})`);
-  updateFavicon(`rgb(${r}, ${g}, ${b})`);
-};
+  let [r, g, b] = getVar('--seaweed').split(',').map(Number)
+  r = Math.min(255, r + (pm25 + pm10) * 0.7 + (aqi > 3 ? 10 : 0))
+  if ((h = new Date().getHours()) >= 19 || h < 5) [r, g, b] = [r - 30, g - 30, b - 25].map(v => Math.max(0, v))
+  document.documentElement.style.setProperty('--color-primary', `rgb(${r},${g},${b})`)
+  updateFavicon(`rgb(${r},${g},${b})`)
+}
 
-const getAirQualityLabel = aqi => ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'][aqi - 1] || 'Unknown';
+const getAirQualityLabel = aqi => ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'][aqi - 1] || 'Unknown'
 
 const updateAirQuality = async () => {
   try {
-    let { loc } = await getIpData(), [lat, lon] = loc.split(','), airData = await (await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`)).json();
-    let { aqi } = airData.list[0].main, { pm2_5, pm10 } = airData.list[0].components;
-    updateBackground(aqi, pm2_5, pm10);
-    document.getElementById('data-aq').textContent = `${getAirQualityLabel(aqi)} air quality`;
-  } catch (error) {
-    console.error('Error:', error);
-  }
-};
+    let { loc } = await getIpData(), [lat, lon] = loc.split(','), a = await (await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`)).json()
+    let { aqi } = a.list[0].main, { pm2_5, pm10 } = a.list[0].components
+    updateBackground(aqi, pm2_5, pm10)
+    document.getElementById('data-aq').textContent = `${getAirQualityLabel(aqi)} air quality`
+  } catch (e) { console.error('Error:', e) }
+}
 
-updateAirQuality();
+updateAirQuality()
 
 // Image Size
 
@@ -176,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Close Tab
 
-let originalTitle = document.title, message = 'Close this tab to save energy.', blink;
+let originalTitle = document.title, message = 'Close this tab!', blink;
 document.addEventListener('visibilitychange', () => {
   if (!document.hidden) return clearInterval(blink);
   blink = setInterval(() => document.title = document.title === originalTitle ? message : originalTitle, 3000);
