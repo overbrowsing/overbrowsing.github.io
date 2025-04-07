@@ -1,4 +1,4 @@
-// Demand Shifter
+// Grid Aware
 
 let ipDataCache = null;
 
