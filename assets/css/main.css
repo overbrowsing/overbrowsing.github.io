@@ -421,9 +421,9 @@ details[open] summary::before {
   color: var(--color-accent)
 }
 
-/* Demand Shifter */
+/* Grid Aware Mode */
 
-#demand-shifter {
+#grid-aware-mode {
   position: fixed;
   right: 1em;
   bottom: calc(-42px + -1em);
@@ -432,23 +432,27 @@ details[open] summary::before {
   transition: bottom .5s cubic-bezier(.645, .045, .355, 1)
 }
 
-#demand-shifter * {
+#grid-aware-mode * {
   all: unset;
   color: var(--color-primary)
 }
 
-#demand-shifter-controls {
+#grid-aware-mode a {
+  cursor: help
+}
+
+#grid-aware-mode-controls {
   padding-left: 4em;
   float: right
 }
 
-#demand-shifter-controls button {
+#grid-aware-mode-controls button {
   cursor: pointer;
   margin-left: .7em
 }
 
-#demand-shifter a:hover,
-#demand-shifter button:hover {
+#grid-aware-mode a:hover,
+#grid-aware-mode button:hover {
   color: var(--color-primary-2);
   transition: color .2s cubic-bezier(.645, .045, .355, 1)
 }

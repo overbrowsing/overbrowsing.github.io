@@ -1,4 +1,4 @@
-// Demand Shifter
+// Grid Aware Mode
 
 let ipDataCache = null;
 
@@ -16,14 +16,14 @@ const fetchGrid = async () => {
     }
     return { intensity, region: country === "GB" ? "GB" : "N/A" };
   } catch {
-    return { intensity: null, region: "N/A" };
+    return { intensity: "300", region: "N/A" };
   }
 };
 
-const getLevel = i => (document.getElementById('demand-shifter')?.style.setProperty('bottom', i === null || i >= 100 ? (innerWidth <= 650 ? '0' : '1em') : ''), 
-  i === null || i >= 100 && i < 200 ? "Moderate" : i < 100 ? "Low" : i < 300 ? "High" : "Very High");
+const getLevel = i => (document.getElementById('grid-aware-mode')?.style.setProperty('bottom', i === null || i >= 100 ? (innerWidth <= 650 ? '0' : '1em') : ''), 
+  i === null || i >= 100 && i < 200 ? "Moderate" : i < 100 ? "Low" : i < 300 ? "High" : "Very high");
 
-const updateDisplay = i => document.getElementById('data-grid').textContent = `${getLevel(i)} grid intensity`;
+const updateDisplay = i => document.getElementById('data-grid').textContent = `${getLevel(i)} local grid intensity`;
 
 const showImg = (i, c) => (!i.src && (i.src = i.dataset.src), i.style.display = 'block');
 
@@ -39,20 +39,20 @@ const setupImgs = async () => {
     cont.append(img);
   });
 
-  document.getElementById('show-all').onclick = () => {
+  document.getElementById('revert').onclick = () => {
     document.querySelectorAll('img[data-src]').forEach(img => showImg(img, img.closest('.image-container')));
-    document.getElementById('demand-shifter').style.bottom = 'calc(-42px + -1em)';
+    document.getElementById('grid-aware-mode').style.bottom = 'calc(-42px + -1em)';
   };
 
-  document.getElementById('hide-notice').onclick = () => document.getElementById('demand-shifter').style.bottom = 'calc(-42px + -1em)';
+  document.getElementById('continue').onclick = () => document.getElementById('grid-aware-mode').style.bottom = 'calc(-42px + -1em)';
 };
 
 document.body.innerHTML += `
-  <div id="demand-shifter">
-    <a href="/projects/website#:~:text=low-impact%20mode">Low-impact mode active</a>
-    <div id="demand-shifter-controls">
-      <button id="hide-notice">Continue</button>
-      <button id="show-all">Revert</button>
+  <div id="grid-aware-mode">
+    <a href="/projects/website#:~:text=grid-aware%20mode">Grid-aware mode active</a>
+    <div id="grid-aware-mode-controls">
+      <button id="continue">Continue</button>
+      <button id="revert">Revert</button>
     </div>
   </div>
 `;
