@@ -1,181 +1,261 @@
-// Grid Aware Mode
+/* ------------------- Grid-aware mode ------------------- */
 
-let ipDataCache = null;
+let ipData;
 
-const getIpData = async () => ipDataCache ??= await (await fetch('https://ipinfo.io/json')).json();
-
-const fetchGrid = async () => {
+const getIntensity = async () => {
   try {
-    let { country, region, ip } = await getIpData(), intensity;
+    ipData ||= await fetch("https://ipinfo.io/json").then(r => r.json());
+
+    const { country, region, ip } = ipData;
+
     if (country === "GB") {
-      let { data } = await (await fetch('https://api.carbonintensity.org.uk/regional')).json();
-      intensity = (data[0].regions.find(r => r.shortname === (region || 'GB')) || data[0].regions[0]).intensity.forecast;
-    } else {
-      let { carbon_intensity } = await (await fetch(`https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/${ip}`)).json();
-      intensity = carbon_intensity;
+      const res = await fetch("https://api.carbonintensity.org.uk/regional")
+        .then(r => r.json());
+
+      const regions = res.data[0].regions;
+      const match =
+        regions.find(r => r.shortname === (region || "GB")) || regions[0];
+
+      return match.intensity.forecast;
     }
-    return { intensity, region: country === "GB" ? "GB" : "N/A" };
+
+    const res = await fetch(
+      `https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/${ip}`
+    ).then(r => r.json());
+
+    return res.carbon_intensity;
+
   } catch {
-    return { intensity: "300", region: "N/A" };
+    return 300;
   }
 };
 
-const getLevel = i => (document.getElementById('grid-aware-mode')?.style.setProperty('bottom', i === null || i >= 100 ? (innerWidth <= 650 ? '0' : '1em') : ''), 
-  i === null || i >= 100 && i < 200 ? "Moderate" : i < 100 ? "Low" : i < 300 ? "High" : "Very high");
-
-const updateDisplay = i => document.getElementById('data-grid').textContent = `${getLevel(i)} local grid intensity`;
-
-const showImg = (i, c) => (!i.src && (i.src = i.dataset.src), i.style.display = 'block');
-
-const prefersReducedData = window.matchMedia('(prefers-reduced-data: reduce)').matches;
-
-const setupImgs = async () => {
-  let { intensity } = await fetchGrid();
-  updateDisplay(intensity);
-  document.querySelectorAll('img[data-src]').forEach(img => {
-    let cont = Object.assign(document.createElement('div'), { className: 'image-container', style: `height:${img.height || '100%'}; width:${img.width || '100%'}` });
-    img.parentElement.insertBefore(cont, img);
-    if (intensity < 100 && !prefersReducedData) showImg(img, cont);
-    cont.append(img);
-  });
-
-  document.getElementById('revert').onclick = () => {
-    document.querySelectorAll('img[data-src]').forEach(img => showImg(img, img.closest('.image-container')));
-    document.getElementById('grid-aware-mode').style.bottom = 'calc(-42px + -1em)';
-  };
-
-  document.getElementById('continue').onclick = () => document.getElementById('grid-aware-mode').style.bottom = 'calc(-42px + -1em)';
+const getLabel = intensity => {
+  if (intensity < 100) return "Low";
+  if (intensity < 200) return "Moderate";
+  if (intensity < 300) return "High";
+                       return "Very high";
 };
 
-document.body.innerHTML += `
-  <div id="grid-aware-mode">
-    <a href="/projects/website#:~:text=grid-aware%20mode">Grid-aware mode active</a>
+const setBannerPosition = intensity => {
+  const el = document.getElementById("grid-aware-mode");
+
+  if (!el) return;
+
+  el.style.bottom =
+    intensity >= 100
+      ? (innerWidth <= 650 ? "0" : "1em")
+      : "";
+};
+
+const renderIntensity = intensity => {
+  document.getElementById("data-grid").textContent =
+    `${getLabel(intensity)} local grid intensity`;
+
+  setBannerPosition(intensity);
+};
+
+const revealImage = img => {
+  if (!img.src) img.src = img.dataset.src;
+  img.style.display = "block";
+};
+
+const setupImages = (intensity, reducedDataMode) => {
+  document.querySelectorAll("img[data-src]").forEach(img => {
+    const container = document.createElement("div");
+    container.className = "image-container";
+
+    container.style.height = img.height || "100%";
+    container.style.width = img.width || "100%";
+
+    img.before(container);
+    container.append(img);
+
+    const allowLoad = intensity < 100 && !reducedDataMode;
+
+    if (allowLoad) revealImage(img);
+  });
+};
+
+const setupControls = () => {
+  const hide = () =>
+    (document.getElementById("grid-aware-mode").style.bottom =
+      "calc(-40px - 1em)");
+
+  document.getElementById("continue").onclick = hide;
+
+  document.getElementById("revert").onclick = () => {
+    document.querySelectorAll("img[data-src]").forEach(revealImage);
+    hide();
+  };
+};
+
+const init = async () => {
+  const intensity = await getIntensity();
+
+  renderIntensity(intensity);
+
+  const reducedDataMode = matchMedia(
+    "(prefers-reduced-data: reduce)"
+  ).matches;
+
+  setupImages(intensity, reducedDataMode);
+  setupControls();
+};
+
+document.body.insertAdjacentHTML(
+  "beforeend",
+  `<div id="grid-aware-mode">
+    <a href="/projects/website#:~:text=Grid-aware%20mode">Grid-aware mode active</a>
     <div id="grid-aware-mode-controls">
       <button id="continue">Continue</button>
       <button id="revert">Revert</button>
     </div>
-  </div>
-`;
+  </div>`
+);
 
-setupImgs();
+init();
 
-// Menu
+/* ------------------- Navigation ------------------- */
 
-const header = document.querySelector('header');
-header.style.position = 'fixed';
-let lastScrollY = 0, activeParent = null;
+const header = document.querySelector("header");
+header.style.position = "fixed";
+
+let lastY = 0;
+let activeParent = null;
 
 const updateHeader = () => {
-  const scrollY = window.scrollY;
-  header.style.background = scrollY >= 80 ? 'var(--color-primary)' : '';
-  header.style.top = (scrollY < lastScrollY || scrollY < 50) ? '0' : '-85px';
+  const y = scrollY;
 
-  if (scrollY > lastScrollY && activeParent) {
-    const next = activeParent?.nextElementSibling;
-    if (next) next.style.display = 'none';
-    items.forEach(p => p.style.display = 'block');
-    back.style.display = 'none';
+  header.style.background = y >= 80 ? "var(--color-primary)" : "";
+  header.style.top = y < lastY || y < 50 ? "0" : "-80px";
+
+  if (y > lastY && activeParent) {
+    const next = activeParent.nextElementSibling;
+    if (next) next.style.display = "none";
+
+    if (typeof items !== "undefined") {
+      items.forEach(i => (i.style.display = "block"));
+    }
+
+    if (typeof back !== "undefined") {
+      back.style.display = "none";
+    }
+
     activeParent = null;
   }
 
-  lastScrollY = scrollY;
+  lastY = y;
 };
 
-window.addEventListener('scroll', updateHeader);
+addEventListener("scroll", updateHeader);
 updateHeader();
 
-// Nav
+/* ------------------- Breadcrumbs ------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const title = document.title.replace(/• Overbrowsing/i, '').trim();
-  if (title && title !== 'Overbrowsing')  
-    document.querySelector('header nav ul')?.append(Object.assign(document.createElement('li'), { innerHTML: `<a href="${location.href}">${title}</a>` }));
+  const title = document.title.replace(/• Overbrowsing/i, "").trim();
+
+  if (!title || title === "Overbrowsing") return;
+
+  const link = document.createElement("li");
+  link.innerHTML = `<a href="${location.href}">${title}</a>`;
+
+  document.querySelector("header nav ul")?.append(link);
 });
 
-// Air Quality
+/* ------------------- Image size ------------------- */
 
-const apiKey = '767a7cce68ed2b3098d41e24364ec56c'
+const display = document.getElementById("data-image");
+const cache = new Map();
 
-const getVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim()
+const getSize = async url => {
+  const res = await fetch(url, { method: "HEAD" });
+  const bytes = res.headers.get("Content-Length");
 
-const updateFavicon = color => {
-  let c = Object.assign(document.createElement('canvas'), { width: 32, height: 32 }), x = c.getContext('2d')
-  x.arc(16, 16, 16, 0, 7); x.fillStyle = color; x.fill()
-  let f = document.querySelector('link[rel="icon"]') || Object.assign(document.createElement('link'), { rel: 'icon' })
-  f.href = c.toDataURL(); document.head.appendChild(f)
-}
-
-const updateBackground = (aqi, pm25, pm10) => {
-  let [r, g, b] = getVar('--seaweed').split(',').map(Number)
-  r = Math.min(255, r + (pm25 + pm10) * 0.7 + (aqi > 3 ? 10 : 0))
-  if ((h = new Date().getHours()) >= 19 || h < 5) [r, g, b] = [r - 30, g - 30, b - 25].map(v => Math.max(0, v))
-  document.documentElement.style.setProperty('--color-primary', `rgb(${r},${g},${b})`)
-  updateFavicon(`rgb(${r},${g},${b})`)
-}
-
-const getAirQualityLabel = aqi => ['Good', 'Fair', 'Moderate', 'Poor', 'Very Poor'][aqi - 1] || 'Unknown'
-
-const updateAirQuality = async () => {
-  try {
-    let { loc } = await getIpData(), [lat, lon] = loc.split(','), a = await (await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`)).json()
-    let { aqi } = a.list[0].main, { pm2_5, pm10 } = a.list[0].components
-    updateBackground(aqi, pm2_5, pm10)
-    document.getElementById('data-aq').textContent = `${getAirQualityLabel(aqi)} air quality`
-  } catch (e) { console.error('Error:', e) }
-}
-
-updateAirQuality()
-
-// Image Size
-
-const imageSizeDisplay = document.getElementById('data-image'), cachedImageSizes = new Map();
-
-const getImageSize = async url => {
-  const res = await fetch(url, { method: 'HEAD' });
-  cachedImageSizes.set(url, res.headers.get('Content-Length') ? `${(res.headers.get('Content-Length') / 1024).toFixed(2)} KB` : 'N/A');
+  cache.set(
+    url,
+    bytes ? `${(bytes / 1024).toFixed(2)} KB` : "N/A"
+  );
 };
 
-if (!('ontouchstart' in window)) {
-  document.addEventListener('mousemove', e => {
-    const hoveredImage = [...document.querySelectorAll('img')].find(img => {
-      let r = img.getBoundingClientRect();
-      return e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+if (!("ontouchstart" in window)) {
+  document.addEventListener("mousemove", e => {
+    const img = [...document.querySelectorAll("img")].find(i => {
+      const r = i.getBoundingClientRect();
+      return (
+        e.clientX >= r.left &&
+        e.clientX <= r.right &&
+        e.clientY >= r.top &&
+        e.clientY <= r.bottom
+      );
     });
 
-    if (hoveredImage) {
-      let url = hoveredImage.src || getComputedStyle(hoveredImage).backgroundImage.slice(5, -2).replace(/"/g, '');
-      if (!cachedImageSizes.has(url)) getImageSize(url);
-      imageSizeDisplay.textContent = cachedImageSizes.get(url);
-      imageSizeDisplay.style.display = 'inline-block';
-    } else imageSizeDisplay.style.display = 'none';
+    if (!img) {
+      display.style.display = "none";
+      return;
+    }
+
+    const url =
+      img.src ||
+      getComputedStyle(img).backgroundImage.slice(5, -2).replace(/"/g, "");
+
+    if (!cache.has(url)) getSize(url);
+
+    display.textContent = cache.get(url);
+    display.style.display = "inline-block";
   });
 
-  document.addEventListener('mouseout', () => imageSizeDisplay.style.display = 'none');
+  document.addEventListener("mouseout", () => {
+    display.style.display = "none";
+  });
 }
 
-// Beacon
+/* ------------------- Emissions (Beacon) ------------------- */
 
 (async () => {
-  const { url, co2 } = await (await fetch(`https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`)).json();
-  document.getElementById('data-co2').innerHTML = `<a href="${url}" target="_blank">${parseFloat(co2).toFixed(3)}g CO₂e</a>`;
+  const response = await fetch(
+    `https://digitalbeacon.co/badge?url=${encodeURIComponent(location.href)}`
+  );
+
+  const { url, co2 } = await response.json();
+  
+  const value = Number(co2).toFixed(3);
+
+  document.getElementById("data-co2").innerHTML =
+    `<a href="${url}" target="_blank">${value}g CO₂e</a>`;
 })();
 
-// References
+/* ------------------- References ------------------- */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const links = [...document.querySelectorAll('main a[target="_blank"]:not(.button):not([exclude])')];
+  const links = [
+    ...document.querySelectorAll(
+      'main a[target="_blank"]:not(.button):not([exclude])'
+    )
+  ];
+
   if (!links.length) return;
-  document.querySelector('footer').insertAdjacentHTML('afterend', `<div id="references"><ol>${links.map((link, i) => {
-    link.insertAdjacentHTML('beforeend', `<sup>${i + 1}</sup>`);
-    link.onclick = e => (e.preventDefault(), document.querySelector('#references').scrollIntoView({ behavior: 'smooth' }));
-    return `<li><a href="${link.href}" target="_blank">${link.href.replace(/^https?:\/\//, '')}</a></li>`;
-  }).join('')}</ol></div>`);
-});
 
-// Close Tab
+  links.forEach((link, i) => {
+    link.insertAdjacentHTML("beforeend", `<sup>${i + 1}</sup>`);
 
-let originalTitle = document.title, message = 'Close this tab!', blink;
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) return clearInterval(blink);
-  blink = setInterval(() => document.title = document.title === originalTitle ? message : originalTitle, 3000);
+    link.onclick = e => {
+      e.preventDefault();
+      document
+        .querySelector("#references")
+        .scrollIntoView({ behavior: "smooth" });
+    };
+  });
+
+  const html = links
+    .map(link => {
+      const clean = link.href.replace(/^https?:\/\//, "");
+      return `<li><a href="${link.href}" target="_blank">${clean}</a></li>`;
+    })
+    .join("");
+
+  document
+    .querySelector("footer")
+    .insertAdjacentHTML("afterend", `<div id="references"><ol>${html}</ol></div>`);
 });
