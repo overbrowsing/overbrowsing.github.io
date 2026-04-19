@@ -214,16 +214,14 @@ if (!("ontouchstart" in window)) {
 /* ------------------- Emissions (Beacon) ------------------- */
 
 (async () => {
-  const response = await fetch(
-    `https://digitalbeacon.co/badge?url=${encodeURIComponent(location.href)}`
-  );
+  const apiUrl = `https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`;
 
-  const { url, co2 } = await response.json();
-  
-  const value = Number(co2).toFixed(3);
+  const { url, co2 } = await (await fetch(apiUrl)).json();
+
+  const value = parseFloat(co2);
 
   document.getElementById("data-co2").innerHTML =
-    `<a href="${url}" target="_blank">${value}g CO₂e</a>`;
+    `<a href="${url}" target="_blank">${Number.isFinite(value) ? value.toFixed(3) : "N/A"}g CO₂e</a>`;
 })();
 
 /* ------------------- References ------------------- */
