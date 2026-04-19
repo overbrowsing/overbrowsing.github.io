@@ -17,7 +17,7 @@
   font-family: -apple-system, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 300;
-  line-height: 1.7;
+  line-height: 1.6;
   list-style: none;
   text-decoration: none
 }
@@ -31,8 +31,7 @@ body {
 /* Typography */
 
 h1 {
-  margin-top: 1.2em;
-  margin-bottom: .3em;
+  margin: 1.2em 0 .1em 0;
   font-size: 3em;
   font-weight: 350;
   line-height: 1.2
@@ -41,33 +40,30 @@ h1 {
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin-bottom: .6em;
+  margin: 0 0 .5em 0;
   font-size: 14px
 }
 
 h2 {
-  margin-top: 1.5em;
-  margin-bottom: .4em;
+  margin: 1.5em 0 .4em 0;
   font-size: 2em;
-  font-weight: 350;
-  line-height: 1
+  font-weight: 350
 }
 
 h3 {
-  padding: 1em 0 .7em 0;
+  padding: .8em 0 .6em 0;
   border-top: 1px solid var(--color-accent-2);
-  margin-top: 1.4em;
-  font-size: 1.3em;
-  font-weight: 350;
-  line-height: 1
+  margin-top: .5em;
+  font-size: 1.4em;
+  font-weight: 350
 }
 
 p:not(:last-child) {
-  margin-bottom: .8em
+  margin: 0 0 .8em 0
 }
 
 p:last-of-type:not(:last-child) {
-  margin-bottom: 1em
+  margin: 0 0 1em 0
 }
 
 a {
@@ -76,6 +72,11 @@ a {
 
 a:hover {
   color: var(--color-accent-2)
+}
+
+a[exclude]::after {
+  content: "↗";
+  margin: 0 .2em
 }
 
 ol {
@@ -92,7 +93,7 @@ ol li::before {
 
 code,
 pre {
-  margin-bottom: 1.2em;
+  margin: 0 0 1.2em 0;
   font-family: "Lucida Console", Monaco, monospace;
   font-size: .9em
 }
@@ -113,7 +114,7 @@ sup {
 header {
   z-index: 1;
   width: 100%;
-  padding: .6em 1em;
+  padding: .7em 1em;
   border-bottom: 1px solid var(--color-accent);
   transition: all .5s cubic-bezier(.645, .045, .355, 1)
 }
@@ -123,13 +124,12 @@ header>div {
   grid: auto / repeat(2, 1fr)
 }
 
-header>div div:last-child,
-footer div:last-child {
+header>div div:last-child {
   text-align: right
 }
 
 header menu {
-  margin-bottom: 1em
+  margin: 0 0 1em 0
 }
 
 header nav ul,
@@ -144,15 +144,13 @@ header div:last-of-type ul li:not(:last-of-type)::after {
 }
 
 footer {
-  display: grid;
-  grid: auto / repeat(2, 1fr);
-  padding: .6em 1em;
+  padding: .7em 1em;
   border-top: 1px solid var(--color-accent)
-
 }
 
-footer .image-container {
-  margin: 6em 0 .4em 0
+footer img {
+  width: 200px;
+  margin: 6em 0 .3em 0;
 }
 
 /* Sections */
@@ -186,6 +184,52 @@ section:has(.image-container .half) {
 
 section:only-of-type h1 {
   margin-top: calc(120px + 2em)
+}
+
+section:has(.logos) {
+  min-height: auto !important;
+  padding: 0
+}
+
+section .logos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100vw;
+  transform: translateX(-1em)
+}
+
+section .logos a {
+  display: flex;
+  align-items: flex-end;
+  padding: 1em;
+}
+
+section .logos a::after {
+  content: ""
+}
+
+section .logos a:not(:last-child) {
+  border-right: 1px solid var(--color-accent)
+}
+
+section .logos a:first-child {
+  flex-direction: column;
+  align-items: flex-start
+}
+
+section .logos a:first-child span {
+  margin: 0 0 1em 0
+}
+
+section .logos img {
+  display: block;
+  max-width: 280px;
+  max-height: 24px;
+  margin: 0 0 .2em 0
+}
+
+section .logos .image-container {
+  height: auto !important
 }
 
 hr {
@@ -226,12 +270,17 @@ img {
   width: 50vw
 }
 
+.image-container img::before {
+  font-size: 1.4em;
+  font-weight: 350
+}
+
 /* Tables */
 
 table {
   width: 100%;
   border-bottom: 1px solid var(--color-accent-2);
-  margin-bottom: 1em;
+  margin: 0 0 1em 0;
   border-collapse: collapse;
   table-layout: fixed
 }
@@ -272,133 +321,7 @@ main .button::after {
 
 main button:hover::after,
 main .button:hover::after {
-  padding-right: .5em
-}
-
-/* Inputs */
-input,
-textarea {
-  width: 100%;
-  padding: .5em .9em;
-  border: 1px solid var(--color-accent);
-  background: none;
-  outline: none
-}
-
-::placeholder {
-  color: var(--color-accent-2)
-}
-
-form:has(input:only-of-type + button) {
-  display: flex
-}
-
-form:has(input:only-of-type + button) input {
-  border-right: 0
-}
-
-form:has(input:only-of-type + button) button {
-  width: auto;
-  border-left: 0
-}
-
-form:has(input:only-of-type + button) button:hover {
-  background: none;
-  color: var(--color-accent-2)
-}
-
-form:has(input:only-of-type + button) button::after {
-  content: ""
-}
-
-form:has(input:only-of-type + button) button:hover::after {
-  padding-right: 0
-}
-
-input[type="radio"] {
-  display: none
-}
-
-input[type="radio"] + label {
-  position: relative;
-  padding-left: 1.6em;
-  cursor: pointer;
-  margin-right: 1em
-}
-
-input[type="radio"] + label::before,
-input[type="radio"]:checked + label::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%
-}
-
-input[type="radio"] + label::before {
-  top: 0;
-  left: 0;
-  width: 14px;
-  height: 14px;
-  border: 1px solid var(--color-accent)
-}
-
-input[type="radio"]:checked + label::after {
-  top: 4px;
-  left: 4px;
-  width: 8px;
-  height: 8px;
-  background: var(--color-accent)
-}
-
-input[type="range"] {
-  width: 73%;
-  height: 1px;
-  padding: 0;
-  border: 0;
-  margin: 6px 0 1.6em;
-  background: var(--color-accent);
-  appearance: none;
-  transform: translateY(-4px)
-}
-
-input[type="range"] + label {
-  padding-left: .3em
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  width: 16px;
-  height: 16px;
-  border: 1px solid var(--color-accent);
-  background: var(--color-primary);
-  border-radius: 50%;
-  cursor: pointer;
-  appearance: none
-}
-
-input[type="range"]:hover::-webkit-slider-thumb {
-  background: var(--color-accent)
-}
-
-/* Summary */
-
-summary {
-  padding-top: 1em;
-  border-top: 1px solid var(--color-accent-2);
-  margin: 1em 0;
-  cursor: pointer
-}
-
-summary::-webkit-details-marker {
-  display: none
-}
-
-summary::before {
-  content: "+";
-  position: absolute;
-  right: 0
-}
-
-details[open] summary::before {
-  content: "-"
+  padding: 0 .5em 0 0
 }
 
 /* References */
@@ -426,8 +349,8 @@ details[open] summary::before {
 #grid-aware-mode {
   position: fixed;
   right: 1em;
-  bottom: calc(-42px + -1em);
-  padding: .6em .9em;
+  bottom: calc(-40px + -1em);
+  padding: .6em 1em;
   background: var(--color-accent);
   transition: bottom .5s cubic-bezier(.645, .045, .355, 1)
 }
@@ -441,8 +364,14 @@ details[open] summary::before {
   cursor: help
 }
 
+#grid-aware-mode a::before {
+  content: "⏺";
+  margin: 0 .6em 0 0;
+  animation: blink 1.5s steps(4, start) infinite
+}
+
 #grid-aware-mode-controls {
-  padding-left: 4em;
+  padding-left: 5em;
   float: right
 }
 
@@ -468,12 +397,13 @@ details[open] summary::before {
   /* Global Styles */
 
   * {
-    font-size: 12.5px
+    font-size: 13px
   }
 
   /* Typography */
 
   h1 {
+    margin: 0 0 .2em 0;
     font-size: 2.6em
   }
 
@@ -485,16 +415,10 @@ details[open] summary::before {
     font-size: 1.8em
   }
 
-  /* Headers and Footers */
-
-  footer img {
-    width: 180px;
-    height: 43px
-  }
+  /* Hide */
 
   #data-image,
-  #data-grid,
-  #data-aq {
+  #data-grid {
     display: none
   }
 
@@ -510,13 +434,21 @@ details[open] summary::before {
     margin-top: 0
   }
 
+  section .logos {
+    grid-template-columns: repeat(2, 1fr)
+  }
+
+  section .logos a:nth-last-child(-n+2) {
+    display: none
+  }
+
   /* Images */
 
   .image-container:has(.background) {
     opacity: .1
   }
 
-  section:not(:first-of-type) .image-container:has(img[src]) {
+  section:not(:first-of-type):not(:has(.logos)) .image-container:has(img[src]) {
     position: relative;
     top: -1em;
     left: -1em;
@@ -541,7 +473,9 @@ details[open] summary::before {
 
   #demand-shifter {
     right: 0em;
-    bottom: -42px;
+    bottom: -40px;
     width: 100%
   }
 }
+
+@keyframes blink { to { visibility: hidden } }
