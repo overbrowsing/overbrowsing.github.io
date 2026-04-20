@@ -40,7 +40,7 @@ h1 {
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin: 0 0 .5em 0;
+  margin: 6em 0 .5em 0;
   font-size: 14px
 }
 
@@ -223,13 +223,17 @@ section .logos a:first-child span {
 
 section .logos img {
   display: block;
-  max-width: 280px;
-  max-height: 24px;
+  max-width: 260px;
+  max-height: 20px;
   margin: 0 0 .2em 0
 }
 
 section .logos .image-container {
   height: auto !important
+}
+
+section .logos img {
+  max-height: 20px
 }
 
 hr {
@@ -268,11 +272,6 @@ img {
 
 .image-container:has(.half) img {
   width: 50vw
-}
-
-.image-container img::before {
-  font-size: 1.4em;
-  font-weight: 350
 }
 
 /* Tables */
@@ -365,8 +364,8 @@ main .button:hover::after {
 }
 
 #grid-aware-mode a::before {
-  content: "⏺";
-  margin: 0 .6em 0 0;
+  content: "●";
+  margin: 0 .7em 0 0;
   animation: blink 1.5s steps(4, start) infinite
 }
 
