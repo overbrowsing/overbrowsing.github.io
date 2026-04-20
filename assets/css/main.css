@@ -366,11 +366,11 @@ main .button:hover::after {
 #grid-aware-mode a::before {
   content: "●";
   margin: 0 .7em 0 0;
-  animation: blink 1.5s steps(4, start) infinite
+  animation: blink 2s steps(4, start) infinite
 }
 
 #grid-aware-mode-controls {
-  padding-left: 5em;
+  padding-left: 3em;
   float: right
 }
 
@@ -470,7 +470,7 @@ main .button:hover::after {
 
   /* Demand Shifter */
 
-  #demand-shifter {
+  #grid-aware-mode {
     right: 0em;
     bottom: -40px;
     width: 100%
