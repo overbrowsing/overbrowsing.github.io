@@ -223,17 +223,12 @@ section .logos a:first-child span {
 
 section .logos img {
   display: block;
-  max-width: 260px;
-  max-height: 20px;
+  max-height: 22px;
   margin: 0 0 .2em 0
 }
 
 section .logos .image-container {
   height: auto !important
-}
-
-section .logos img {
-  max-height: 20px
 }
 
 hr {
