@@ -436,6 +436,10 @@ main .button:hover::after {
     display: none
   }
 
+  section .logos img {
+    max-height: 16px
+  }
+
   /* Images */
 
   .image-container:has(.background) {
