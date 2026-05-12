@@ -1,4 +1,4 @@
-/* Global Styles */
+/* ------------------- Global styles ------------------- */
 
 :root {
   --seaweed: 66, 68, 57;
@@ -31,7 +31,7 @@ body {
 /* Typography */
 
 h1 {
-  margin: 1.2em 0 .1em 0;
+  margin: 0 0 .1em 0;
   font-size: 3em;
   font-weight: 350;
   line-height: 1.2
@@ -40,12 +40,12 @@ h1 {
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin: 4em 0 .5em 0;
+  margin: 8em 0 .4em 0;
   font-size: 14px
 }
 
 h2 {
-  margin: 1.5em 0 .4em 0;
+  margin: 1.5em 0 .2em 0;
   font-size: 2em;
   font-weight: 350
 }
@@ -93,13 +93,13 @@ ol li::before {
 
 code,
 pre {
-  margin: 0 0 1.2em 0;
+  margin: 0 0 1em 0;
   font-family: "Lucida Console", Monaco, monospace;
   font-size: .9em
 }
 
 pre {
-  padding: .9em 1.2em;
+  padding: .9em 1em;
   background: rgb(var(--laurel), .1);
   text-wrap: wrap
 }
@@ -109,7 +109,7 @@ sup {
   font-size: 70%
 }
 
-/* Headers and Footers */
+/* ------------------- Headers and footers ------------------- */
 
 header {
   z-index: 1;
@@ -150,7 +150,7 @@ footer {
 
 footer img {
   width: 200px;
-  margin: 6em 0 .3em 0;
+  margin: 6em 0 .3em 0
 }
 
 /* Sections */
@@ -169,7 +169,7 @@ section {
 }
 
 section:first-of-type {
-  margin-top: 120px
+  margin-top: 124.2px
 }
 
 section:has(.image-container img[src]),
@@ -183,7 +183,7 @@ section:has(.image-container .half) {
 }
 
 section:only-of-type h1 {
-  margin-top: calc(120px + 2em)
+  margin-top: calc(124.2px + 2em)
 }
 
 section:has(.logos) {
@@ -201,7 +201,7 @@ section .logos {
 section .logos a {
   display: flex;
   align-items: flex-end;
-  padding: 1em;
+  padding: 1em
 }
 
 section .logos a::after {
@@ -239,7 +239,7 @@ hr {
   transform: translateX(-1em)
 }
 
-/* Images */
+/* ------------------- Images ------------------- */
 
 img {
   display: none
@@ -285,7 +285,7 @@ td {
   border-top: 1px solid var(--color-accent-2)
 }
 
-/* Buttons */
+/* ------------------- Buttons ------------------- */
 
 button,
 .button {
@@ -338,7 +338,7 @@ main .button:hover::after {
   color: var(--color-accent)
 }
 
-/* Grid Aware Mode */
+/* ------------------- Grid-aware mode ------------------- */
 
 #grid-aware-mode {
   position: fixed;
@@ -388,13 +388,13 @@ main .button:hover::after {
 
 @media screen and (max-width: calc(650px + 2em)) {
 
-  /* Global Styles */
+  /* ------------------- Global styles ------------------- */
 
   * {
     font-size: 13px
   }
 
-  /* Typography */
+  /* ------------------- Typography ------------------- */
 
   h1 {
     margin: 0 0 .2em 0;
@@ -409,14 +409,14 @@ main .button:hover::after {
     font-size: 1.8em
   }
 
-  /* Hide */
+  /* ------------------- Hide ------------------- */
 
   #data-image,
   #data-grid {
     display: none
   }
 
-  /* Sections */
+  /* ------------------- Sections ------------------- */
 
   section:has(.image-container .background:not(:first-of-type)) {
     justify-content: flex-start;
@@ -440,7 +440,7 @@ main .button:hover::after {
     max-height: 16px
   }
 
-  /* Images */
+  /* ------------------- Images ------------------- */
 
   .image-container:has(.background) {
     opacity: .1
@@ -460,14 +460,14 @@ main .button:hover::after {
     width: 100%
   }
 
-  /* Buttons */
+  /* ------------------- Buttons ------------------- */
 
   button,
   .button {
     width: 100%
   }
 
-  /* Demand Shifter */
+  /* ------------------- Grid-aware mode ------------------- */
 
   #grid-aware-mode {
     right: 0em;
