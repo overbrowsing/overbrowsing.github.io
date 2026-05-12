@@ -365,7 +365,7 @@ main .button:hover::after {
 }
 
 #grid-aware-mode-controls {
-  padding-left: 3em;
+  padding-left: 6em;
   float: right
 }
 
