@@ -11,6 +11,45 @@
   <meta property="og:image" content="https://overbrowsing.com/assets/media/card.webp">
   <meta property="og:url" content="https://overbrowsing.com">
   <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    input {
+      width: 100%;
+      padding: .5em .9em;
+      border: 1px solid var(--color-accent);
+      background: none;
+      outline: none
+    }
+
+    ::placeholder {
+      color: var(--color-accent-2)
+    }
+
+    form:has(input:only-of-type + button) {
+      display: flex
+    }
+
+    form:has(input:only-of-type + button) input {
+      border-right: 0
+    }
+
+    form:has(input:only-of-type + button) button {
+      width: auto;
+      border-left: 0
+    }
+
+    form:has(input:only-of-type + button) button:hover {
+      background: none;
+      color: var(--color-accent-2)
+    }
+
+    form:has(input:only-of-type + button) button::after {
+      content: ""
+    }
+
+    form:has(input:only-of-type + button) button:hover::after {
+      padding-right: 0
+    }
+  </style>
 </head>
 
 <body>
