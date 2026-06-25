@@ -34,7 +34,7 @@ const getLabel = intensity => {
   if (intensity < 100) return "Low";
   if (intensity < 200) return "Moderate";
   if (intensity < 300) return "High";
-                       return "Very high";
+  return "Very high";
 };
 
 const setBannerPosition = intensity => {
@@ -51,6 +51,13 @@ const setBannerPosition = intensity => {
 const renderIntensity = intensity => {
   document.getElementById("data-grid").textContent =
     `${getLabel(intensity)} local grid intensity`;
+
+  if (intensity >= 100) {
+    document.documentElement.style.setProperty(
+      "--color-primary",
+      "hsl(23 14% 27%)"
+    );
+  }
 
   setBannerPosition(intensity);
 };
