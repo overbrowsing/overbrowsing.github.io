@@ -165,7 +165,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1em 0
+  padding: 1.1em 0
 }
 
 section:first-of-type {
@@ -344,7 +344,7 @@ main .button:hover::after {
   position: fixed;
   right: 1em;
   bottom: calc(-40px + -1em);
-  padding: .6em 1em;
+  padding: .7em 1em;
   background: var(--color-accent);
   transition: bottom .5s cubic-bezier(.645, .045, .355, 1)
 }
