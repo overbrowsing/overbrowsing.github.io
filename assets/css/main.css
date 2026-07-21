@@ -342,6 +342,7 @@ main .button:hover::after {
 
 #grid-aware-mode {
   position: fixed;
+  width: 400px;
   right: 1em;
   bottom: calc(-40px + -1em);
   padding: .7em 1em;
@@ -364,12 +365,8 @@ main .button:hover::after {
   animation: blink 2s steps(4, start) infinite
 }
 
-#grid-aware-mode-controls {
-  padding-left: 6em;
-  float: right
-}
-
 #grid-aware-mode-controls button {
+  float: right;
   cursor: pointer;
   margin-left: .7em
 }
