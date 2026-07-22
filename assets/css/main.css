@@ -31,16 +31,16 @@ body {
 /* ------------------- Typography ------------------- */
 
 h1 {
-  margin: 0 0 .1em 0;
+  margin: 0 0 .3em 0;
   font-size: 3em;
   font-weight: 350;
-  line-height: 1.2
+  line-height: 1.1
 }
 
 h1::before {
   content: attr(data-heading);
   display: block;
-  margin: 8em 0 .4em 0;
+  margin: 8em 0 .8em 0;
   font-size: 14px
 }
 
