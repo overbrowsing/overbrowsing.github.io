@@ -318,6 +318,23 @@ main .button:hover::after {
   padding: 0 .5em 0 0
 }
 
+section:has(.button + .button) {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-end;
+  align-items: flex-start;
+  column-gap: 1em
+}
+
+section:has(.button + .button) > *:not(.button) {
+  flex-basis: 100%
+}
+
+section:has(.button + .button) > .button {
+  width: calc(50% - .5em)
+}
+
 /* ------------------- References ------------------- */
 
 #references {
@@ -455,6 +472,21 @@ main .button:hover::after {
 
   button,
   .button {
+    width: 100%
+  }
+
+  section:has(.button + .button) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    row-gap: 1em
+  }
+
+  section:has(.button + .button) > *:not(.button) {
+    flex-basis: auto
+  }
+
+  section:has(.button + .button) > .button {
     width: 100%
   }
 
