@@ -223,8 +223,7 @@ section .logos a:first-child span {
 
 section .logos img {
   display: block;
-  max-height: 22px;
-  margin: 0 0 .2em 0
+  max-height: 31px;
 }
 
 section .logos .image-container {
@@ -445,7 +444,7 @@ section:has(.button + .button) > .button {
   }
 
   section .logos img {
-    max-height: 16px
+    max-height: 22px
   }
 
   /* ------------------- Images ------------------- */
