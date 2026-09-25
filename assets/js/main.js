@@ -2,31 +2,52 @@
 
 let ipData;
 
+const fetchJSON = async (url, ms = 6000) => {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), ms);
+  try {
+    const res = await fetch(url, { signal: ctrl.signal });
+    if (!res.ok) throw new Error(res.status);
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
+  }
+};
+
+const setText = (id, text) => {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+};
+
+setText("data-grid", "N/A");
+setText("data-co2", "N/A");
+
 const getIntensity = async () => {
   try {
-    ipData ||= await fetch("https://ipinfo.io/json").then(r => r.json());
+    ipData ||= await fetchJSON("https://ipinfo.io/json");
 
     const { country, region, ip } = ipData;
 
     if (country === "GB") {
-      const res = await fetch("https://api.carbonintensity.org.uk/regional")
-        .then(r => r.json());
+      const res = await fetchJSON("https://api.carbonintensity.org.uk/regional");
 
       const regions = res.data[0].regions;
       const match =
         regions.find(r => r.shortname === (region || "GB")) || regions[0];
 
-      return match.intensity.forecast;
+      const value = Number(match.intensity.forecast);
+      return Number.isFinite(value) ? value : null;
     }
 
-    const res = await fetch(
+    const res = await fetchJSON(
       `https://api.thegreenwebfoundation.org/api/v3/ip-to-co2intensity/${ip}`
-    ).then(r => r.json());
+    );
 
-    return res.carbon_intensity;
+    const value = Number(res.carbon_intensity);
+    return Number.isFinite(value) ? value : null;
 
   } catch {
-    return 300;
+    return null;
   }
 };
 
@@ -48,9 +69,11 @@ const setBannerPosition = intensity => {
       : "";
 };
 
-const renderIntensity = intensity => {
-  document.getElementById("data-grid").textContent =
-    `${getLabel(intensity)} local grid intensity`;
+const renderIntensity = (intensity, known = true) => {
+  setText(
+    "data-grid",
+    known ? `${getLabel(intensity)} local grid intensity` : "Grid intensity unavailable"
+  );
 
   if (intensity >= 100) {
     document.documentElement.style.setProperty(
@@ -98,9 +121,11 @@ const setupControls = () => {
 };
 
 const init = async () => {
-  const intensity = await getIntensity();
+  const measured = await getIntensity();
+  const known = measured !== null;
+  const intensity = known ? measured : 300;
 
-  renderIntensity(intensity);
+  renderIntensity(intensity, known);
 
   const reducedDataMode = matchMedia(
     "(prefers-reduced-data: reduce)"
@@ -176,17 +201,21 @@ document.addEventListener("DOMContentLoaded", () => {
 const display = document.getElementById("data-image");
 const cache = new Map();
 
-const getSize = async url => {
-  const res = await fetch(url, { method: "HEAD" });
-  const bytes = res.headers.get("Content-Length");
+let hoveredUrl = null;
 
-  cache.set(
-    url,
-    bytes ? `${(bytes / 1024).toFixed(2)} KB` : "N/A"
-  );
+const getSize = async url => {
+  cache.set(url, "…");
+  try {
+    const res = await fetch(url, { method: "HEAD" });
+    const bytes = res.headers.get("Content-Length");
+    cache.set(url, bytes ? `${(bytes / 1024).toFixed(2)} KB` : "N/A");
+  } catch {
+    cache.set(url, "N/A");
+  }
+  if (display && hoveredUrl === url) display.textContent = cache.get(url);
 };
 
-if (!("ontouchstart" in window)) {
+if (display && !("ontouchstart" in window)) {
   document.addEventListener("mousemove", e => {
     const img = [...document.querySelectorAll("img")].find(i => {
       const r = i.getBoundingClientRect();
@@ -199,6 +228,7 @@ if (!("ontouchstart" in window)) {
     });
 
     if (!img) {
+      hoveredUrl = null;
       display.style.display = "none";
       return;
     }
@@ -207,13 +237,17 @@ if (!("ontouchstart" in window)) {
       img.src ||
       getComputedStyle(img).backgroundImage.slice(5, -2).replace(/"/g, "");
 
+    if (!url) return;
+
+    hoveredUrl = url;
     if (!cache.has(url)) getSize(url);
 
-    display.textContent = cache.get(url);
+    display.textContent = cache.get(url) || "…";
     display.style.display = "inline-block";
   });
 
   document.addEventListener("mouseout", () => {
+    hoveredUrl = null;
     display.style.display = "none";
   });
 }
@@ -223,12 +257,22 @@ if (!("ontouchstart" in window)) {
 (async () => {
   const apiUrl = `https://digitalbeacon.co/badge?url=${encodeURIComponent(window.location.href)}`;
 
-  const { url, co2 } = await (await fetch(apiUrl)).json();
+  const el = document.getElementById("data-co2");
+  if (!el) return;
 
-  const value = parseFloat(co2);
+  try {
+    const { url, co2 } = await fetchJSON(apiUrl, 10000);
+    const value = parseFloat(co2);
+    if (!Number.isFinite(value)) throw new Error("No CO2 value");
 
-  document.getElementById("data-co2").innerHTML =
-    `<a href="${url}" target="_blank">${Number.isFinite(value) ? value.toFixed(3) : "N/A"}g CO₂e</a>`;
+    const link = document.createElement("a");
+    link.href = url || "https://digitalbeacon.co";
+    link.target = "_blank";
+    link.textContent = `${value.toFixed(3)}g CO₂e`;
+    el.replaceChildren(link);
+  } catch {
+    el.textContent = "CO₂e unavailable";
+  }
 })();
 
 /* ------------------- References ------------------- */
