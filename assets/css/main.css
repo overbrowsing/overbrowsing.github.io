@@ -165,7 +165,7 @@ section {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.1em 0
+  padding: 1em 0
 }
 
 section:first-of-type {
@@ -201,7 +201,7 @@ section .logos {
 section .logos a {
   display: flex;
   align-items: flex-end;
-  padding: 1em
+  padding: .5em 1em
 }
 
 section .logos a::after {
