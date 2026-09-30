@@ -287,6 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!links.length) return;
 
   links.forEach((link, i) => {
+    link.id = `ref-${i + 1}`;
     link.insertAdjacentHTML("beforeend", `<sup>${i + 1}</sup>`);
 
     link.onclick = e => {
@@ -298,13 +299,22 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const html = links
-    .map(link => {
-      const clean = link.href.replace(/^https?:\/\//, "");
-      return `<li><a href="${link.href}" target="_blank">${clean}</a></li>`;
+    .map((link, i) => {
+      const clean = link.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
+      return `<li><a href="#ref-${i + 1}" class="ref-back">${i + 1}.</a> <a href="${link.href}" target="_blank">${clean}</a></li>`;
     })
     .join("");
 
   document
     .querySelector("footer")
     .insertAdjacentHTML("afterend", `<div id="references"><ol>${html}</ol></div>`);
+
+  document.querySelectorAll("#references .ref-back").forEach(back => {
+    back.onclick = e => {
+      e.preventDefault();
+      document
+        .querySelector(back.getAttribute("href"))
+        .scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+  });
 });
