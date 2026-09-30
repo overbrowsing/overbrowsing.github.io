@@ -354,6 +354,10 @@ section:has(.button + .button) > .button {
   color: var(--color-accent)
 }
 
+#references li::before {
+  content: none
+}
+
 /* ------------------- Grid-aware mode ------------------- */
 
 #grid-aware-mode {
